@@ -26,7 +26,6 @@ namespace UnityEngine.XR.Interaction.Toolkit
         /// <returns>true if successful.</returns>
         public bool QueueTeleportRequest(TeleportRequest teleportRequest)
         {
-            Debug.Log("Hello");
             m_CurrentRequest = teleportRequest;
             m_ValidRequest = true;
             return true;
@@ -42,6 +41,16 @@ namespace UnityEngine.XR.Interaction.Toolkit
             {
                 type = 1;
             }
+        }
+
+        public void setTeleportaion()
+        {
+            type = 0;
+        }
+
+        public void setDash()
+        {
+            type = 1;
         }
 
         /// <summary>

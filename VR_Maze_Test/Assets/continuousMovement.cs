@@ -9,24 +9,33 @@ public class continuousMovement : LocomotionProvider
     public float speed = 1.0f;
     public List<XRController> controllers = null;
 
+    public UIManager uIManager;
+    public ShaderChanger[] walls;
+    public ShaderChanger floor;
+    public GameObject ceilling;
+
+    private bool movementBool = false;
+
     private CharacterController characterController = null;
-    private XRRig head = null;
+    public Camera head = null;
 
     protected override void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        head = GetComponent<XRRig>();
+        //head = GetComponent<Camera>();
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        walls = GameObject.FindObjectsOfType<ShaderChanger>();
+        ceilling.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckForInput();
+
     }
 
     private void CheckForInput()
@@ -41,7 +50,39 @@ public class continuousMovement : LocomotionProvider
     private void CheckForMovement(InputDevice device)
     {
         if (device.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 position))
+        { 
+            if (uIManager.GetWireframeMode() == UIManager.WireframeMode.Auto)
+            {
+                if (position == new Vector2(0, 0) && movementBool)
+                {
+                    movementBool = false;
+                    foreach (ShaderChanger wall in walls)
+                    {
+                        
+                        wall.setMaterialRocks();
+                        
+                    }
+                    //floor.setMaterialRocks();
+                    ceilling.SetActive(false);
+                }
+                else if (position != new Vector2(0, 0) && !movementBool)
+                {
+                    movementBool = true;
+                    foreach (ShaderChanger wall in walls)
+                    {
+                        
+                        wall.setMaterialWireframe();
+                    }
+                    ceilling.SetActive(true);
+                    //floor.setMaterialWireframe();
+                }
+            }
+            
+            
             StartMove(position);
+        }
+
+          
     }
 
     private void StartMove(Vector2 position)

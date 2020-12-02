@@ -6,6 +6,7 @@ TagManager:
   tags:
   - RightControllerModel
   - RIghtUI
+  - wall
   layers:
   - Default
   - TransparentFX

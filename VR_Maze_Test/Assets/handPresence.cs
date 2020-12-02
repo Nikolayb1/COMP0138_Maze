@@ -43,7 +43,6 @@ public class handPresence : MonoBehaviour
         }
         targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue);
         targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryButtonValue);
-        Debug.Log(targetDevice.characteristics);
         if (targetDevice.role == InputDeviceRole.LeftHanded)
         {
             if (primaryButtonValue && !PrimaryButtonToggle)

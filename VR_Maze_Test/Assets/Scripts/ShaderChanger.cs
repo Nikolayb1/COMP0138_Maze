@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShaderChanger : MonoBehaviour
 {
-    public Shader wireframe;
+    public Material wireframe;
     public Material rocks;
     public bool isMaterial1;
     Renderer rend;
@@ -13,7 +13,7 @@ public class ShaderChanger : MonoBehaviour
     {
         isMaterial1 = true;
         rend = GetComponent<Renderer>();
-        rend.material.shader = wireframe;
+        rend.material = wireframe;
         rend.material = rocks;
     }
 
@@ -32,8 +32,18 @@ public class ShaderChanger : MonoBehaviour
         }
         else
         {
-            rend.material.shader = wireframe;
+            rend.material = wireframe;
             isMaterial1 = true;
         }
+    }
+
+    public void setMaterialWireframe()
+    {
+        rend.material = wireframe;
+    }
+
+    public void setMaterialRocks()
+    {
+        rend.material = rocks;
     }
 }

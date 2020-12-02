@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    
     private GameObject menu;
 
     private Text movementTypeText;
@@ -28,18 +29,18 @@ public class UIManager : MonoBehaviour
     private MovementType currentMovementType;
     private WireframeMode currentWireframeMode;
 
-    private enum MovementType
+    public enum MovementType
     {
         Teleport,
         Dash,
         Walk
     };
 
-    private enum WireframeMode
+    public enum WireframeMode
     {
         Off,
-        On
-        //Auto
+        On,
+        Auto
     };
 
     private MovementType GetNextMovementType(MovementType cur)
@@ -56,6 +57,21 @@ public class UIManager : MonoBehaviour
                 where val > cur
                 orderby val
                 select val).DefaultIfEmpty().First();
+    }
+
+    public WireframeMode GetWireframeMode()
+    {
+        return currentWireframeMode;
+    }
+
+    public void SetWireframeMode(WireframeMode mode)
+    {
+        currentWireframeMode = WireframeMode.Auto;
+    }
+
+    public MovementType GetMovementMode()
+    {
+        return currentMovementType;
     }
 
     public void ChangeMovementType()
@@ -83,6 +99,8 @@ public class UIManager : MonoBehaviour
 
     }
 
+    
+
     private void GetUI()
     {
         Text[] newText;
@@ -105,6 +123,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (menu == null)
         {
             GetUI();
@@ -141,15 +160,16 @@ public class UIManager : MonoBehaviour
 
                     break;
 
-                //case WireframeMode.Auto:
-                  //  wireframeModeValueString = "Auto";
+                case WireframeMode.Auto:
+                    wireframeModeValueString = "Auto";
 
-                    //break;
+                    break;
             }
             movementTypeText.text = movementTypeStringBegining + movementTypeValueString;
             wireframeModeText.text = wireframeModeStringBegining + wireframeModeValueString;
             rotationText.text = rotationStringBegining+ rotationValueString;
             positionText.text = positionStringBegining + positionValueString;
+            
         }
     }
 

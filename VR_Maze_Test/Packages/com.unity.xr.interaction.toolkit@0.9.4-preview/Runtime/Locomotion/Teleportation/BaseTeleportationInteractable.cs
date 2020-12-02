@@ -138,7 +138,6 @@ namespace UnityEngine.XR.Interaction.Toolkit
                         tr.requestTime = Time.time;
                         if (GenerateTeleportRequest(interactor, raycastHit, ref tr))
                         {
-                            Debug.Log("I am here");
                             m_TeleportationProvider.QueueTeleportRequest(tr);
                         }
                     }

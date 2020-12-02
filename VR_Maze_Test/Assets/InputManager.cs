@@ -11,11 +11,15 @@ public class InputManager : MonoBehaviour
     private InputDeviceCharacteristics leftControllerCharacteristics;
     private InputDeviceCharacteristics rightControllerCharacteristics;
 
+    public Logger log;
+
     public GameObject XRRig;
+    public GameObject mainCamera;
     private TeleportationProvider tp;
     private continuousMovement cm;
 
     private int movementType = 0;
+    private int wireframeType = 0;
 
     private float[] rotation;
     private float[] position;
@@ -24,8 +28,11 @@ public class InputManager : MonoBehaviour
 
     private bool PrimaryButtonRightToggle;
     private bool SecondaryButtonRightToggle;
+    private bool PrimaryButtonLeftToggle;
 
     private ShaderChanger[] walls;
+    public ShaderChanger floor;
+    public GameObject ceilling;
 
     private void FindInputDevices()
     {
@@ -48,18 +55,21 @@ public class InputManager : MonoBehaviour
 
     private float[] GetRotation()
     {
-        float rotationX = XRRig.transform.rotation.x;
-        float rotationY = XRRig.transform.rotation.y;
-        float rotationZ= XRRig.transform.rotation.z;
+        float rotationX = mainCamera.transform.rotation.x;
+        float rotationY = mainCamera.transform.rotation.y;
+        float rotationZ= mainCamera.transform.rotation.z;
 
         return new float[3] { rotationX, rotationY, rotationZ };
     }
-
+    public void UpdateLog(float[] position, float[] rotation)
+    {
+        log.addRecord(position[0].ToString(), position[1].ToString(), position[2].ToString(), rotation[0].ToString(), rotation[1].ToString(), rotation[2].ToString());
+    }
     private float[] GetPosition()
     {
-        float positionX = XRRig.transform.position.x;
-        float positionY = XRRig.transform.position.y;
-        float positionZ = XRRig.transform.position.z;
+        float positionX = mainCamera.transform.position.x;
+        float positionY = mainCamera.transform.position.y;
+        float positionZ = mainCamera.transform.position.z;
 
         return new float[3] { positionX, positionY, positionZ };
     }
@@ -67,6 +77,7 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ceilling.SetActive(false);
         leftControllerCharacteristics = InputDeviceCharacteristics.Left | InputDeviceCharacteristics.Controller;
         rightControllerCharacteristics = InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
         FindInputDevices();
@@ -92,34 +103,18 @@ public class InputManager : MonoBehaviour
 
         rightController.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonRightValue);
         rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryButtonRightValue);
+        leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonLeftValue);
 
         // Press A to change movement type
         if (primaryButtonRightValue && !PrimaryButtonRightToggle)
         {
-            movementType++;
-            if (movementType == 3)
-                movementType = 0;
-
-            switch (movementType)
-            {
-                case 0:
-                    cm.enabled = false;
-                    tp.enabled = true;
-                    tp.changeType();
-                    break;
-
-                case 1:
-                    tp.changeType();
-                    break;
-
-                case 2:
-                    cm.enabled = true;
-                    tp.enabled = false;
-                    break;
-
-            }
             uiManager.ChangeMovementType();
             PrimaryButtonRightToggle = true;
+            ChangeMovement();
+
+
+
+
         }
 
         if (!primaryButtonRightValue)
@@ -131,18 +126,106 @@ public class InputManager : MonoBehaviour
         if (secondaryButtonRightValue && !SecondaryButtonRightToggle)
         {
             uiManager.ChangeWireframeType();
-            foreach (ShaderChanger wall in walls)
-            {
-                wall.changeMaterial();
-            }
             SecondaryButtonRightToggle = true;
+            ChangeWireframe();
+
+
         }
         if (!secondaryButtonRightValue)
         {
+            
             SecondaryButtonRightToggle = false;
         }
 
+        // Press X to Change Fog
+        if (primaryButtonLeftValue && !PrimaryButtonLeftToggle)
+        {
+            togglefog();
+            PrimaryButtonLeftToggle = true;
+        }
+        if (primaryButtonLeftValue)
+        {
+            PrimaryButtonLeftToggle = false;
+        }
+
+
+
         uiManager.UpdateRotationUI(GetRotation());
         uiManager.UpdatePositionUI(GetPosition());
+        UpdateLog(GetPosition(), GetRotation());
+    }
+
+    void togglefog()
+    {
+        if (RenderSettings.fog)
+        {
+            RenderSettings.fog = false;
+        }
+        else
+        {
+            RenderSettings.fog = true;
+        }
+    }
+
+    public void ChangeWireframe()
+    {
+        switch (uiManager.GetWireframeMode())
+        {
+            case UIManager.WireframeMode.Off:
+                Debug.Log("off");
+                foreach (ShaderChanger wall in walls)
+                {
+                    wall.setMaterialRocks();
+
+                }
+                floor.setMaterialRocks();
+                ceilling.SetActive(false);
+                break;
+
+            case UIManager.WireframeMode.On:
+                Debug.Log("on");
+                foreach (ShaderChanger wall in walls)
+                {
+
+                    wall.setMaterialWireframe();
+                }
+                ceilling.SetActive(true);
+                floor.setMaterialWireframe();
+                break;
+
+            case UIManager.WireframeMode.Auto:
+                Debug.Log("auto");
+                foreach (ShaderChanger wall in walls)
+                {
+                    wall.setMaterialRocks();
+
+                }
+                floor.setMaterialRocks();
+                ceilling.SetActive(false);
+                break;
+
+        }
+    }
+
+    public void ChangeMovement()
+    {
+        switch (uiManager.GetMovementMode())
+        {
+            case UIManager.MovementType.Teleport:
+                cm.enabled = false;
+                tp.enabled = true;
+                tp.setTeleportaion();
+                break;
+
+            case UIManager.MovementType.Dash:
+                tp.setDash();
+                break;
+
+            case UIManager.MovementType.Walk:
+                cm.enabled = true;
+                tp.enabled = false;
+                break;
+
+        }
     }
 }
