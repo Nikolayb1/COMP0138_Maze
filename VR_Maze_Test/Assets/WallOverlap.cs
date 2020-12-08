@@ -17,36 +17,56 @@ public class WallOverlap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (n == 0)
-        {
-            findWalls();
-            del = false;
-        }
+        
+    }
+
+    void FindWalls()
+    {
+        Debug.Log("Looking for walls");
+        walls = GameObject.FindGameObjectsWithTag("wall");
+        n = walls.Length;
+        Debug.Log("Found " + n + " walls");
+    }
+
+    public void RemoveDuplicateWalls(List<GameObject> oldWalls)
+    {
+        FindWalls();
+        del = false;
+        int delwalls = 0;
+        Debug.Log("Rmoving Duplicates");
         if (n > 0 && !del)
         {
-            Debug.Log(n);
             for (int i = 0; i < n; i++)
             {
                 for (int j = i + 1; j < n; j++)
                 {
-
+                    bool found = false;
+                    for (int z = 0; z < oldWalls.Count; z++)
+                    {
+                        if(walls[i] == oldWalls[z] || walls[j] == oldWalls[z])
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found)
+                    {
+                        continue;
+                    }
                     if (walls[i].transform.position == walls[j].transform.position)
                     {
 
                         Destroy(walls[j]);
+                        delwalls++;
                         continue;
                     }
                 }
             }
             del = true;
-            findWalls();
         }
-    }
 
-    void findWalls()
-    {
-        walls = GameObject.FindGameObjectsWithTag("wall");
-        n = walls.Length;
+        Debug.Log("Removed " + delwalls + " walls");
+
     }
 
 }

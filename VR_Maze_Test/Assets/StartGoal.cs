@@ -11,7 +11,7 @@ public class StartGoal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(EndObject, new Vector3(7.44f, 0.5f, 9.04f), Quaternion.identity);
+        Instantiate(EndObject, new Vector3(8f, 1f, 9f), Quaternion.identity);
     }
 
     // Update is called once per frame

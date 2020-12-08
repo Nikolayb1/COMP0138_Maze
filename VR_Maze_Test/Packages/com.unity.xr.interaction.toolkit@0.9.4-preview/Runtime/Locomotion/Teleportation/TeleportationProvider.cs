@@ -14,7 +14,7 @@ namespace UnityEngine.XR.Interaction.Toolkit
         TeleportRequest m_CurrentRequest;
         // whether the current teleportation request is valid.
         bool m_ValidRequest = false;
-
+        private bool stop = false;
 
         public int type = 0;
         bool done = false;
@@ -53,6 +53,11 @@ namespace UnityEngine.XR.Interaction.Toolkit
             type = 1;
         }
 
+        public void StopMovement()
+        {
+            done = true;
+            m_ValidRequest = false;
+        }
         /// <summary>
         /// Update function for the Teleportation Provider
         /// </summary>

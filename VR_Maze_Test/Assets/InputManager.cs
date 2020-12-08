@@ -30,7 +30,7 @@ public class InputManager : MonoBehaviour
     private bool SecondaryButtonRightToggle;
     private bool PrimaryButtonLeftToggle;
 
-    private ShaderChanger[] walls;
+    public ShaderChanger[] walls;
     public ShaderChanger floor;
     public GameObject ceilling;
 
@@ -213,6 +213,7 @@ public class InputManager : MonoBehaviour
         {
             case UIManager.MovementType.Teleport:
                 cm.enabled = false;
+                cm.ForgetWalls();
                 tp.enabled = true;
                 tp.setTeleportaion();
                 break;

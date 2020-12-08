@@ -22,19 +22,36 @@ public class continuousMovement : LocomotionProvider
     protected override void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        
+        ceilling.SetActive(false);
         //head = GetComponent<Camera>();
     }
     // Start is called before the first frame update
     void Start()
     {
-        walls = GameObject.FindObjectsOfType<ShaderChanger>();
-        ceilling.SetActive(false);
+        
+        
     }
 
-    // Update is called once per frame
+    public void FindWalls()
+    {
+        walls = GameObject.FindObjectsOfType<ShaderChanger>();
+    }
+
+    public void ForgetWalls()
+    {
+        walls = null;
+    }
+        // Update is called once per frame
     void Update()
     {
         CheckForInput();
+        //Debug.Log(walls.Length);
+        if (walls == null || walls.Length == 0)
+        {
+            FindWalls();
+            
+        }
 
     }
 
@@ -56,12 +73,16 @@ public class continuousMovement : LocomotionProvider
                 if (position == new Vector2(0, 0) && movementBool)
                 {
                     movementBool = false;
-                    foreach (ShaderChanger wall in walls)
+                    if (walls != null)
                     {
-                        
-                        wall.setMaterialRocks();
-                        
+                        foreach (ShaderChanger wall in walls)
+                        {
+
+                            wall.setMaterialRocks();
+
+                        }
                     }
+                    
                     //floor.setMaterialRocks();
                     ceilling.SetActive(false);
                 }

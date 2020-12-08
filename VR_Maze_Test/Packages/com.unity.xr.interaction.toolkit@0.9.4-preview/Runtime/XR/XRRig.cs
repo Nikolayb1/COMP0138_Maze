@@ -21,6 +21,7 @@ namespace UnityEngine.XR.Interaction.Toolkit
     public class XRRig : MonoBehaviour
     {
         private float speed = 10f;
+        private bool stop = false;
         private bool reached = false;
         private float acceleration = 1000f;
         const float k_DefaultCameraYOffset = 1.36144f;
@@ -143,6 +144,7 @@ namespace UnityEngine.XR.Interaction.Toolkit
         void Start()
         {
             TryInitializeCamera();
+            stop = false;
         }
 
         void OnValidate()
@@ -417,7 +419,6 @@ namespace UnityEngine.XR.Interaction.Toolkit
             speed = speed + acceleration * Time.deltaTime;
             Matrix4x4 rot = Matrix4x4.Rotate(cameraGameObject.transform.rotation);
             Vector3 delta = rot.MultiplyPoint3x4(rigInCameraSpacePos);
-            Debug.Log(speed);
             m_RigBaseGameObject.transform.position = Vector3.MoveTowards(transform.position, desiredWorldLocation+delta, Time.deltaTime * speed);
             if(m_RigBaseGameObject.transform.position == desiredWorldLocation + delta && reached)
             {

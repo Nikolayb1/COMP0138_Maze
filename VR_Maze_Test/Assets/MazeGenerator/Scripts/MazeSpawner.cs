@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using System.Collections.Generic;
 
 //<summary>
 //Game object, that creates maze and instantiates it in scene
@@ -25,30 +27,12 @@ public class MazeSpawner : MonoBehaviour {
 	public float CellHeight = 5;
 	public bool AddGaps = true;
 	public GameObject GoalPrefab = null;
+	public WallOverlap wo;
 
 	private BasicMazeGenerator mMazeGenerator = null;
 
 	void Start () {
-		if (!FullRandom) {
-			Random.seed = RandomSeed;
-		}
-		switch (Algorithm) {
-		case MazeGenerationAlgorithm.PureRecursive:
-			mMazeGenerator = new RecursiveMazeGenerator (Rows, Columns);
-			break;
-		case MazeGenerationAlgorithm.RecursiveTree:
-			mMazeGenerator = new RecursiveTreeMazeGenerator (Rows, Columns);
-			break;
-		case MazeGenerationAlgorithm.RandomTree:
-			mMazeGenerator = new RandomTreeMazeGenerator (Rows, Columns);
-			break;
-		case MazeGenerationAlgorithm.OldestTree:
-			mMazeGenerator = new OldestTreeMazeGenerator (Rows, Columns);
-			break;
-		case MazeGenerationAlgorithm.RecursiveDivision:
-			mMazeGenerator = new DivisionMazeGenerator (Rows, Columns);
-			break;
-		}
+		
 		GenerateMaze();
 
 
@@ -56,7 +40,38 @@ public class MazeSpawner : MonoBehaviour {
 
 	public void GenerateMaze()
     {
+		int removeCounter = 0;
+		List<GameObject> oldWalls = new List<GameObject>();
+		foreach (Transform child in this.transform)
+		{
+			removeCounter++;
+			oldWalls.Add(child.gameObject);
+			Destroy(child.gameObject);
+			
+		}
+		GameObject[] walls = GameObject.FindGameObjectsWithTag("wall");
+		Debug.Log("walls " + walls.Length);
+		Debug.Log("Removed " + removeCounter + " walls");
+		switch (Algorithm)
+		{
+			case MazeGenerationAlgorithm.PureRecursive:
+				mMazeGenerator = new RecursiveMazeGenerator(Rows, Columns);
+				break;
+			case MazeGenerationAlgorithm.RecursiveTree:
+				mMazeGenerator = new RecursiveTreeMazeGenerator(Rows, Columns);
+				break;
+			case MazeGenerationAlgorithm.RandomTree:
+				mMazeGenerator = new RandomTreeMazeGenerator(Rows, Columns);
+				break;
+			case MazeGenerationAlgorithm.OldestTree:
+				mMazeGenerator = new OldestTreeMazeGenerator(Rows, Columns);
+				break;
+			case MazeGenerationAlgorithm.RecursiveDivision:
+				mMazeGenerator = new DivisionMazeGenerator(Rows, Columns);
+				break;
+		}
 		mMazeGenerator.GenerateMaze();
+		Debug.Log("The maze is being Generated");
 		for (int row = 0; row < Rows; row++)
 		{
 			for (int column = 0; column < Columns; column++)
@@ -117,5 +132,7 @@ public class MazeSpawner : MonoBehaviour {
 				}
 			}
 		}
+
+		wo.RemoveDuplicateWalls(oldWalls);
 	}
 }
