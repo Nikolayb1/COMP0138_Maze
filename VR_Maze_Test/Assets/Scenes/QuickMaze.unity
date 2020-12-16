@@ -4244,6 +4244,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EndObject: {fileID: 7136318586544564524, guid: 49ce41ef51b0b0047bc58b21b39880b1,
     type: 3}
+  marker: {fileID: 6581795526422539748, guid: bc0290cf3bb9d5f44a65aa4d4872f1be, type: 3}
+  spawnedMarker: {fileID: 0}
+  spawnedGoal: {fileID: 0}
+  spawnLimit: 0
+  end: 0
 --- !u!1001 &2080583898
 PrefabInstance:
   m_ObjectHideFlags: 0
