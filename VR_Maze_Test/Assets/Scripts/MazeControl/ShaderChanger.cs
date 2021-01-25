@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+      Material yourMaterial = (Material)Resources.Load("MaterialName", typeof(Material));
+     
+     yourObject.renderer.sharedMaterial = yourMaterial;
+ */
 public class ShaderChanger : MonoBehaviour
 {
     public Material wireframe;

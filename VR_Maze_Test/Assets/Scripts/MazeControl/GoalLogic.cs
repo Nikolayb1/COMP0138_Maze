@@ -1,14 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class GoalLogic : Goal
 {
     private bool wait = false;
-    private float timeOffsetVal = 1f;
-    private float timeOffset;
-    private float timer;
+    public Rays rays;
+    
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -17,37 +15,66 @@ public class GoalLogic : Goal
 
     // Update is called once per frame
     void Update()
+    { 
+    }
+
+    public void InitRotation()
     {
-        if (wait)
+        ResetMaze(false);
+        rays = FindObjectOfType<Rays>();
+        //Activate a function from rays
+        rays.InitRays();
+    }
+
+    public void RotationReset()
+    {
+        ResetMaze(!end);
+        // move the player
+        ResetUser();
+        // change the Locomotion method
+        ChangeMovementWireframe();
+        sg.Reset();
+    }
+
+    public void ResetTutorial()
+    {
+        sg.Reset();
+        im.isTutorial = false;
+        im.deactivateEndMessage();
+        if (uim.GetMovementMode() == UIManager.MovementType.Fog)
         {
-            if (timer > timeOffset)
-            {
-                wait = false;
-            }
-            else
-            {
-                timer += Time.deltaTime;
-            }
+            im.SetFog(true);
         }
     }
 
+
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "XRRig" && !wait)
+        if (other.tag == "XRRig" && uim.canChange())
         {
             wait = true;
-            Debug.Log("Your are done");
-            // Destroy Maze
+            uim.setLastGoal(Time.fixedTime);
+            sg.check = false;
+            ResetUser();
+            
+            if (!sg.tutorial)
+            {
+                // Generate new maze
+                ResetMaze(!end);
+                // move the player
+                
+                // change the Locomotion method
+                ChangeMovementWireframe();
+                sg.Reset();
 
+            }
+            else
+            {
+                im.isTutorial = true;
+                im.SetFog(false);
+                im.activateEndMessage(1);
+            }
 
-            // Generate new maze
-            ms.GenerateMaze();
-            // move the player
-            Player.GetComponent<TeleportationProvider>().StopMovement();
-            Player.transform.position = new Vector3(0f, 0.5f, -2.5f);
-            // change the Locomotion method
-            ChangeMovementWireframe();
-            sg.Reset();
         }
     }
 

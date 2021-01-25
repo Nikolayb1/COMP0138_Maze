@@ -66,12 +66,15 @@ public class continuousMovement : LocomotionProvider
 
     private void CheckForMovement(InputDevice device)
     {
+        
         if (device.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 position))
         { 
             if (uIManager.GetWireframeMode() == UIManager.WireframeMode.Auto)
             {
-                if (position == new Vector2(0, 0) && movementBool)
+  
+                if (position.magnitude < 0.0001f && movementBool)
                 {
+                    Debug.Log("Standing");
                     movementBool = false;
                     if (walls != null)
                     {
@@ -86,8 +89,9 @@ public class continuousMovement : LocomotionProvider
                     //floor.setMaterialRocks();
                     ceilling.SetActive(false);
                 }
-                else if (position != new Vector2(0, 0) && !movementBool)
+                else if (position.magnitude >= 0.0001f && !movementBool)
                 {
+                    Debug.Log("Moving");
                     movementBool = true;
                     foreach (ShaderChanger wall in walls)
                     {
@@ -95,12 +99,37 @@ public class continuousMovement : LocomotionProvider
                         wall.setMaterialWireframe();
                     }
                     ceilling.SetActive(true);
+                    
                     //floor.setMaterialWireframe();
                 }
+
+                if (movementBool)
+                {
+                    StartMove(position);
+                }
+            }else if(uIManager.GetWireframeMode() == UIManager.WireframeMode.Off)
+            {
+
+                if (position.magnitude < 0.0001f && movementBool)
+                {
+                    Debug.Log("Standing");
+                    movementBool = false;
+
+                }
+                else if (position.magnitude >= 0.0001f && !movementBool)
+                {
+                    Debug.Log("Moving");
+                    movementBool = true;
+                }
+
+                if (movementBool)
+                {
+                    StartMove(position);
+                }
             }
-            
-            
-            StartMove(position);
+
+
+
         }
 
           
@@ -115,5 +144,6 @@ public class continuousMovement : LocomotionProvider
 
         Vector3 movement = direction * speed;
         characterController.Move(movement * Time.deltaTime);
+        
     }
 }

@@ -17,6 +17,11 @@ public class StartGoal : MonoBehaviour
     private Collider StartObjectCollider;
     private Collider PlayerCollider;
     private bool goalCreated;
+    public bool tutorial;
+    public GoalLogic GL;
+    public UIManager uim;
+    public GameObject Player;
+    public bool check;
 
     private int numberOfSpawns;
     public int spawnLimit;
@@ -26,6 +31,7 @@ public class StartGoal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        uim = FindObjectOfType<UIManager>();
         goalCreated = false;
         markerSpawned = false;
         numberOfSpawns = 0;
@@ -35,6 +41,11 @@ public class StartGoal : MonoBehaviour
     {
         int x = Random.Range(0, 5);
         int y = Random.Range(0, 5);
+        while (x <= 2 && y <= 2)
+        {
+            x = Random.Range(0, 5);
+            y = Random.Range(0, 5);
+        }
         Debug.Log("X: " + x + "; Y: " + y);
         spawnedMarker = Instantiate(marker, new Vector3(locations[x], 1f, locations[y]), Quaternion.identity);
         markerSpawned = true;
@@ -50,6 +61,21 @@ public class StartGoal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        if (!check)
+        {
+            if (!uim.didSet(Player.transform.position))
+            {
+
+                Player.transform.position = new Vector3(0f, 0.55f, -2.5f);
+
+            }
+            else
+            {
+                check = true;
+            }
+        }
+        
         if (!spawnedMarker)
         {
             markerSpawned = false;
@@ -59,6 +85,7 @@ public class StartGoal : MonoBehaviour
         }
         if(numberOfSpawns >= spawnLimit && !goalCreated && markerSpawned == false)
         {
+            Debug.Log("this is the end");
             switch (end)
             {
                 case ending.goal:
@@ -70,7 +97,13 @@ public class StartGoal : MonoBehaviour
                     goalCreated = true;
                     break;
                 case ending.orientationCheck:
-                    goalCreated= true;
+                    // Send a message to a funciton which deletes the maze and activates the ray
+                    spawnedGoal = Instantiate(EndObject, new Vector3(8f, 1f, 9f), Quaternion.identity);
+                    GL = spawnedGoal.GetComponent<GoalLogic>();
+                    //spawnedGoal.SetActive(false);
+                    
+                    GL.InitRotation();
+                    goalCreated = true;
                     break;
             }
         }

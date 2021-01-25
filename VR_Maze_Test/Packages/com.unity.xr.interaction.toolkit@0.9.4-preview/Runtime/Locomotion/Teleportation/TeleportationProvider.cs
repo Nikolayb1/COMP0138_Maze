@@ -15,7 +15,7 @@ namespace UnityEngine.XR.Interaction.Toolkit
         // whether the current teleportation request is valid.
         bool m_ValidRequest = false;
         private bool stop = false;
-
+        private Collider playerCollider;
         public int type = 0;
         bool done = false;
 
@@ -24,6 +24,13 @@ namespace UnityEngine.XR.Interaction.Toolkit
         /// </summary>
         /// <param name="teleportRequest">The teleportation request</param>
         /// <returns>true if successful.</returns>
+
+        public void Start()
+        {
+            playerCollider = gameObject.GetComponent<Collider>();
+            Debug.Log(playerCollider);
+        }
+
         public bool QueueTeleportRequest(TeleportRequest teleportRequest)
         {
             m_CurrentRequest = teleportRequest;
@@ -65,6 +72,7 @@ namespace UnityEngine.XR.Interaction.Toolkit
         {
             if(m_ValidRequest && BeginLocomotion())
             {
+                
                 var xrRig = system.xrRig;
                 if (xrRig != null)
                 {
@@ -88,9 +96,12 @@ namespace UnityEngine.XR.Interaction.Toolkit
                     if (type == 1 && transform.position != cameraDestination)
                     {
                         done = xrRig.GlideCameraToWorldLocation(cameraDestination);
+                        //disable hit box
+                        playerCollider.enabled = false;
                     }
                     else if(type == 0)
                     {
+                        Debug.Log("Gonna Move");
                         xrRig.MoveCameraToWorldLocation(cameraDestination);
                     }
                     
@@ -99,6 +110,8 @@ namespace UnityEngine.XR.Interaction.Toolkit
                 if(type == 1 && done)
                 {
                     m_ValidRequest = false;
+                    // Enable hit box
+                    playerCollider.enabled = true;
                 }else if(type == 0)
                 {
                     m_ValidRequest = false;

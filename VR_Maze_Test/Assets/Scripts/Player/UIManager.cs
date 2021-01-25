@@ -28,12 +28,19 @@ public class UIManager : MonoBehaviour
 
     private MovementType currentMovementType;
     private WireframeMode currentWireframeMode;
+    
+
+    private Vector3 origin = new Vector3(0f, 0.55f, -2.5f);
+    private float setTime;
+
+    private float lastGoal;
 
     public enum MovementType
     {
         Teleport,
         Dash,
-        Walk
+        Walk,
+        Fog
     };
 
     public enum WireframeMode
@@ -66,7 +73,12 @@ public class UIManager : MonoBehaviour
 
     public void SetWireframeMode(WireframeMode mode)
     {
-        currentWireframeMode = WireframeMode.Auto;
+        currentWireframeMode = mode;
+    }
+
+    public void SetMovementType(MovementType mode)
+    {
+        currentMovementType = mode;
     }
 
     public MovementType GetMovementMode()
@@ -94,12 +106,40 @@ public class UIManager : MonoBehaviour
         rotationValueString = rotation[0].ToString() + ", " + rotation[1].ToString() + ", " + rotation[2].ToString();
     }
 
-    public void ToggleUI()
-    {
 
+
+    public void setLastGoal(float t)
+    {
+        lastGoal = t;
     }
 
-    
+    public bool canChange()
+    {
+        if (Time.fixedTime - lastGoal > 3)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void setPosTime(float t)
+    {
+        setTime = t;
+    }
+
+    public bool didSet(Vector3 pos)
+    {
+        //Debug.Log(Time.fixedTime - setTime);
+        if (Time.fixedTime - setTime < 4)
+        {
+            if (origin == pos && Time.fixedTime - setTime > 3)
+            {
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
 
     private void GetUI()
     {
@@ -118,6 +158,7 @@ public class UIManager : MonoBehaviour
         GetUI();
         currentMovementType = MovementType.Teleport;
         currentWireframeMode = WireframeMode.Off;
+        
     }
 
     // Update is called once per frame
@@ -144,6 +185,10 @@ public class UIManager : MonoBehaviour
 
                 case MovementType.Walk:
                     movementTypeValueString = "Walk";
+
+                    break;
+                case MovementType.Fog:
+                    movementTypeValueString = "Fog";
 
                     break;
             }

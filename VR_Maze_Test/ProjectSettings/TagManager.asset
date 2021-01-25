@@ -9,6 +9,8 @@ TagManager:
   - wall
   - XRRig
   - Maze
+  - endMessage
+  - Fog
   layers:
   - Default
   - TransparentFX

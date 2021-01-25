@@ -1,22 +1,31 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class InputManager : MonoBehaviour
 {
+    public bool isUIToggle;
+    public bool isTutorial;
+
     private InputDevice leftController;
     private InputDevice rightController;
     private InputDeviceCharacteristics leftControllerCharacteristics;
     private InputDeviceCharacteristics rightControllerCharacteristics;
-
+    public GameObject endMessage;
+    public Text endMessageText;
     public Logger log;
 
     public GameObject XRRig;
     public GameObject mainCamera;
+    public GameObject rightControllerObject;
     private TeleportationProvider tp;
     private continuousMovement cm;
+    
+    public Rays r;
 
     private int movementType = 0;
     private int wireframeType = 0;
@@ -24,15 +33,21 @@ public class InputManager : MonoBehaviour
     private float[] rotation;
     private float[] position;
 
+    private GoalLogic GL;
+    private GameObject fog;
     public UIManager uiManager;
 
     private bool PrimaryButtonRightToggle;
     private bool SecondaryButtonRightToggle;
+    private bool TriggerRightToggle;
     private bool PrimaryButtonLeftToggle;
 
     public ShaderChanger[] walls;
     public ShaderChanger floor;
     public GameObject ceilling;
+
+    private string[] notifications = new string[] { "Please take off the VR headset and complete the online questioner",
+                                                    "If you would like to play the tutorial again please press A. To continue press B"};
 
     private void FindInputDevices()
     {
@@ -51,6 +66,17 @@ public class InputManager : MonoBehaviour
             rightController = devicesRight[0];
 
         }
+    }
+
+    public void activateEndMessage(int i)
+    {
+        endMessage.SetActive(true);
+        endMessageText.text = notifications[i];
+    }
+
+    public void deactivateEndMessage()
+    {
+        endMessage.SetActive(false);
     }
 
     private float[] GetRotation()
@@ -77,6 +103,8 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        endMessage = GameObject.FindGameObjectWithTag("endMessage");
+        endMessage.SetActive(false);
         ceilling.SetActive(false);
         leftControllerCharacteristics = InputDeviceCharacteristics.Left | InputDeviceCharacteristics.Controller;
         rightControllerCharacteristics = InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
@@ -89,8 +117,12 @@ public class InputManager : MonoBehaviour
         cm = XRRig.GetComponent<continuousMovement>();
 
         cm.enabled = false;
+        isTutorial = false;
 
         walls = GameObject.FindObjectsOfType<ShaderChanger>();
+
+        fog = GameObject.FindGameObjectWithTag("Fog");
+        fog.SetActive(false);
     }
 
     // Update is called once per frame
@@ -103,18 +135,23 @@ public class InputManager : MonoBehaviour
 
         rightController.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonRightValue);
         rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryButtonRightValue);
+        rightController.TryGetFeatureValue(CommonUsages.trigger, out float triggerRightValue);
         leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonLeftValue);
 
         // Press A to change movement type
-        if (primaryButtonRightValue && !PrimaryButtonRightToggle)
+        if (primaryButtonRightValue && !PrimaryButtonRightToggle && isUIToggle)
         {
             uiManager.ChangeMovementType();
             PrimaryButtonRightToggle = true;
             ChangeMovement();
+        }
 
-
-
-
+        // Press A to replay tutorial
+        if (primaryButtonRightValue && !PrimaryButtonRightToggle && isTutorial)
+        {
+            GL = FindObjectOfType<GoalLogic>();
+            GL.ResetTutorial();
+            PrimaryButtonRightToggle = true;
         }
 
         if (!primaryButtonRightValue)
@@ -123,7 +160,7 @@ public class InputManager : MonoBehaviour
         }
 
         // Press B to change Wireframe Mode
-        if (secondaryButtonRightValue && !SecondaryButtonRightToggle)
+        if (secondaryButtonRightValue && !SecondaryButtonRightToggle && isUIToggle)
         {
             uiManager.ChangeWireframeType();
             SecondaryButtonRightToggle = true;
@@ -133,14 +170,35 @@ public class InputManager : MonoBehaviour
         }
         if (!secondaryButtonRightValue)
         {
-            
+
             SecondaryButtonRightToggle = false;
         }
 
-        // Press X to Change Fog
-        if (primaryButtonLeftValue && !PrimaryButtonLeftToggle)
+        // Press Right Trigger to select point
+        // This should only trigger when pointer is enabled and teleporter is disabled
+        if (triggerRightValue > 0 && !TriggerRightToggle && r.isPointer())
         {
-            togglefog();
+            // Send data to Ray and finish the experiment;
+            // Get ray value
+            Ray ray = new Ray(rightControllerObject.transform.position, rightControllerObject.transform.forward);
+            // Send it to ray.
+            r.SetPointValue(ray.direction);
+            Debug.Log(r.CalculateAngle());
+            r.ResetRays();
+            GL = FindObjectOfType<GoalLogic>();
+            GL.RotationReset();
+            TriggerRightToggle = true;
+        }
+        if (triggerRightValue == 0)
+        {
+
+            TriggerRightToggle = false;
+        }
+
+        // Press X to Change Fog
+        if (primaryButtonLeftValue && !PrimaryButtonLeftToggle && isUIToggle)
+        {
+
             PrimaryButtonLeftToggle = true;
         }
         if (primaryButtonLeftValue)
@@ -152,19 +210,12 @@ public class InputManager : MonoBehaviour
 
         uiManager.UpdateRotationUI(GetRotation());
         uiManager.UpdatePositionUI(GetPosition());
-        UpdateLog(GetPosition(), GetRotation());
+        //UpdateLog(GetPosition(), GetRotation());
     }
 
-    void togglefog()
+    public void SetFog(bool b)
     {
-        if (RenderSettings.fog)
-        {
-            RenderSettings.fog = false;
-        }
-        else
-        {
-            RenderSettings.fog = true;
-        }
+        fog.SetActive(b);
     }
 
     public void ChangeWireframe()
@@ -173,9 +224,17 @@ public class InputManager : MonoBehaviour
         {
             case UIManager.WireframeMode.Off:
                 Debug.Log("off");
+                walls = GameObject.FindObjectsOfType<ShaderChanger>();
                 foreach (ShaderChanger wall in walls)
                 {
-                    wall.setMaterialRocks();
+                    try
+                    {
+                        wall.setMaterialRocks();
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
 
                 }
                 floor.setMaterialRocks();
@@ -184,6 +243,7 @@ public class InputManager : MonoBehaviour
 
             case UIManager.WireframeMode.On:
                 Debug.Log("on");
+                walls = GameObject.FindObjectsOfType<ShaderChanger>();
                 foreach (ShaderChanger wall in walls)
                 {
 
@@ -195,9 +255,18 @@ public class InputManager : MonoBehaviour
 
             case UIManager.WireframeMode.Auto:
                 Debug.Log("auto");
+                walls = GameObject.FindObjectsOfType<ShaderChanger>();
+                Debug.Log(walls.Length);
                 foreach (ShaderChanger wall in walls)
                 {
-                    wall.setMaterialRocks();
+                    try
+                    {
+                        wall.setMaterialRocks();
+                    }catch (Exception e)
+                    {
+
+                    }
+                    
 
                 }
                 floor.setMaterialRocks();
@@ -216,15 +285,24 @@ public class InputManager : MonoBehaviour
                 cm.ForgetWalls();
                 tp.enabled = true;
                 tp.setTeleportaion();
+                SetFog(false);
                 break;
 
             case UIManager.MovementType.Dash:
                 tp.setDash();
+                SetFog(false);
                 break;
 
             case UIManager.MovementType.Walk:
                 cm.enabled = true;
                 tp.enabled = false;
+                SetFog(false);
+                break;
+
+            case UIManager.MovementType.Fog:
+                cm.enabled = true;
+                tp.enabled = false;
+                SetFog(true);
                 break;
 
         }
