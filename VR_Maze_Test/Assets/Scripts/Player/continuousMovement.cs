@@ -10,6 +10,7 @@ public class continuousMovement : LocomotionProvider
     public List<XRController> controllers = null;
 
     public UIManager uIManager;
+    public InputManager im;
     public ShaderChanger[] walls;
     public ShaderChanger floor;
     public GameObject ceilling;
@@ -113,12 +114,14 @@ public class continuousMovement : LocomotionProvider
                 if (position.magnitude < 0.0001f && movementBool)
                 {
                     Debug.Log("Standing");
+                    im.SetFog(false);
                     movementBool = false;
 
                 }
                 else if (position.magnitude >= 0.0001f && !movementBool)
                 {
                     Debug.Log("Moving");
+                    im.SetFog(true);
                     movementBool = true;
                 }
 

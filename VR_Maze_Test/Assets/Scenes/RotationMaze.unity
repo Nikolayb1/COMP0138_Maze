@@ -243,6 +243,7 @@ MonoBehaviour:
   controllers:
   - {fileID: 1891351163}
   uIManager: {fileID: 1566840702}
+  im: {fileID: 0}
   walls: []
   floor: {fileID: 1687669880}
   ceilling: {fileID: 1897752883}
@@ -1864,6 +1865,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3502624822770920044, guid: 8c705f992cee09f4da3ca465a4ae918e,
+        type: 3}
+      propertyPath: m_CustomReticle
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3502624822770920045, guid: 8c705f992cee09f4da3ca465a4ae918e,
         type: 3}
@@ -8750,8 +8756,7 @@ MonoBehaviour:
   m_SmoothMovement: 0
   m_FollowTightness: 10
   m_SnapThresholdDistance: 10
-  m_Reticle: {fileID: 1024864439901104952, guid: df498136a5ffbfa46a1a472a84d07a09,
-    type: 3}
+  m_Reticle: {fileID: 0}
   m_StopLineAtFirstRaycastHit: 1
 --- !u!120 &1655270206
 LineRenderer:

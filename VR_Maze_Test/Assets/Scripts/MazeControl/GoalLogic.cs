@@ -41,10 +41,6 @@ public class GoalLogic : Goal
         sg.Reset();
         im.isTutorial = false;
         im.deactivateEndMessage();
-        if (uim.GetMovementMode() == UIManager.MovementType.Fog)
-        {
-            im.SetFog(true);
-        }
     }
 
 
@@ -71,7 +67,6 @@ public class GoalLogic : Goal
             else
             {
                 im.isTutorial = true;
-                im.SetFog(false);
                 im.activateEndMessage(1);
             }
 
