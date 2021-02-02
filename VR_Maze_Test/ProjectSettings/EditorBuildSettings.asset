@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/BackAndForthMaze.unity
     guid: 958040c2b5ea48240b459d9757b9ac16
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/RotationMaze.unity
     guid: 43d3e876bccec46a887c8a62e932b9c1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/QuickMaze.unity
     guid: 537e5b68261b1ba478ea88c0f0a05493
   - enabled: 0

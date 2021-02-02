@@ -11,6 +11,7 @@ TagManager:
   - Maze
   - endMessage
   - Fog
+  - LogCell
   layers:
   - Default
   - TransparentFX
