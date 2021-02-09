@@ -146,17 +146,17 @@ public class InputManager : MonoBehaviour
             ChangeMovement();
         }
 
-        // Press A to replay tutorial
-        if (primaryButtonRightValue && !PrimaryButtonRightToggle && isTutorial)
+        // Press B to replay tutorial
+        if (secondaryButtonRightValue && !PrimaryButtonRightToggle && isTutorial)
         {
             GL = FindObjectOfType<GoalLogic>();
             GL.ResetTutorial();
-            PrimaryButtonRightToggle = true;
+            SecondaryButtonRightToggle = true;
         }
 
-        if (!primaryButtonRightValue)
+        if (!secondaryButtonRightValue)
         {
-            PrimaryButtonRightToggle = false;
+            SecondaryButtonRightToggle = false;
         }
 
         // Press B to change Wireframe Mode
