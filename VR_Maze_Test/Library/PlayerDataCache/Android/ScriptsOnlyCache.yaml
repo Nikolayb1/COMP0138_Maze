@@ -2,12 +2,9 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - GoalLogic
-    - GridLogger
     - InputManager
-    - LogCell
     - Logger
     - Marker
-    - MazeList
     - MazeSpawner
     - Rays
     - ShaderChanger
@@ -90,7 +87,7 @@ ScriptsOnlyBuild:
     UnityEngine.XR.LegacyInputHelpers.dll:
     - UnityEditor.XR.LegacyInputHelpers.CameraOffset
   sceneClasses:
-    Assets/Scenes/RotationMaze 1.unity:
+    Assets/Scenes/QuickMaze.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -139,8 +136,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11480}
     - Class: 114
       Script: {instanceID: 11624}
-    - Class: 114
-      Script: {instanceID: 11626}
     - Class: 114
       Script: {instanceID: 11740}
     - Class: 114
@@ -214,8 +209,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14350}
     - Class: 114
-      Script: {instanceID: 14364}
-    - Class: 114
       Script: {instanceID: 14436}
     - Class: 114
       Script: {instanceID: 14620}
@@ -231,8 +224,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14930}
     - Class: 114
       Script: {instanceID: 14964}
-    - Class: 114
-      Script: {instanceID: 15042}
     - Class: 114
       Script: {instanceID: 15136}
     - Class: 114
@@ -1502,5 +1493,5 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 13
   scenePathNames:
-  - Assets/Scenes/RotationMaze 1.unity
-  playerPath: /Users/nikolaymac/Documents/VRBuilds/RotaiomMazeCircleBuild.apk
+  - Assets/Scenes/QuickMaze.unity
+  playerPath: /Users/nikolaymac/Documents/VRBuilds/TestBuild.apk

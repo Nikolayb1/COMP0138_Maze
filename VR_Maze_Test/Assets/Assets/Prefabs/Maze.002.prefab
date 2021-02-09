@@ -92,6 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d443e979a5d94554fb086949c8de6aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wireframe: {fileID: 2100000, guid: f95ad4ebe400b4a139f902f8e7addb35, type: 2}
+  wireframe: {fileID: 2100000, guid: b9b9f1a81fe1c462faa5cfd587c9b51d, type: 2}
   rocks: {fileID: 2100000, guid: b1072768e84a54d8291b888f30f431cb, type: 2}
   isMaterial1: 0

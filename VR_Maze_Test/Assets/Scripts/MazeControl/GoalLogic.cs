@@ -36,7 +36,7 @@ public class GoalLogic : Goal
             ResetUser();
             // change the Locomotion method
 
-            sg.Reset();
+            sg.Reset(end);
         }
         else
         {
@@ -49,7 +49,7 @@ public class GoalLogic : Goal
 
     public void ResetTutorial()
     {
-        sg.Reset();
+        sg.Reset(end);
         im.isTutorial = false;
         im.deactivateEndMessage();
     }
@@ -76,7 +76,7 @@ public class GoalLogic : Goal
                 
                 // change the Locomotion method
                 ChangeMovementWireframe();
-                sg.Reset();
+                sg.Reset(end);
 
             }
             else

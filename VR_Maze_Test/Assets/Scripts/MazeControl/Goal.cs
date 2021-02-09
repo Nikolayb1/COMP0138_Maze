@@ -32,6 +32,7 @@ public class Goal : MonoBehaviour
         if(uim.GetMovementMode() == UIManager.MovementType.Fog)
         {
             end = true;
+            Debug.Log("This is the end");
         }
     }
 
@@ -89,8 +90,8 @@ public class Goal : MonoBehaviour
         //Player.GetComponent<TeleportationProvider>().StopAllCoroutines();
         uim.setPosTime(Time.fixedTime);
         Player.transform.position = new Vector3(0f, 0.55f, -2.5f);
-        
+        Player.transform.rotation = Quaternion.Euler(0, 0, 0);
+
         sg.check = false;
-        Debug.Log("Should Move now");
     }
 }

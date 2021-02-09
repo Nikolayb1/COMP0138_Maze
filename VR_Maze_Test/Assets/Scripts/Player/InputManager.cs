@@ -46,8 +46,8 @@ public class InputManager : MonoBehaviour
     public ShaderChanger floor;
     public GameObject ceilling;
 
-    private string[] notifications = new string[] { "Please take off the VR headset and complete the online questioner",
-                                                    "If you would like to play the tutorial again please press A. To continue press B"};
+    private string[] notifications = new string[] { "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done put the VR headset back on and press A.",
+                                                    "If you would like to play the tutorial again please press B. To continue press A"};
 
     private void FindInputDevices()
     {
@@ -237,8 +237,6 @@ public class InputManager : MonoBehaviour
                     }
 
                 }
-                floor.setMaterialRocks();
-                ceilling.SetActive(false);
                 break;
 
             case UIManager.WireframeMode.On:
@@ -249,8 +247,7 @@ public class InputManager : MonoBehaviour
 
                     wall.setMaterialWireframe();
                 }
-                ceilling.SetActive(true);
-                floor.setMaterialWireframe();
+
                 break;
 
             case UIManager.WireframeMode.Auto:
@@ -269,8 +266,7 @@ public class InputManager : MonoBehaviour
                     
 
                 }
-                floor.setMaterialRocks();
-                ceilling.SetActive(false);
+
                 break;
 
         }

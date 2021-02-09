@@ -88,7 +88,7 @@ public class continuousMovement : LocomotionProvider
                     }
                     
                     //floor.setMaterialRocks();
-                    ceilling.SetActive(false);
+                    //ceilling.SetActive(false);
                 }
                 else if (position.magnitude >= 0.0001f && !movementBool)
                 {
@@ -99,7 +99,7 @@ public class continuousMovement : LocomotionProvider
                         
                         wall.setMaterialWireframe();
                     }
-                    ceilling.SetActive(true);
+                    //ceilling.SetActive(true);
                     
                     //floor.setMaterialWireframe();
                 }

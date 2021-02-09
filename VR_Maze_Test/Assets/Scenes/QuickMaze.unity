@@ -239,13 +239,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 25863888}
-  speed: 1
+  speed: 1.4
   controllers:
   - {fileID: 1891351163}
   uIManager: {fileID: 1566840702}
   im: {fileID: 998173370}
   walls: []
-  floor: {fileID: 1687669880}
+  floor: {fileID: 0}
   ceilling: {fileID: 1897752883}
   head: {fileID: 341741809}
 --- !u!143 &25863891
@@ -1773,12 +1773,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3502624822770920032, guid: 8c705f992cee09f4da3ca465a4ae918e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3502624822770920032, guid: 8c705f992cee09f4da3ca465a4ae918e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3502624822770920039, guid: 8c705f992cee09f4da3ca465a4ae918e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3502624822770920045, guid: 8c705f992cee09f4da3ca465a4ae918e,
         type: 3}
       propertyPath: m_Name
       value: Teleportation Area
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3502624822770920039, guid: 8c705f992cee09f4da3ca465a4ae918e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8c705f992cee09f4da3ca465a4ae918e, type: 3}
 --- !u!1001 &476947276
 PrefabInstance:
@@ -2792,8 +2808,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 25863884}
-  firstCube: {fileID: 0}
-  secondCube: {fileID: 0}
   teleportLine: {fileID: 142644528}
   pointerLine: {fileID: 1067742665}
 --- !u!1 &1054408296
@@ -8378,7 +8392,7 @@ PrefabInstance:
         type: 3}
       propertyPath: floor
       value: 
-      objectReference: {fileID: 1687669880}
+      objectReference: {fileID: 0}
     - target: {fileID: 6271164712357023598, guid: 31e3186480baeb446871a0ec59052e40,
         type: 3}
       propertyPath: mainCamera
@@ -8619,18 +8633,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1855860102}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1687669880 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3502624822770920039, guid: 8c705f992cee09f4da3ca465a4ae918e,
-    type: 3}
-  m_PrefabInstance: {fileID: 461453006}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d443e979a5d94554fb086949c8de6aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1721014282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8788,6 +8790,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3235626201685787479, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.044
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626201685787479, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626201898786336, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 205
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626201898786336, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626201898786337, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_Text
+      value: "\tPlease take off your VR headset and complete the next page of the
+        online form. \n\n\tWhen you are done put the VR headset back on and press
+        A."
+      objectReference: {fileID: 0}
     - target: {fileID: 3235626202815966996, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
         type: 3}
       propertyPath: m_Enabled
@@ -9299,14 +9328,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dbd480039f60a344bdc0ff90b9d70b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Algorithm: 1
+  Algorithm: 0
   FullRandom: 1
   RandomSeed: 12345
   Floor: {fileID: 0}
   Wall: {fileID: 4376430054385900800, guid: d3b976bc9d26cb64c8240d9da26087f0, type: 3}
   Pillar: {fileID: 0}
-  Rows: 5
-  Columns: 5
+  Rows: 10
+  Columns: 6
   CellWidth: 2
   CellHeight: 2
   AddGaps: 0
