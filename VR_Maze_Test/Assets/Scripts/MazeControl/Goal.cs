@@ -11,18 +11,23 @@ public class Goal : MonoBehaviour
     public UIManager uim;
     public GameObject msgo;
     public StartGoal sg;
+    public MazeList msc;
     public bool end;
+    public bool isRotation;
     
     // Start is called before the first frame update
     protected virtual void Start()
     {
         end = false;
+        //isRotation = false;
+        msc = FindObjectOfType<MazeList>();
         Player = GameObject.FindGameObjectWithTag("XRRig");
         ms = FindObjectOfType<MazeSpawner>();
         im = FindObjectOfType<InputManager>();
         uim = FindObjectOfType<UIManager>();
         msgo = GameObject.FindGameObjectWithTag("Maze");
         sg = FindObjectOfType<StartGoal>();
+        
               
         if(uim.GetMovementMode() == UIManager.MovementType.Fog)
         {
@@ -36,6 +41,7 @@ public class Goal : MonoBehaviour
         
     }
 
+    
     protected virtual void OnTriggerEnter(Collider other) {
         //ChangeMovementWireframe();
     }

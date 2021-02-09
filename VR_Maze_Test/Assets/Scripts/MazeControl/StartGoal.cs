@@ -98,12 +98,13 @@ public class StartGoal : MonoBehaviour
                     break;
                 case ending.orientationCheck:
                     // Send a message to a funciton which deletes the maze and activates the ray
-                    spawnedGoal = Instantiate(EndObject, new Vector3(8f, 1f, 9f), Quaternion.identity);
+                    spawnedGoal = Instantiate(EndObject, new Vector3(3f, 1f, 3.5f), Quaternion.identity);
+                    goalCreated = true;
                     GL = spawnedGoal.GetComponent<GoalLogic>();
                     //spawnedGoal.SetActive(false);
+
+                    GL.enableRotation();
                     
-                    GL.InitRotation();
-                    goalCreated = true;
                     break;
             }
         }

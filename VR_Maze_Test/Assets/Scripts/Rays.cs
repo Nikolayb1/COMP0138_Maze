@@ -15,8 +15,6 @@ using UnityEngine;
 public class Rays : MonoBehaviour
 {
     public GameObject player;
-    public GameObject firstCube;
-    public GameObject secondCube;
 
     public GameObject teleportLine;
     public GameObject pointerLine;
@@ -39,13 +37,12 @@ public class Rays : MonoBehaviour
     public void InitRays()
     {
         playerPos = player.transform.position;
-        originPos = firstCube.transform.position;
+        originPos = new Vector3(0,0,0);
         Ray r = new Ray(playerPos, originPos);
         Test = r.direction;
         teleportLine.SetActive(false);
         pointerLine.SetActive(true);
         pointerEnabled = true;
-        Debug.Log("I am here");
 
     }
 

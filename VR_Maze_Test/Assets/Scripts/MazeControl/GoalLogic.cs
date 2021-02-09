@@ -20,7 +20,7 @@ public class GoalLogic : Goal
 
     public void InitRotation()
     {
-        ResetMaze(false);
+        msc.DestroyMaze();
         rays = FindObjectOfType<Rays>();
         //Activate a function from rays
         rays.InitRays();
@@ -28,12 +28,23 @@ public class GoalLogic : Goal
 
     public void RotationReset()
     {
-        ResetMaze(!end);
-        // move the player
-        ResetUser();
-        // change the Locomotion method
-        ChangeMovementWireframe();
-        sg.Reset();
+        if (!end)
+        {
+            msc.InitNextMaze();
+            ChangeMovementWireframe();
+            // move the player
+            ResetUser();
+            // change the Locomotion method
+
+            sg.Reset();
+        }
+        else
+        {
+            ResetUser();
+            im.activateEndMessage(0);
+        }
+        
+        
     }
 
     public void ResetTutorial()
@@ -42,11 +53,15 @@ public class GoalLogic : Goal
         im.isTutorial = false;
         im.deactivateEndMessage();
     }
-
+    public void enableRotation()
+    {
+        isRotation = true ;
+        Debug.Log(isRotation);
+    }
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "XRRig" && uim.canChange())
+        if (other.tag == "XRRig" && uim.canChange() && !isRotation)
         {
             wait = true;
             uim.setLastGoal(Time.fixedTime);
@@ -70,6 +85,12 @@ public class GoalLogic : Goal
                 im.activateEndMessage(1);
             }
 
+        }
+
+        if (other.tag == "XRRig" && isRotation)
+        {
+            InitRotation();
+            transform.GetComponent<Renderer>().enabled = false;
         }
     }
 
