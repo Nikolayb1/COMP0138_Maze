@@ -46,8 +46,10 @@ public class InputManager : MonoBehaviour
     public ShaderChanger floor;
     public GameObject ceilling;
 
-    private string[] notifications = new string[] { "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done put the VR headset back on and press A.",
+    private string[] notificationText = new string[] { "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done put the VR headset back on and press A.",
                                                     "If you would like to play the tutorial again please press B. To continue press A"};
+
+       
 
     private void FindInputDevices()
     {
@@ -71,7 +73,7 @@ public class InputManager : MonoBehaviour
     public void activateEndMessage(int i)
     {
         endMessage.SetActive(true);
-        endMessageText.text = notifications[i];
+        endMessageText.text = notificationText[i];
     }
 
     public void deactivateEndMessage()

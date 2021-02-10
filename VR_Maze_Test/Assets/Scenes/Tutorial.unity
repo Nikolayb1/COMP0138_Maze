@@ -309,7 +309,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  XRRig: {fileID: 25863884}
 --- !u!1001 &28662491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1699,6 +1698,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815966998, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_TagString
+      value: endMessage
       objectReference: {fileID: 0}
     - target: {fileID: 3235626202815967018, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
         type: 3}
@@ -7484,6 +7488,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 897307223}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &911692396 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3235626201898786337, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1787069111}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &935518020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7683,6 +7699,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedMovementType: 0
+  tutorialMessage: {fileID: 1709439282}
+  text: {fileID: 911692396}
 --- !u!114 &998173372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13527,6 +13545,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d443e979a5d94554fb086949c8de6aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1709439282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3235626202815966998, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1787069111}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1721014282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13677,6 +13701,128 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1741593665}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1787069111
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3235626201685787479, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.044
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626201685787479, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626201898786336, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626201898786336, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626201898786337, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_Text
+      value: "Locomotion Method: Fog\r\n\nHow to use: Use the left joystick to glide
+        in the direction you want. The direction you are looking in is always forwards.
+        When you move a cloud of fog will appear around your head. You can also use
+        the right joystick to turn in place.\r"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626201898786337, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626201898786337, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815966996, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815966998, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_Name
+      value: Tutorial Message
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815966998, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815966998, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815967018, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815967018, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815967018, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.766712
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815967018, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815967018, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.22962514
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815967018, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815967018, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9732792
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815967018, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815967018, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815967018, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -26.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235626202815967018, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3, type: 3}
 --- !u!1001 &1864801898
 PrefabInstance:
   m_ObjectHideFlags: 0

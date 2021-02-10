@@ -52,6 +52,7 @@ public class GoalLogic : Goal
         sg.Reset(end);
         im.isTutorial = false;
         im.deactivateEndMessage();
+        FindObjectOfType<TutorialInit>().activateTutorialMessage();
     }
     public void enableRotation()
     {
@@ -83,6 +84,8 @@ public class GoalLogic : Goal
             {
                 im.isTutorial = true;
                 im.activateEndMessage(1);
+                FindObjectOfType<TutorialInit>().deactivateTutorialMessage();
+                
             }
 
         }
