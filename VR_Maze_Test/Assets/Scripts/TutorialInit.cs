@@ -25,6 +25,7 @@ public class TutorialInit : MonoBehaviour
         uim = FindObjectOfType<UIManager>();
         im = FindObjectOfType<InputManager>();
         activateTutorialMessage();
+        CrossSceneData.CrossSceneId = Random.Range(0, 999999);
         
     }
 

@@ -24,7 +24,7 @@ public class MazeList : MonoBehaviour
     public void InitNextMaze()
     {
         counter++;
-        maze = Instantiate(mazes[counter], new Vector3(3f, 0.5f, 3.5f), Quaternion.Euler(-90f, -90f, 0f));
+        maze = Instantiate(mazes[counter], new Vector3(-2f, 0.5f, 15f), Quaternion.Euler(-90f, 180f, 0f));
         maze.transform.parent = transform;
     }
 
