@@ -97,7 +97,7 @@ public class StartGoal : MonoBehaviour
             switch (end)
             {
                 case ending.goal:
-                    spawnedGoal = Instantiate(EndObject, new Vector3(10f, 1f, 20f), Quaternion.identity);
+                    spawnedGoal = Instantiate(EndObject, new Vector3(18f, 1f, 20f), Quaternion.identity);
                     goalCreated = true;
                     break;
                 case ending.goalAtStart:

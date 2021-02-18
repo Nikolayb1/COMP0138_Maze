@@ -52,6 +52,7 @@ public class Goal : MonoBehaviour
         if (end)
         {
             im.activateEndMessage(0);
+            im.SetFog(false);
         }
         else
         {

@@ -114,14 +114,14 @@ public class continuousMovement : LocomotionProvider
                 if (position.magnitude < 0.0001f && movementBool)
                 {
                     Debug.Log("Standing");
-                    im.SetFog(false);
+                    //im.SetFog(false);
                     movementBool = false;
 
                 }
                 else if (position.magnitude >= 0.0001f && !movementBool)
                 {
                     Debug.Log("Moving");
-                    im.SetFog(true);
+                    //im.SetFog(true);
                     movementBool = true;
                 }
 

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 //Game object, that creates maze and instantiates it in scene
 //</summary>
 public class MazeSpawner : MonoBehaviour {
-	public enum MazeGenerationAlgorithm{
+	public enum MazeGenerationAlgorithm {
 		PureRecursive,
 		RecursiveTree,
 		RandomTree,
@@ -30,12 +30,67 @@ public class MazeSpawner : MonoBehaviour {
 	public WallOverlap wo;
 
 	private BasicMazeGenerator mMazeGenerator = null;
+	private List<string[,]> mazes = new List<string[,]>();
+    private string[,] maze1 = new string[,] {  
+	{ "l","tb", "tb", "tb", "rb", "ltb", "b", "tb", "rb", "lrb" },
+	{ "lr", "lb", "tb", "tb", "t", "tb", "tr", "lb", "tr", "lr" },
+	{ "lr", "ltr", "lb", "tb", "tb", "rb", "lb", "tr", "lb", "r" },
+	{ "lt", "rb", "lr", "ltb", "rb", "lr", "lt", "tb", "tr", "ltr" },
+	{ "lb", "r", "lt", "rb", "lr", "lt", "tb", "tb", "tb", "rb" },
+	{ "lr", "l", "trb", "lr", "lr", "lb", "tb", "tb", "tb", "r" },
+	{ "lr", "ltr", "lb", "tr", "lr", "lr", "lb", "rb", "lb", "tr" },
+	{ "l", "tb", "tr", "lb", "tr", "lt", "tr", "lr", "lt", "rb" },
+	{ "lr","ltb", "tb", "t", "b", "br", "lrb", "lt", "tb", "lr" },
+	{ "lt","tb","tb","tb","tr","ltr","lt","tb","tr","lr" }};
+
+	private string[,] maze2 = new string[,] {
+	{ "l", "rb", "lb", "rb", "lb", "b", "tb", "tb", "tb", "trb" },
+	{ "lr", "lr", "lr", "lt", "tr", "lr", "lb", "tb", "tb", "rb" },
+	{ "lr", "lt", "tr", "ltb", "rb", "lt", "tr", "lb", "tb", "r" },
+	{ "lr", "lrb", "lb", "b", "t", "b", "trb", "lr", "lrb", "lr" },
+	{ "lr", "l", "tr", "lt", "rb", "lr", "lb", "tr", "lr", "lr" },
+	{ "lr", "lt", "trb", "lb", "tr", "ltr", "lt", "rb", "lt", "tb" },
+	{ "lr", "lb", "tb", "r", "lb", "tb", "trb", "l", "tb", "rb" },
+	{ "lr", "lr", "lb", "tr", "lr", "lb", "tb", "t", "trb", "lr" },
+	{ "lt", "tr", "lt", "rb", "lr", "ltr", "lb", "tb", "br", "lr" },
+	{ "ltb", "tb", "tb", "tr", "lt", "tb", "tr", "ltb", "t", "r" }};
+
+	private string[,] maze3 = new string[,] {
+	{ "lr", "lb", "b", "tb", "rb", "lrb", "lb", "rb", "lb", "rb" },
+	{ "lt", "tr", "lr", "lb", "t", "tr", "lr", "lr", "ltr", "lr" },
+	{ "lb", "tb", "tr", "ltr", "lb", "tb", "tr", "ltr", "lb", "r" },
+	{ "l", "tb", "tb", "tb", "tb", "lb", "rb", "lb", "tr", "lr" },
+	{ "lt", "rb", "rtb", "tb", "b", "r", "lt", "tr", "lb", "tr" },
+	{ "lb", "tr", "lb", "rb", "ltr", "lt", "b", "rb", "lt", "rb" },
+	{ "lr", "ltb", "r", "lt", "tb", "rb", "lr", "lr", "lb", "tr" },
+	{ "lt", "rb", "lt", "rb", "lb", "tr", "lr", "lr", "lr", "lrb" },
+	{ "lrb", "lt", "rb", "lr", "lr", "ltb", "tr", "lr", "lr", "lr" },
+	{ "lt", "tb", "t", "tr", "lt", "tb", "tb", "tr", "lt", "r" }};
+
+	private string[,] maze4 = new string[,] {
+	{ "lt", "tb", "b", "tb", "tb", "rb", "lt", "b", "tb", "rb" },
+	{ "lb", "tb", "tr", "lb", "br", "lt", "rb", "lt", "rb", "lr" },
+	{ "lt", "tb", "rb", "ltr", "lt", "tb", "t", "rb", "lr", "lr" },
+	{ "lb", "tb", "r", "lb", "tb", "tb", "rb", "lt", "tr", "lr" },
+	{ "lt", "rb", "lr", "lr", "lb", "trb", "lr", "lb", "tb", "tr" },
+	{ "lb", "tr", "ltr", "lr", "lr", "lb", "tr", "lr", "ltb", "rb" },
+	{ "lr", "lb", "tb", "tr", "lr", "lr", "lb", "t", "tb", "tr" },
+	{ "lr", "lt", "tb", "rb", "lr", "lr", "lt", "trb", "lb", "rb" },
+	{ "l", "tb", "rb", "lt", "r", "lt", "tb", "rb", "ltr", "lr" },
+	{ "lt", "trb", "lt", "tb", "t", "tb", "trb", "lt", "tb", "r" }};
+
+	private int curr;
 
 	void Start () {
-		
+		mazes.Add(maze1);
+		mazes.Add(maze2);
+		mazes.Add(maze3);
+		mazes.Add(maze4);
+		curr = 0;
 		GenerateMaze(true);
-
-
+		
+		
+		
 	}
 
 	public void GenerateMaze(bool newMaze)
@@ -55,7 +110,7 @@ public class MazeSpawner : MonoBehaviour {
 		//Debug.Log("Removed " + removeCounter + " walls");
         if (newMaze)
         {
-			switch (Algorithm)
+			/*switch (Algorithm)
 			{
 				case MazeGenerationAlgorithm.PureRecursive:
 					mMazeGenerator = new RecursiveMazeGenerator(Rows, Columns);
@@ -134,7 +189,45 @@ public class MazeSpawner : MonoBehaviour {
 						tmp.transform.parent = transform;
 					}
 				}
-			}
+			}*/
+			Debug.Log(curr);
+			string[,] maze = mazes[curr];
+			curr++;
+			for (int i = 0; i < maze.GetLength(0); i++)
+            {
+				for (int j = 0; j < maze.GetLength(1); j++)
+                {
+					float x = j * (CellWidth + (AddGaps ? .2f : 0));
+					float z = i * (CellHeight + (AddGaps ? .2f : 0));
+					float y = 1f;
+					
+					GameObject tmp;
+					for (int k = 0; k < maze[i,j].Length; k++)
+					{
+						switch (maze[i, j][k])
+						{
+							case 'l':
+								tmp = Instantiate(Wall, new Vector3(x - CellWidth / 2, y, z) + Wall.transform.position, Quaternion.Euler(0, 270, 0)) as GameObject;// left
+								tmp.transform.parent = transform;
+								break;
+							case 't':
+								tmp = Instantiate(Wall, new Vector3(x, y, z + CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;// front
+								tmp.transform.parent = transform;
+								break;
+							case 'r':
+								tmp = Instantiate(Wall, new Vector3(x + CellWidth / 2, y, z) + Wall.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;// right
+								tmp.transform.parent = transform;
+								break;
+							case 'b':
+								tmp = Instantiate(Wall, new Vector3(x, y, z - CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;// back
+								tmp.transform.parent = transform;
+								break;
+
+						}
+
+					}
+				}
+            }
 
 			wo.RemoveDuplicateWalls(oldWalls);
 		}
