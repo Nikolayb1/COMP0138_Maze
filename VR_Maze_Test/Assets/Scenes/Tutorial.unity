@@ -7874,8 +7874,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedMovementType: 0
+  l: {fileID: 0}
   tutorialMessage: {fileID: 1709439282}
   text: {fileID: 911692396}
+--- !u!114 &998173370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998173368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff44ea19f57a4fdda897db6063f461b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idText: {fileID: 1419495344}
 --- !u!114 &998173372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13587,6 +13601,11 @@ PrefabInstance:
       propertyPath: endMessage
       value: 
       objectReference: {fileID: 361550797}
+    - target: {fileID: 6271164712357023598, guid: 31e3186480baeb446871a0ec59052e40,
+        type: 3}
+      propertyPath: isTutorial
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6271164712357023599, guid: 31e3186480baeb446871a0ec59052e40,
         type: 3}
       propertyPath: m_Name
@@ -13647,7 +13666,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6271164712357023603, guid: 31e3186480baeb446871a0ec59052e40, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 31e3186480baeb446871a0ec59052e40, type: 3}
 --- !u!1001 &1564813546
 PrefabInstance:

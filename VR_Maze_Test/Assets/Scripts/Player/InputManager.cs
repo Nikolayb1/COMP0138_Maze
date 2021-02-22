@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -10,6 +11,7 @@ public class InputManager : MonoBehaviour
 {
     public bool isUIToggle;
     public bool isTutorial;
+    public bool canChaneScene;
 
     private InputDevice leftController;
     private InputDevice rightController;
@@ -17,7 +19,7 @@ public class InputManager : MonoBehaviour
     private InputDeviceCharacteristics rightControllerCharacteristics;
     public GameObject endMessage;
     public Text endMessageText;
-    public Logger log;
+    public Logger l;
 
     public GameObject XRRig;
     public GameObject mainCamera;
@@ -47,7 +49,8 @@ public class InputManager : MonoBehaviour
     public GameObject ceilling;
 
     private string[] notificationText = new string[] { "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done put the VR headset back on and press A.",
-                                                    "If you would like to play the tutorial again please press B. To continue press A"};
+                                                    "If you would like to play the tutorial again please press B. To continue press A",
+    "If you would like to play the tutorial again please press B. To continue to the first part of the experiment press A"};
 
        
 
@@ -89,10 +92,6 @@ public class InputManager : MonoBehaviour
 
         return new float[3] { rotationX, rotationY, rotationZ };
     }
-    public void UpdateLog(float[] position, float[] rotation)
-    {
-        log.addRecord(position[0].ToString(), position[1].ToString(), position[2].ToString(), rotation[0].ToString(), rotation[1].ToString(), rotation[2].ToString());
-    }
     private float[] GetPosition()
     {
         float positionX = mainCamera.transform.position.x;
@@ -105,6 +104,7 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        l = FindObjectOfType<Logger>();
         endMessage = GameObject.FindGameObjectWithTag("endMessage");
         endMessage.SetActive(false);
         ceilling.SetActive(false);
@@ -147,6 +147,23 @@ public class InputManager : MonoBehaviour
             PrimaryButtonRightToggle = true;
             ChangeMovement();
         }
+        if (!primaryButtonRightValue)
+        {
+            PrimaryButtonRightToggle = false;
+        }
+
+        // Press A to progress tutorial
+        /*if (primaryButtonRightValue && !PrimaryButtonRightToggle && isTutorial)
+        {
+            GL = FindObjectOfType<GoalLogic>();
+            GL.progressTutorial();
+            PrimaryButtonRightToggle = true;
+        }
+
+        if (!primaryButtonRightValue)
+        {
+            PrimaryButtonRightToggle = false;
+        }
 
         // Press B to replay tutorial
         if (secondaryButtonRightValue && !PrimaryButtonRightToggle && isTutorial)
@@ -159,6 +176,29 @@ public class InputManager : MonoBehaviour
         if (!secondaryButtonRightValue)
         {
             SecondaryButtonRightToggle = false;
+        }*/
+        if (Input.GetKeyDown(KeyCode.A) && !isTutorial && canChaneScene)
+        {
+            // Next Scene
+            int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+            Debug.Log(nextSceneIndex);
+            Debug.Log(SceneManager.sceneCount);
+            if (4> nextSceneIndex)
+            {
+                SceneManager.LoadScene(nextSceneIndex);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.A) && isTutorial && canChaneScene)
+        {
+            GL = FindObjectOfType<GoalLogic>();
+            GL.progressTutorial();
+        }
+
+        if (Input.GetKeyDown(KeyCode.B) && isTutorial)
+        {
+            GL = FindObjectOfType<GoalLogic>();
+            GL.ResetTutorial();
         }
 
         // Press B to change Wireframe Mode
@@ -185,6 +225,7 @@ public class InputManager : MonoBehaviour
             Ray ray = new Ray(rightControllerObject.transform.position, rightControllerObject.transform.forward);
             // Send it to ray.
             r.SetPointValue(ray.direction);
+            l.LogEvent("PS", r.CalculateAngle().ToString());
             Debug.Log(r.CalculateAngle());
             r.ResetRays();
             GL = FindObjectOfType<GoalLogic>();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GoalLogic : Goal
 {
@@ -47,6 +48,33 @@ public class GoalLogic : Goal
         
     }
 
+    public void progressTutorial()
+    {
+        if (!end)
+        {
+            sg.Reset(end);
+            FindObjectOfType<TutorialInit>().nextMovementMethod();
+            im.isTutorial = false;
+            im.deactivateEndMessage();
+            FindObjectOfType<TutorialInit>().activateTutorialMessage();
+        }
+        else
+        {
+            SceneManager.LoadScene("QuickMaze", LoadSceneMode.Single);
+        }
+        
+        
+    }
+
+    public void progressExperiment()
+    {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (SceneManager.sceneCount > nextSceneIndex)
+        {
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+    }
+
     public void ResetTutorial()
     {
         sg.Reset(end);
@@ -58,6 +86,13 @@ public class GoalLogic : Goal
     {
         isRotation = true ;
         Debug.Log(isRotation);
+    }
+
+    public void endMazeEvent()
+    {
+        string val = gl.dataToJson();
+        l.LogEvent("EM", val);
+        gl.clearLog();
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -72,6 +107,7 @@ public class GoalLogic : Goal
             if (!sg.tutorial)
             {
                 // Generate new maze
+                endMazeEvent();
                 ResetMaze(!end);
                 // move the player
                 
@@ -83,7 +119,16 @@ public class GoalLogic : Goal
             else
             {
                 im.isTutorial = true;
-                im.activateEndMessage(1);
+                im.canChaneScene = true;
+                if (!end)
+                {
+                    im.activateEndMessage(1);
+                }
+                else
+                {
+                    im.activateEndMessage(2);
+                }
+                
                 FindObjectOfType<TutorialInit>().deactivateTutorialMessage();
                 
             }

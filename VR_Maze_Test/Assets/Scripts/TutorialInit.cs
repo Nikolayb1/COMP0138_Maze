@@ -9,7 +9,7 @@ public class TutorialInit : MonoBehaviour
     public UIManager.MovementType selectedMovementType;
     private UIManager.MovementType currentMovementType;
     private InputManager im;
-
+    public Logger l;
     public GameObject tutorialMessage;
     public Text text;
 
@@ -22,11 +22,27 @@ public class TutorialInit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        l = FindObjectOfType<Logger>();
         uim = FindObjectOfType<UIManager>();
         im = FindObjectOfType<InputManager>();
         activateTutorialMessage();
         CrossSceneData.CrossSceneId = Random.Range(0, 999999);
+        l.LogEvent("ID", CrossSceneData.CrossSceneId.ToString());
         
+    }
+
+    public void nextMovementMethod()
+    {
+        if (selectedMovementType == UIManager.MovementType.Teleport)
+        {
+            selectedMovementType = UIManager.MovementType.Dash;
+        }else if (selectedMovementType == UIManager.MovementType.Dash)
+        {
+            selectedMovementType = UIManager.MovementType.Walk;
+        }else if (selectedMovementType == UIManager.MovementType.Walk)
+        {
+            selectedMovementType = UIManager.MovementType.Fog;
+        }
     }
 
     // Update is called once per frame

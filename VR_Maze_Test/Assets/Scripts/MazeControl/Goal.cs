@@ -6,6 +6,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Goal : MonoBehaviour
 {
     public MazeSpawner ms;
+    public GridLogger gl;
+    public Logger l;
     public GameObject Player;
     public InputManager im;
     public UIManager uim;
@@ -18,6 +20,9 @@ public class Goal : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+
+        gl = FindObjectOfType<GridLogger>();
+        l = FindObjectOfType<Logger>();
         end = false;
         //isRotation = false;
         msc = FindObjectOfType<MazeList>();
@@ -32,7 +37,6 @@ public class Goal : MonoBehaviour
         if(uim.GetMovementMode() == UIManager.MovementType.Fog)
         {
             end = true;
-            Debug.Log("This is the end");
         }
     }
 

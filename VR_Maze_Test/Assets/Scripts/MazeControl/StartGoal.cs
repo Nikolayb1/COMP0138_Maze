@@ -20,6 +20,7 @@ public class StartGoal : MonoBehaviour
     public bool tutorial;
     public GoalLogic GL;
     public UIManager uim;
+    public InputManager im;
     public GameObject Player;
     public bool check;
 
@@ -31,10 +32,13 @@ public class StartGoal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        im = FindObjectOfType<InputManager>();
         uim = FindObjectOfType<UIManager>();
         goalCreated = false;
         markerSpawned = false;
         numberOfSpawns = 0;
+        im.canChaneScene = false;
     }
     //spawn a marker at a random point
     public void Spawn()
@@ -48,6 +52,7 @@ public class StartGoal : MonoBehaviour
         }
         Debug.Log("X: " + x + "; Y: " + y);
         spawnedMarker = Instantiate(marker, new Vector3(x*2, 1f, y*2), Quaternion.identity);
+        spawnedMarker.GetComponent<Marker>().setTutorial(tutorial);
         markerSpawned = true;
         numberOfSpawns++;
     }
@@ -63,6 +68,7 @@ public class StartGoal : MonoBehaviour
             markerSpawned = false;
             numberOfSpawns = 0;
             Destroy(spawnedGoal);
+            im.canChaneScene = true;
         }
         
     }
