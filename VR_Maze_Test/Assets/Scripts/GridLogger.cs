@@ -21,7 +21,8 @@ public class GridLogger : MonoBehaviour
         {
             for (float j = 0; j < 20; j += 2)
             {
-                gridCells.Add(Instantiate(gridCell, new Vector3(i, 1.5f, j), Quaternion.Euler(0, 0, 0)).GetComponent<LogCell>()); ;
+                GameObject cell = Instantiate(gridCell, new Vector3(i, 1.5f, j), Quaternion.Euler(0, 0, 0));
+                gridCells.Add(cell.GetComponent<LogCell>());
             }
         }
     }

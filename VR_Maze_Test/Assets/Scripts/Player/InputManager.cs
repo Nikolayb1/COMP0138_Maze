@@ -152,8 +152,26 @@ public class InputManager : MonoBehaviour
             PrimaryButtonRightToggle = false;
         }
 
+        if (primaryButtonRightValue && !PrimaryButtonRightToggle && !isUIToggle && canChaneScene)
+        {
+            // Next Scene
+            int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+            Debug.Log(nextSceneIndex);
+            Debug.Log(SceneManager.sceneCount);
+            if (4 > nextSceneIndex)
+            {
+                SceneManager.LoadScene(nextSceneIndex);
+            }
+            PrimaryButtonRightToggle = true;
+            
+        }
+        if (!primaryButtonRightValue)
+        {
+            PrimaryButtonRightToggle = false;
+        }
+
         // Press A to progress tutorial
-        /*if (primaryButtonRightValue && !PrimaryButtonRightToggle && isTutorial)
+        if (primaryButtonRightValue && !PrimaryButtonRightToggle && isTutorial && canChaneScene)
         {
             GL = FindObjectOfType<GoalLogic>();
             GL.progressTutorial();
@@ -176,8 +194,8 @@ public class InputManager : MonoBehaviour
         if (!secondaryButtonRightValue)
         {
             SecondaryButtonRightToggle = false;
-        }*/
-        if (Input.GetKeyDown(KeyCode.A) && !isTutorial && canChaneScene)
+        }
+        /*if (Input.GetKeyDown(KeyCode.A) && !isTutorial && canChaneScene)
         {
             // Next Scene
             int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
@@ -199,7 +217,7 @@ public class InputManager : MonoBehaviour
         {
             GL = FindObjectOfType<GoalLogic>();
             GL.ResetTutorial();
-        }
+        }*/
 
         // Press B to change Wireframe Mode
         if (secondaryButtonRightValue && !SecondaryButtonRightToggle && isUIToggle)

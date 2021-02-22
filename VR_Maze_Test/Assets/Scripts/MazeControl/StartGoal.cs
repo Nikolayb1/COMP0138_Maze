@@ -23,6 +23,7 @@ public class StartGoal : MonoBehaviour
     public InputManager im;
     public GameObject Player;
     public bool check;
+    public Logger l;
 
     private int numberOfSpawns;
     public int spawnLimit;
@@ -58,7 +59,7 @@ public class StartGoal : MonoBehaviour
     }
     public void Reset(bool e)
     {
-        if (e)
+        if (!e)
         {
             Destroy(spawnedGoal);
         }
@@ -69,6 +70,7 @@ public class StartGoal : MonoBehaviour
             numberOfSpawns = 0;
             Destroy(spawnedGoal);
             im.canChaneScene = true;
+            l.UploadLogs();
         }
         
     }
