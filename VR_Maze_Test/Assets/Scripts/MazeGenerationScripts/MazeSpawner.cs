@@ -40,7 +40,7 @@ public class MazeSpawner : MonoBehaviour {
 	{ "lr", "l", "trb", "lr", "lr", "lb", "tb", "tb", "tb", "r" },
 	{ "lr", "ltr", "lb", "tr", "lr", "lr", "lb", "rb", "lb", "tr" },
 	{ "l", "tb", "tr", "lb", "tr", "lt", "tr", "lr", "lt", "rb" },
-	{ "lr","ltb", "tb", "t", "b", "br", "lrb", "lt", "tb", "lr" },
+	{ "lr","ltb", "tb", "t", "b", "br", "lb", "tl", "br", "lr" },
 	{ "lt","tb","tb","tb","tr","ltr","lt","tb","tr","lr" }};
 
 	private string[,] maze2 = new string[,] {
@@ -49,7 +49,7 @@ public class MazeSpawner : MonoBehaviour {
 	{ "lr", "lt", "tr", "ltb", "rb", "lt", "tr", "lb", "tb", "r" },
 	{ "lr", "lrb", "lb", "b", "t", "b", "trb", "lr", "lrb", "lr" },
 	{ "lr", "l", "tr", "lt", "rb", "lr", "lb", "tr", "lr", "lr" },
-	{ "lr", "lt", "trb", "lb", "tr", "ltr", "lt", "rb", "lt", "tb" },
+	{ "lr", "lt", "trb", "lb", "tr", "ltr", "lt", "rb", "lt", "tr" },
 	{ "lr", "lb", "tb", "r", "lb", "tb", "trb", "l", "tb", "rb" },
 	{ "lr", "lr", "lb", "tr", "lr", "lb", "tb", "t", "trb", "lr" },
 	{ "lt", "tr", "lt", "rb", "lr", "ltr", "lb", "tb", "br", "lr" },
@@ -59,8 +59,8 @@ public class MazeSpawner : MonoBehaviour {
 	{ "lr", "lb", "b", "tb", "rb", "lrb", "lb", "rb", "lb", "rb" },
 	{ "lt", "tr", "lr", "lb", "t", "tr", "lr", "lr", "ltr", "lr" },
 	{ "lb", "tb", "tr", "ltr", "lb", "tb", "tr", "ltr", "lb", "r" },
-	{ "l", "tb", "tb", "tb", "tb", "lb", "rb", "lb", "tr", "lr" },
-	{ "lt", "rb", "rtb", "tb", "b", "r", "lt", "tr", "lb", "tr" },
+	{ "l", "tb", "tb", "tb", "tr", "lb", "rb", "lb", "tr", "lr" },
+	{ "lt", "rb", "ltb", "tb", "b", "r", "lt", "tr", "lb", "tr" },
 	{ "lb", "tr", "lb", "rb", "ltr", "lt", "b", "rb", "lt", "rb" },
 	{ "lr", "ltb", "r", "lt", "tb", "rb", "lr", "lr", "lb", "tr" },
 	{ "lt", "rb", "lt", "rb", "lb", "tr", "lr", "lr", "lr", "lrb" },
@@ -68,7 +68,7 @@ public class MazeSpawner : MonoBehaviour {
 	{ "lt", "tb", "t", "tr", "lt", "tb", "tb", "tr", "lt", "r" }};
 
 	private string[,] maze4 = new string[,] {
-	{ "lt", "tb", "b", "tb", "tb", "rb", "lt", "b", "tb", "rb" },
+	{ "lt", "tb", "b", "tb", "tb", "rb", "ltb", "b", "tb", "rb" },
 	{ "lb", "tb", "tr", "lb", "br", "lt", "rb", "lt", "rb", "lr" },
 	{ "lt", "tb", "rb", "ltr", "lt", "tb", "t", "rb", "lr", "lr" },
 	{ "lb", "tb", "r", "lb", "tb", "tb", "rb", "lt", "tr", "lr" },
@@ -79,6 +79,53 @@ public class MazeSpawner : MonoBehaviour {
 	{ "l", "tb", "rb", "lt", "r", "lt", "tb", "rb", "ltr", "lr" },
 	{ "lt", "trb", "lt", "tb", "t", "tb", "trb", "lt", "tb", "r" }};
 
+	private string[,] maze5 = new string[,] {
+	{ "lt", "tb", "b", "tb", "tb", "rb", "ltb", "b", "tb", "rb" },
+	{ "lb", "tb", "tr", "lb", "br", "lt", "rb", "lt", "rb", "lr" },
+	{ "lt", "tb", "rb", "ltr", "lt", "tb", "t", "rb", "lr", "lr" },
+	{ "lb", "tb", "r", "lb", "tb", "tb", "rb", "lt", "tr", "lr" },
+	{ "lt", "rb", "lr", "lr", "lb", "trb", "lr", "lb", "tb", "tr" },
+	{ "lb", "tr", "ltr", "lr", "lr", "lb", "tr", "lr", "ltb", "rb" },
+	{ "lr", "lb", "tb", "tr", "lr", "lr", "lb", "t", "tb", "tr" },
+	{ "lr", "lt", "tb", "rb", "lr", "lr", "lt", "trb", "lb", "rb" },
+	{ "l", "tb", "rb", "lt", "r", "lt", "tb", "rb", "ltr", "lr" },
+	{ "lt", "trb", "lt", "tb", "t", "tb", "trb", "lt", "tb", "r" }};
+
+	private string[,] maze6 = new string[,] {
+	{ "lt", "tb", "b", "tb", "tb", "rb", "ltb", "b", "tb", "rb" },
+	{ "lb", "tb", "tr", "lb", "br", "lt", "rb", "lt", "rb", "lr" },
+	{ "lt", "tb", "rb", "ltr", "lt", "tb", "t", "rb", "lr", "lr" },
+	{ "lb", "tb", "r", "lb", "tb", "tb", "rb", "lt", "tr", "lr" },
+	{ "lt", "rb", "lr", "lr", "lb", "trb", "lr", "lb", "tb", "tr" },
+	{ "lb", "tr", "ltr", "lr", "lr", "lb", "tr", "lr", "ltb", "rb" },
+	{ "lr", "lb", "tb", "tr", "lr", "lr", "lb", "t", "tb", "tr" },
+	{ "lr", "lt", "tb", "rb", "lr", "lr", "lt", "trb", "lb", "rb" },
+	{ "l", "tb", "rb", "lt", "r", "lt", "tb", "rb", "ltr", "lr" },
+	{ "lt", "trb", "lt", "tb", "t", "tb", "trb", "lt", "tb", "r" }};
+
+	private string[,] maze7 = new string[,] {
+	{ "lt", "tb", "b", "tb", "tb", "rb", "ltb", "b", "tb", "rb" },
+	{ "lb", "tb", "tr", "lb", "br", "lt", "rb", "lt", "rb", "lr" },
+	{ "lt", "tb", "rb", "ltr", "lt", "tb", "t", "rb", "lr", "lr" },
+	{ "lb", "tb", "r", "lb", "tb", "tb", "rb", "lt", "tr", "lr" },
+	{ "lt", "rb", "lr", "lr", "lb", "trb", "lr", "lb", "tb", "tr" },
+	{ "lb", "tr", "ltr", "lr", "lr", "lb", "tr", "lr", "ltb", "rb" },
+	{ "lr", "lb", "tb", "tr", "lr", "lr", "lb", "t", "tb", "tr" },
+	{ "lr", "lt", "tb", "rb", "lr", "lr", "lt", "trb", "lb", "rb" },
+	{ "l", "tb", "rb", "lt", "r", "lt", "tb", "rb", "ltr", "lr" },
+	{ "lt", "trb", "lt", "tb", "t", "tb", "trb", "lt", "tb", "r" }};
+
+	private string[,] maze8 = new string[,] {
+	{ "lt", "tb", "b", "tb", "tb", "rb", "ltb", "b", "tb", "rb" },
+	{ "lb", "tb", "tr", "lb", "br", "lt", "rb", "lt", "rb", "lr" },
+	{ "lt", "tb", "rb", "ltr", "lt", "tb", "t", "rb", "lr", "lr" },
+	{ "lb", "tb", "r", "lb", "tb", "tb", "rb", "lt", "tr", "lr" },
+	{ "lt", "rb", "lr", "lr", "lb", "trb", "lr", "lb", "tb", "tr" },
+	{ "lb", "tr", "ltr", "lr", "lr", "lb", "tr", "lr", "ltb", "rb" },
+	{ "lr", "lb", "tb", "tr", "lr", "lr", "lb", "t", "tb", "tr" },
+	{ "lr", "lt", "tb", "rb", "lr", "lr", "lt", "trb", "lb", "rb" },
+	{ "l", "tb", "rb", "lt", "r", "lt", "tb", "rb", "ltr", "lr" },
+	{ "lt", "trb", "lt", "tb", "t", "tb", "trb", "lt", "tb", "r" }};
 	private int curr;
 
 	void Start () {
@@ -190,7 +237,6 @@ public class MazeSpawner : MonoBehaviour {
 					}
 				}
 			}*/
-			Debug.Log(curr);
 			string[,] maze = mazes[curr];
 			curr++;
 			for (int i = 0; i < maze.GetLength(0); i++)

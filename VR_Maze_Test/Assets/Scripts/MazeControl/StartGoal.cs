@@ -61,6 +61,9 @@ public class StartGoal : MonoBehaviour
     {
         if (!e)
         {
+            goalCreated = false;
+            markerSpawned = false;
+            numberOfSpawns = 0;
             Destroy(spawnedGoal);
         }
         else
