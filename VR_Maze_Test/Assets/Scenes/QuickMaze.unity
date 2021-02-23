@@ -2811,6 +2811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idText: {fileID: 1081246893}
+  l: {fileID: 0}
 --- !u!114 &998173370 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6271164712357023598, guid: 31e3186480baeb446871a0ec59052e40,
@@ -14393,6 +14394,7 @@ MonoBehaviour:
   AddGaps: 0
   GoalPrefab: {fileID: 0}
   wo: {fileID: 1960024988}
+  quick: 1
 --- !u!4 &2077242711
 Transform:
   m_ObjectHideFlags: 0
@@ -14427,8 +14429,10 @@ MonoBehaviour:
   tutorial: 0
   GL: {fileID: 0}
   uim: {fileID: 0}
+  im: {fileID: 0}
   Player: {fileID: 25863884}
   check: 0
+  l: {fileID: 0}
   spawnLimit: 0
   end: 0
 --- !u!1001 &2080583898

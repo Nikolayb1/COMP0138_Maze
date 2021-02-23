@@ -28,6 +28,7 @@ public class MazeSpawner : MonoBehaviour {
 	public bool AddGaps = true;
 	public GameObject GoalPrefab = null;
 	public WallOverlap wo;
+	public bool quick;
 
 	private BasicMazeGenerator mMazeGenerator = null;
 	private List<string[,]> mazes = new List<string[,]>();
@@ -80,59 +81,70 @@ public class MazeSpawner : MonoBehaviour {
 	{ "lt", "trb", "lt", "tb", "t", "tb", "trb", "lt", "tb", "r" }};
 
 	private string[,] maze5 = new string[,] {
-	{ "lt", "tb", "b", "tb", "tb", "rb", "ltb", "b", "tb", "rb" },
-	{ "lb", "tb", "tr", "lb", "br", "lt", "rb", "lt", "rb", "lr" },
-	{ "lt", "tb", "rb", "ltr", "lt", "tb", "t", "rb", "lr", "lr" },
-	{ "lb", "tb", "r", "lb", "tb", "tb", "rb", "lt", "tr", "lr" },
-	{ "lt", "rb", "lr", "lr", "lb", "trb", "lr", "lb", "tb", "tr" },
-	{ "lb", "tr", "ltr", "lr", "lr", "lb", "tr", "lr", "ltb", "rb" },
-	{ "lr", "lb", "tb", "tr", "lr", "lr", "lb", "t", "tb", "tr" },
-	{ "lr", "lt", "tb", "rb", "lr", "lr", "lt", "trb", "lb", "rb" },
-	{ "l", "tb", "rb", "lt", "r", "lt", "tb", "rb", "ltr", "lr" },
-	{ "lt", "trb", "lt", "tb", "t", "tb", "trb", "lt", "tb", "r" }};
+	{ "lt", "tb", "tb", "b", "tb", "br", "tlb", "b", "tb", "tlb" },
+	{ "lb", "tb", "tb", "tr", "tlb", "r", "rb", "", "tb", "rb" },
+	{ "lr", "lb", "br", "lb", "br", "trb", "l", "lr", "lbr", "lr" },
+	{ "lr", "lr", "lt", "tr", "lt", "br", "lr", "lt", "tr", "lr" },
+	{ "l", "tr", "tlb", "br", "lb", "rt", "lt", "tb", "tb", "r" },
+	{ "lr", "lb", "tb", "r", "lt", "rb", "ltb", "tb", "rb", "ltr" },
+	{ "l", "tr", "tlb", "tr", "lb", "t", "tb", "rb", "lt", "rb" },
+	{ "lr", "lb", "tb", "tb", "tr", "lbr", "lb", "tr", "lb", "tr" },
+	{ "lr", "lt", "tb", "rb", "ltb", "t", "t", "trb", "lr", "lbr" },
+	{ "lt", "tb", "tbr", "lt", "tb", "tb", "tb", "tb", "t", "rt" }};
 
 	private string[,] maze6 = new string[,] {
-	{ "lt", "tb", "b", "tb", "tb", "rb", "ltb", "b", "tb", "rb" },
-	{ "lb", "tb", "tr", "lb", "br", "lt", "rb", "lt", "rb", "lr" },
-	{ "lt", "tb", "rb", "ltr", "lt", "tb", "t", "rb", "lr", "lr" },
-	{ "lb", "tb", "r", "lb", "tb", "tb", "rb", "lt", "tr", "lr" },
-	{ "lt", "rb", "lr", "lr", "lb", "trb", "lr", "lb", "tb", "tr" },
-	{ "lb", "tr", "ltr", "lr", "lr", "lb", "tr", "lr", "ltb", "rb" },
-	{ "lr", "lb", "tb", "tr", "lr", "lr", "lb", "t", "tb", "tr" },
-	{ "lr", "lt", "tb", "rb", "lr", "lr", "lt", "trb", "lb", "rb" },
-	{ "l", "tb", "rb", "lt", "r", "lt", "tb", "rb", "ltr", "lr" },
-	{ "lt", "trb", "lt", "tb", "t", "tb", "trb", "lt", "tb", "r" }};
+	{ "l", "br", "lbr", "lb", "b", "trb", "lb", "b", "tb", "rb" },
+	{ "lr", "lr", "lr", "lr", "lt", "tb", "tr", "lt", "br", "lr" },
+	{ "lr", "lt", "tr", "lr", "lb", "tb", "br", "lbr", "lr", "lr" },
+	{ "l", "tb", "br", "lr", "lr", "lb", "tr", "lr", "lr", "ltr" },
+	{ "ltr", "lb", "r", "lt", "tr", "lt", "b", "tr", "lt", "br" },
+	{ "lb", "tr", "lrt", "lb", "tb", "tb", "tr", "lbr", "lb", "tr" },
+	{ "lr", "lb", "tb", "tr", "tlb", "tb", "rb", "lr", "lt", "rb" },
+	{ "lr", "lr", "tlb", "b", "tb", "tb", "r", "tl", "tb", "tr" },
+	{ "l", "tr", "lb", "tr", "lb", "trb", "lr", "lt", "b", "br" },
+	{ "lt", "tb", "tr", "tlb", "t", "tb", "t", "tb", "tr", "ltr" }};
 
 	private string[,] maze7 = new string[,] {
-	{ "lt", "tb", "b", "tb", "tb", "rb", "ltb", "b", "tb", "rb" },
-	{ "lb", "tb", "tr", "lb", "br", "lt", "rb", "lt", "rb", "lr" },
-	{ "lt", "tb", "rb", "ltr", "lt", "tb", "t", "rb", "lr", "lr" },
-	{ "lb", "tb", "r", "lb", "tb", "tb", "rb", "lt", "tr", "lr" },
-	{ "lt", "rb", "lr", "lr", "lb", "trb", "lr", "lb", "tb", "tr" },
-	{ "lb", "tr", "ltr", "lr", "lr", "lb", "tr", "lr", "ltb", "rb" },
-	{ "lr", "lb", "tb", "tr", "lr", "lr", "lb", "t", "tb", "tr" },
-	{ "lr", "lt", "tb", "rb", "lr", "lr", "lt", "trb", "lb", "rb" },
-	{ "l", "tb", "rb", "lt", "r", "lt", "tb", "rb", "ltr", "lr" },
-	{ "lt", "trb", "lt", "tb", "t", "tb", "trb", "lt", "tb", "r" }};
+	{ "l", "b", "br", "ltb", "b", "tb", "tb", "br", "ltb", "br" },
+	{ "lr", "lr", "lt", "b", "tr", "lb", "br", "lr", "lb", "l" },
+	{ "ltr", "lr", "tlb", "tr", "lb", "tr", "lr", "lt", "tr", "lr" },
+	{ "lb", "r", "lb", "tb", "tr", "lb", "tr", "tlb", "tb", "tr" },
+	{ "lr", "lr", "lr", "ltb", "br", "lt", "tb", "tb", "tb", "rb" },
+	{ "lr", "ltr", "lt", "tb", "r", "lb", "trb", "lb", "tb", "r" },
+	{ "lr", "lb", "b", "trb", "tl", "r", "lb", "tr", "lbr", "lr" },
+	{ "l", "tr", "lt", "tb", "tb", "tr", "lr", "lbr", "l", "tr" },
+	{ "lr", "lb", "br", "lb", "tb", "br", "lr", "l", "tr", "lbr" },
+	{ "lt", "tr", "ltr", "ltr", "blt", "t", "tr", "lt", "tb", "tr" }};
 
 	private string[,] maze8 = new string[,] {
-	{ "lt", "tb", "b", "tb", "tb", "rb", "ltb", "b", "tb", "rb" },
-	{ "lb", "tb", "tr", "lb", "br", "lt", "rb", "lt", "rb", "lr" },
-	{ "lt", "tb", "rb", "ltr", "lt", "tb", "t", "rb", "lr", "lr" },
-	{ "lb", "tb", "r", "lb", "tb", "tb", "rb", "lt", "tr", "lr" },
-	{ "lt", "rb", "lr", "lr", "lb", "trb", "lr", "lb", "tb", "tr" },
-	{ "lb", "tr", "ltr", "lr", "lr", "lb", "tr", "lr", "ltb", "rb" },
-	{ "lr", "lb", "tb", "tr", "lr", "lr", "lb", "t", "tb", "tr" },
-	{ "lr", "lt", "tb", "rb", "lr", "lr", "lt", "trb", "lb", "rb" },
-	{ "l", "tb", "rb", "lt", "r", "lt", "tb", "rb", "ltr", "lr" },
-	{ "lt", "trb", "lt", "tb", "t", "tb", "trb", "lt", "tb", "r" }};
+	{ "", "", "", "", "", "", "", "", "", "" },
+	{ "", "", "", "", "", "", "", "", "", "" },
+	{ "", "", "", "", "", "", "", "", "", "" },
+	{ "", "", "", "", "", "", "", "", "", "" },
+	{ "", "", "", "", "", "", "", "", "", "" },
+	{ "", "", "", "", "", "", "", "", "", "" },
+	{ "", "", "", "", "", "", "", "", "", "" },
+	{ "", "", "", "", "", "", "", "", "", "" },
+	{ "", "", "", "", "", "", "", "", "", "" },
+	{ "", "", "", "", "", "", "", "", "", "" }};
 	private int curr;
 
 	void Start () {
-		mazes.Add(maze1);
-		mazes.Add(maze2);
-		mazes.Add(maze3);
-		mazes.Add(maze4);
+		if (quick)
+        {
+			mazes.Add(maze1);
+			mazes.Add(maze2);
+			mazes.Add(maze3);
+			mazes.Add(maze4);
+        }
+        else
+        {
+			mazes.Add(maze5);
+			mazes.Add(maze6);
+			mazes.Add(maze7);
+			mazes.Add(maze8);
+		}
+		
 		curr = 0;
 		GenerateMaze(true);
 		
