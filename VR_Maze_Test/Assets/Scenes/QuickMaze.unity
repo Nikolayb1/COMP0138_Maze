@@ -2811,7 +2811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idText: {fileID: 1081246893}
-  l: {fileID: 0}
+  l: {fileID: 7550470266727064381}
 --- !u!114 &998173370 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6271164712357023598, guid: 31e3186480baeb446871a0ec59052e40,
@@ -2831,7 +2831,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 998173368}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8da1e6971dd8349798fbd443eac8d808, type: 3}
   m_Name: 
@@ -2839,6 +2839,8 @@ MonoBehaviour:
   player: {fileID: 25863884}
   teleportLine: {fileID: 142644528}
   pointerLine: {fileID: 1067742665}
+  raticle: {fileID: 0}
+  ta: {fileID: 0}
 --- !u!1 &1054408296
 GameObject:
   m_ObjectHideFlags: 0
@@ -8535,6 +8537,16 @@ PrefabInstance:
       propertyPath: endMessage
       value: 
       objectReference: {fileID: 1678242378}
+    - target: {fileID: 6271164712357023598, guid: 31e3186480baeb446871a0ec59052e40,
+        type: 3}
+      propertyPath: stp
+      value: 
+      objectReference: {fileID: 25863889}
+    - target: {fileID: 6271164712357023598, guid: 31e3186480baeb446871a0ec59052e40,
+        type: 3}
+      propertyPath: teleportLine
+      value: 
+      objectReference: {fileID: 142644528}
     - target: {fileID: 6271164712357023599, guid: 31e3186480baeb446871a0ec59052e40,
         type: 3}
       propertyPath: m_Name
@@ -14734,3 +14746,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95e06822bd9b94a7b9c866613cbecec3, type: 3}
+--- !u!114 &7550470266727064381 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7550470266485272001, guid: 95e06822bd9b94a7b9c866613cbecec3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7550470266727064380}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 561deac206d19994f8ad7d15de3fc738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

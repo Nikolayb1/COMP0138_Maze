@@ -13,6 +13,8 @@ public class InputManager : MonoBehaviour
     public bool isTutorial;
     public bool canChaneScene;
 
+    public SnapTurnProvider stp;
+
     private InputDevice leftController;
     private InputDevice rightController;
     private InputDeviceCharacteristics leftControllerCharacteristics;
@@ -47,6 +49,7 @@ public class InputManager : MonoBehaviour
     public ShaderChanger[] walls;
     public ShaderChanger floor;
     public GameObject ceilling;
+    public GameObject teleportLine;
 
     private string[] notificationText = new string[] { "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done put the VR headset back on and press A.",
                                                     "If you would like to play the tutorial again please press B. To continue press A",
@@ -130,6 +133,11 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (stp.getDidRotation())
+        {
+            stp.setDidRotation(false);
+            l.LogEvent("SR", "Current Rotation: "+stp.getCurrentTurnAmount().ToString());
+        }
         if (leftController == null || rightController == null)
         {
             FindInputDevices();
@@ -236,7 +244,7 @@ public class InputManager : MonoBehaviour
 
         // Press Right Trigger to select point
         // This should only trigger when pointer is enabled and teleporter is disabled
-        if (triggerRightValue > 0 && !TriggerRightToggle && r.isPointer())
+        /*if (triggerRightValue > 0 && !TriggerRightToggle && r.isPointer())
         {
             // Send data to Ray and finish the experiment;
             // Get ray value
@@ -254,7 +262,21 @@ public class InputManager : MonoBehaviour
         {
 
             TriggerRightToggle = false;
+        }*/
+        if (Input.GetKeyDown(KeyCode.A) && r.isPointer())
+        {
+            // Send data to Ray and finish the experiment;
+            // Get ray value
+            Ray ray = new Ray(rightControllerObject.transform.position, rightControllerObject.transform.forward);
+            // Send it to ray.
+            r.SetPointValue(ray.direction);
+            l.LogEvent("PS", r.CalculateAngle().ToString());
+            Debug.Log(r.CalculateAngle());
+            r.ResetRays();
+            GL = FindObjectOfType<GoalLogic>();
+            GL.RotationReset();
         }
+
 
         // Press X to Change Fog
         if (primaryButtonLeftValue && !PrimaryButtonLeftToggle && isUIToggle)
@@ -338,6 +360,7 @@ public class InputManager : MonoBehaviour
         switch (uiManager.GetMovementMode())
         {
             case UIManager.MovementType.Teleport:
+                teleportLine.SetActive(true);
                 cm.enabled = false;
                 cm.ForgetWalls();
                 tp.enabled = true;
@@ -346,17 +369,20 @@ public class InputManager : MonoBehaviour
                 break;
 
             case UIManager.MovementType.Dash:
+                teleportLine.SetActive(true);
                 tp.setDash();
                 SetFog(false);
                 break;
 
             case UIManager.MovementType.Walk:
+                teleportLine.SetActive(false);
                 cm.enabled = true;
                 tp.enabled = false;
                 SetFog(false);
                 break;
 
             case UIManager.MovementType.Fog:
+                teleportLine.SetActive(false);
                 cm.enabled = true;
                 tp.enabled = false;
                 SetFog(true);

@@ -18,6 +18,9 @@ public class Rays : MonoBehaviour
 
     public GameObject teleportLine;
     public GameObject pointerLine;
+    public GameObject raticle;
+
+    public UnityEngine.XR.Interaction.Toolkit.TeleportationArea ta;
 
     private bool pointerEnabled;
 
@@ -31,6 +34,7 @@ public class Rays : MonoBehaviour
     {
         teleportLine.SetActive(true);
         pointerLine.SetActive(false);
+        ta.customReticle = raticle;
         pointerEnabled = false;
     }
 
@@ -42,6 +46,7 @@ public class Rays : MonoBehaviour
         Test = r.direction;
         teleportLine.SetActive(false);
         pointerLine.SetActive(true);
+        ta.customReticle = null;
         pointerEnabled = true;
 
     }
@@ -50,6 +55,7 @@ public class Rays : MonoBehaviour
     {
         teleportLine.SetActive(true);
         pointerLine.SetActive(false);
+        ta.customReticle = raticle;
         pointerEnabled = false;
     }
 

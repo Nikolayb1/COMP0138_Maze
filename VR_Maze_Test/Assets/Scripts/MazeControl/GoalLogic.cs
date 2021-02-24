@@ -21,7 +21,7 @@ public class GoalLogic : Goal
 
     public void InitRotation()
     {
-        msc.DestroyMaze();
+        //msc.DestroyMaze();
         rays = FindObjectOfType<Rays>();
         //Activate a function from rays
         rays.InitRays();
@@ -31,6 +31,7 @@ public class GoalLogic : Goal
     {
         if (!end)
         {
+            msc.DestroyMaze();
             msc.InitNextMaze();
             ChangeMovementWireframe();
             // move the player
@@ -41,6 +42,7 @@ public class GoalLogic : Goal
         }
         else
         {
+            msc.DestroyMaze();
             ResetUser();
             im.activateEndMessage(0);
         }

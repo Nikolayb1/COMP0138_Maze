@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
-
 namespace UnityEngine.XR.Interaction.Toolkit
 {
     /// <summary>
     /// The snap turn provider is a locomotion provider that allows the user to rotate their rig using a specified 2d axis input.
     /// the provider can take input from two different devices (eg: L & R hands). 
     /// </summary>
+    
     public sealed class SnapTurnProvider : LocomotionProvider
     {
         /// <summary>
@@ -18,6 +17,8 @@ namespace UnityEngine.XR.Interaction.Toolkit
             Primary2DAxis = 0,
             Secondary2DAxis = 1,   
         };
+
+        private bool didRotation;
 
         // Mapping of the above InputAxes to actual common usage values
         static readonly InputFeatureUsage<Vector2>[] m_Vec2UsageList = new InputFeatureUsage<Vector2>[] {
@@ -60,11 +61,12 @@ namespace UnityEngine.XR.Interaction.Toolkit
         [SerializeField]
         [Tooltip("The deadzone that the controller movement will have to be above to trigger a snap turn.")]
         float m_DeadZone = 0.75f;
+        
         /// <summary>
         /// The deadzone that the controller movement will have to be above to trigger a snap turn.
         /// </summary>
         public float deadZone {  get { return m_DeadZone;  } set { m_DeadZone = value; } }
-
+        
         // state data
         float m_CurrentTurnAmount = 0.0f;
         float m_TimeStarted = 0.0f;
@@ -143,6 +145,21 @@ namespace UnityEngine.XR.Interaction.Toolkit
             }
         }
 
+        public bool getDidRotation()
+        {
+            return didRotation;
+        }
+
+        public void setDidRotation(bool b)
+        {
+            didRotation = b;
+        }
+
+        public float getCurrentTurnAmount()
+        {
+            return m_CurrentTurnAmount;
+        }
+
         internal void FakeStartTurn(bool isLeft)
         {
             StartTurn(isLeft ? -m_TurnAmount : m_TurnAmount);
@@ -155,7 +172,7 @@ namespace UnityEngine.XR.Interaction.Toolkit
 
             if (!CanBeginLocomotion())
                 return;
-           
+            didRotation = true;
             m_TimeStarted = Time.time;
             m_CurrentTurnAmount = amount;            
         }

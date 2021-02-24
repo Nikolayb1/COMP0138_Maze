@@ -7873,7 +7873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edda30ba2fc534024839e262e40ebe2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedMovementType: 0
+  selectedMovementType: 2
   l: {fileID: 0}
   tutorialMessage: {fileID: 1709439282}
   text: {fileID: 911692396}
@@ -7890,6 +7890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idText: {fileID: 1419495344}
+  l: {fileID: 0}
 --- !u!114 &998173372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7905,6 +7906,8 @@ MonoBehaviour:
   player: {fileID: 25863884}
   teleportLine: {fileID: 142644528}
   pointerLine: {fileID: 1067742665}
+  raticle: {fileID: 0}
+  ta: {fileID: 0}
 --- !u!1 &1054408296
 GameObject:
   m_ObjectHideFlags: 0
@@ -13606,6 +13609,16 @@ PrefabInstance:
       propertyPath: isTutorial
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6271164712357023598, guid: 31e3186480baeb446871a0ec59052e40,
+        type: 3}
+      propertyPath: stp
+      value: 
+      objectReference: {fileID: 25863889}
+    - target: {fileID: 6271164712357023598, guid: 31e3186480baeb446871a0ec59052e40,
+        type: 3}
+      propertyPath: teleportLine
+      value: 
+      objectReference: {fileID: 142644528}
     - target: {fileID: 6271164712357023599, guid: 31e3186480baeb446871a0ec59052e40,
         type: 3}
       propertyPath: m_Name
@@ -18765,7 +18778,7 @@ PrefabInstance:
     - target: {fileID: 3235626201898786336, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 240
+      value: 261
       objectReference: {fileID: 0}
     - target: {fileID: 3235626201898786336, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
         type: 3}
@@ -19307,6 +19320,7 @@ MonoBehaviour:
   AddGaps: 0
   GoalPrefab: {fileID: 0}
   wo: {fileID: 1960024988}
+  quick: 0
 --- !u!4 &2077242711
 Transform:
   m_ObjectHideFlags: 0
@@ -19341,8 +19355,10 @@ MonoBehaviour:
   tutorial: 1
   GL: {fileID: 0}
   uim: {fileID: 0}
+  im: {fileID: 0}
   Player: {fileID: 25863884}
   check: 0
+  l: {fileID: 0}
   spawnLimit: 2
   end: 0
 --- !u!1001 &2080583898
