@@ -249,7 +249,7 @@ public class InputManager : MonoBehaviour
 
         // Press Right Trigger to select point
         // This should only trigger when pointer is enabled and teleporter is disabled
-        /*if (triggerRightValue > 0 && !TriggerRightToggle && r.isPointer())
+        if (triggerRightValue > 0 && !TriggerRightToggle && r.isPointer())
         {
             // Send data to Ray and finish the experiment;
             // Get ray value
@@ -267,9 +267,9 @@ public class InputManager : MonoBehaviour
         {
 
             TriggerRightToggle = false;
-        }*/
+        }
 
-        if (Input.GetKeyDown(KeyCode.A) && r.isPointer())
+        /*if (Input.GetKeyDown(KeyCode.A) && r.isPointer())
         {
             // Send data to Ray and finish the experiment;
             // Get ray value
@@ -281,7 +281,7 @@ public class InputManager : MonoBehaviour
             r.ResetRays();
             GL = FindObjectOfType<GoalLogic>();
             GL.RotationReset();
-        }
+        }*/
 
 
         // Press X to Change Fog
