@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     public bool isUIToggle;
     public bool isTutorial;
     public bool canChaneScene;
+    public bool canChangeTutorial;
 
     public SnapTurnProvider stp;
 
@@ -53,7 +54,8 @@ public class InputManager : MonoBehaviour
 
     private string[] notificationText = new string[] { "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done put the VR headset back on and press A.",
                                                     "If you would like to play the tutorial again please press B. To continue press A",
-    "If you would like to play the tutorial again please press B. To continue to the first part of the experiment press A"};
+    "If you would like to play the tutorial again please press B. To continue to the first part of the experiment press A",
+    "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done exit the application."};
 
        
 
@@ -179,10 +181,12 @@ public class InputManager : MonoBehaviour
         }
 
         // Press A to progress tutorial
-        if (primaryButtonRightValue && !PrimaryButtonRightToggle && isTutorial && canChaneScene)
+        if (primaryButtonRightValue && !PrimaryButtonRightToggle && isTutorial && canChangeTutorial)
         {
+            Debug.Log("Hello");
             GL = FindObjectOfType<GoalLogic>();
             GL.progressTutorial();
+            canChangeTutorial = false;
             PrimaryButtonRightToggle = true;
         }
 
@@ -192,10 +196,11 @@ public class InputManager : MonoBehaviour
         }
 
         // Press B to replay tutorial
-        if (secondaryButtonRightValue && !PrimaryButtonRightToggle && isTutorial)
+        if (secondaryButtonRightValue && !PrimaryButtonRightToggle && canChangeTutorial)
         {
             GL = FindObjectOfType<GoalLogic>();
             GL.ResetTutorial();
+            canChangeTutorial = false;
             SecondaryButtonRightToggle = true;
         }
 
@@ -244,7 +249,7 @@ public class InputManager : MonoBehaviour
 
         // Press Right Trigger to select point
         // This should only trigger when pointer is enabled and teleporter is disabled
-        if (triggerRightValue > 0 && !TriggerRightToggle && r.isPointer())
+        /*if (triggerRightValue > 0 && !TriggerRightToggle && r.isPointer())
         {
             // Send data to Ray and finish the experiment;
             // Get ray value
@@ -262,9 +267,9 @@ public class InputManager : MonoBehaviour
         {
 
             TriggerRightToggle = false;
-        }
+        }*/
 
-        /*if (Input.GetKeyDown(KeyCode.A) && r.isPointer())
+        if (Input.GetKeyDown(KeyCode.A) && r.isPointer())
         {
             // Send data to Ray and finish the experiment;
             // Get ray value
@@ -276,7 +281,7 @@ public class InputManager : MonoBehaviour
             r.ResetRays();
             GL = FindObjectOfType<GoalLogic>();
             GL.RotationReset();
-        }*/
+        }
 
 
         // Press X to Change Fog

@@ -5,6 +5,7 @@ using UnityEngine;
 public class StartGoal : MonoBehaviour
 {
     private int[] locations = { 0,2,4,6,8};
+    private int[,] spawnLocations = { { 6,5}, { 7, 5 }, {7 ,7}, { 7,6} };
     public enum ending{
         goal,
         goalAtStart,
@@ -18,12 +19,16 @@ public class StartGoal : MonoBehaviour
     private Collider PlayerCollider;
     private bool goalCreated;
     public bool tutorial;
+    public bool BaF;
+    private int spawnI;
     public GoalLogic GL;
     public UIManager uim;
     public InputManager im;
     public GameObject Player;
     public bool check;
     public Logger l;
+    public GameObject movementWarning;
+    public GameObject endMassage;
 
     private int numberOfSpawns;
     public int spawnLimit;
@@ -33,7 +38,8 @@ public class StartGoal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        movementWarning.SetActive(false);
+        spawnI = 0;
         im = FindObjectOfType<InputManager>();
         uim = FindObjectOfType<UIManager>();
         goalCreated = false;
@@ -57,6 +63,15 @@ public class StartGoal : MonoBehaviour
         markerSpawned = true;
         numberOfSpawns++;
     }
+
+    public void Spawn(int i)
+    {
+        spawnedMarker = Instantiate(marker, new Vector3(spawnLocations[i,0] * 2, 1f, spawnLocations[i, 1] * 2), Quaternion.identity);
+        spawnedMarker.GetComponent<Marker>().setTutorial(tutorial);
+        markerSpawned = true;
+        numberOfSpawns++;
+    }
+
     public void Reset(bool e)
     {
         if (!e)
@@ -85,12 +100,23 @@ public class StartGoal : MonoBehaviour
         {
             if (!uim.didSet(Player.transform.position))
             {
+                if (endMassage.activeSelf)
+                {
+                    movementWarning.SetActive(false);
+                }
+                else
+                {
 
+
+                    movementWarning.SetActive(true);
+                }
                 Player.transform.position = new Vector3(0f, 0.55f, -2.5f);
 
             }
             else
             {
+                // disable the warning.
+                movementWarning.SetActive(false);
                 check = true;
             }
         }
@@ -100,7 +126,15 @@ public class StartGoal : MonoBehaviour
             markerSpawned = false;
         }
         if (!markerSpawned && numberOfSpawns < spawnLimit){
-            Spawn();
+            if (BaF)
+            {
+                Spawn(spawnI);
+            }
+            else
+            {
+                Spawn();
+            }
+            
         }
         if(numberOfSpawns >= spawnLimit && !goalCreated && markerSpawned == false)
         {
@@ -114,6 +148,7 @@ public class StartGoal : MonoBehaviour
                 case ending.goalAtStart:
                     spawnedGoal = Instantiate(EndObject, new Vector3(0f, 1f, 0f), Quaternion.identity);
                     goalCreated = true;
+                    spawnI += 1;
                     break;
                 case ending.orientationCheck:
                     // Send a message to a funciton which deletes the maze and activates the ray

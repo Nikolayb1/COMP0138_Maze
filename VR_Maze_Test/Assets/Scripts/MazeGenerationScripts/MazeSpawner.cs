@@ -81,9 +81,9 @@ public class MazeSpawner : MonoBehaviour {
 	{ "lt", "trb", "lt", "tb", "t", "tb", "trb", "lt", "tb", "r" }};
 
 	private string[,] maze5 = new string[,] {
-	{ "lt", "tb", "tb", "b", "tb", "br", "tlb", "b", "tb", "tlb" },
-	{ "lb", "tb", "tb", "tr", "tlb", "r", "rb", "", "tb", "rb" },
-	{ "lr", "lb", "br", "lb", "br", "trb", "l", "lr", "lbr", "lr" },
+	{ "lt", "tb", "tb", "b", "tb", "br", "tlb", "b", "tb", "trb" },
+	{ "lb", "tb", "tb", "tr", "tlb", "t", "rb", "l", "tb", "rb" },
+	{ "lr", "lb", "br", "lb", "br", "tlb", "r", "lr", "lbr", "lr" },
 	{ "lr", "lr", "lt", "tr", "lt", "br", "lr", "lt", "tr", "lr" },
 	{ "l", "tr", "tlb", "br", "lb", "rt", "lt", "tb", "tb", "r" },
 	{ "lr", "lb", "tb", "r", "lt", "rb", "ltb", "tb", "rb", "ltr" },
@@ -106,7 +106,7 @@ public class MazeSpawner : MonoBehaviour {
 
 	private string[,] maze7 = new string[,] {
 	{ "l", "b", "br", "ltb", "b", "tb", "tb", "br", "ltb", "br" },
-	{ "lr", "lr", "lt", "b", "tr", "lb", "br", "lr", "lb", "l" },
+	{ "lr", "lr", "lt", "b", "tr", "lb", "br", "lr", "lb", "r" },
 	{ "ltr", "lr", "tlb", "tr", "lb", "tr", "lr", "lt", "tr", "lr" },
 	{ "lb", "r", "lb", "tb", "tr", "lb", "tr", "tlb", "tb", "tr" },
 	{ "lr", "lr", "lr", "ltb", "br", "lt", "tb", "tb", "tb", "rb" },

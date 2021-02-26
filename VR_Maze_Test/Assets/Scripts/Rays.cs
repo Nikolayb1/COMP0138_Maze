@@ -66,10 +66,12 @@ public class Rays : MonoBehaviour
 
     public float CalculateAngle()
     {
-        Vector3 firstPlayer = Test;
-        Vector3 secondPlayer = pointPos;
-        //Debug.Log(Vector3.Angle(firstPlayer, secondPlayer));
-        return Vector3.Angle(firstPlayer, secondPlayer);
+        Vector2 firstPlayer = new Vector2(Test[0], Test[2]);
+        Vector2 secondPlayer = new Vector2(pointPos[0], pointPos[2]);
+        Debug.Log(pointPos);
+        float AngleRad = Mathf.Atan2(firstPlayer.y - secondPlayer.y, firstPlayer.x - secondPlayer.x);
+        float AngleDeg = (180 / Mathf.PI) * AngleRad;
+        return AngleDeg;
     }
 
     public bool isPointer()

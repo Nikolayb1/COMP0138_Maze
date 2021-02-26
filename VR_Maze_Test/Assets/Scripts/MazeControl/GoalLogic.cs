@@ -121,13 +121,15 @@ public class GoalLogic : Goal
             else
             {
                 im.isTutorial = true;
-                im.canChaneScene = true;
+                
                 if (!end)
                 {
+                    im.canChangeTutorial = true;
                     im.activateEndMessage(1);
                 }
                 else
                 {
+                    im.canChaneScene = true;
                     im.activateEndMessage(2);
                 }
                 

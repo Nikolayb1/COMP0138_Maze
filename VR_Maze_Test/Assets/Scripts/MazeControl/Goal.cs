@@ -55,7 +55,15 @@ public class Goal : MonoBehaviour
     {
         if (end)
         {
-            im.activateEndMessage(0);
+            if (isRotation)
+            {
+                im.activateEndMessage(3);
+            }
+            else
+            {
+                im.activateEndMessage(0);
+            }
+            
             im.SetFog(false);
         }
         else
