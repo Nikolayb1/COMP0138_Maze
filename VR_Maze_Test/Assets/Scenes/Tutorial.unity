@@ -7872,7 +7872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edda30ba2fc534024839e262e40ebe2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedMovementType: 2
+  selectedMovementType: 0
   l: {fileID: 0}
   tutorialMessage: {fileID: 1709439282}
   text: {fileID: 911692396}

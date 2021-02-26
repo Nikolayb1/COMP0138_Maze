@@ -9494,7 +9494,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 25, z: 15}
+    m_Scale: {x: 1, y: 19, z: 15}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -13525,7 +13525,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565374007}
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 5, y: 2.6, z: 9}
+  m_LocalPosition: {x: 5, y: 2.6, z: 6.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -14762,6 +14762,11 @@ PrefabInstance:
       propertyPath: hmd
       value: 
       objectReference: {fileID: 341741806}
+    - target: {fileID: 7550470266485272001, guid: 95e06822bd9b94a7b9c866613cbecec3,
+        type: 3}
+      propertyPath: loggingMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7550470266485272005, guid: 95e06822bd9b94a7b9c866613cbecec3,
         type: 3}
       propertyPath: m_Name
@@ -14821,6 +14826,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550470266485272007, guid: 95e06822bd9b94a7b9c866613cbecec3,
+        type: 3}
+      propertyPath: host
+      value: vrgroupdatacollection.cs.ucl.ac.uk
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95e06822bd9b94a7b9c866613cbecec3, type: 3}

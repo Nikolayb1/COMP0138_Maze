@@ -17,9 +17,9 @@ public class GridLogger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(float i = 0; i < 20; i += 2)
+        for(float i = 0; i < 14; i += 2)
         {
-            for (float j = 0; j < 20; j += 2)
+            for (float j = 0; j < 14; j += 2)
             {
                 GameObject cell = Instantiate(gridCell, new Vector3(i, 1.5f, j), Quaternion.Euler(0, 0, 0));
                 gridCells.Add(cell.GetComponent<LogCell>());

@@ -5,7 +5,7 @@ using UnityEngine;
 public class StartGoal : MonoBehaviour
 {
     private int[] locations = { 0,2,4,6,8};
-    private int[,] spawnLocations = { { 6,5}, { 7, 5 }, {7 ,7}, { 7,6} };
+    private int[,] spawnLocations = { { 6,5}, { 3, 5 }, {0 ,4}, { 2,1} };
     public enum ending{
         goal,
         goalAtStart,
@@ -142,7 +142,7 @@ public class StartGoal : MonoBehaviour
             switch (end)
             {
                 case ending.goal:
-                    spawnedGoal = Instantiate(EndObject, new Vector3(18f, 1f, 20f), Quaternion.identity);
+                    spawnedGoal = Instantiate(EndObject, new Vector3(12f, 1f, 14f), Quaternion.identity);
                     goalCreated = true;
                     break;
                 case ending.goalAtStart:
