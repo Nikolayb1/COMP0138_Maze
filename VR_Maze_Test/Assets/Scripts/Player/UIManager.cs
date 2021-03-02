@@ -148,9 +148,9 @@ public class UIManager : MonoBehaviour
         newText = menu.GetComponentsInChildren<Text>();
 
         movementTypeText = newText[0];
-        wireframeModeText = newText[1];
-        rotationText = newText[2];
-        positionText = newText[3];
+        //wireframeModeText = newText[1];
+        //rotationText = newText[2];
+        //positionText = newText[3];
     }
     // Start is called before the first frame update
     void Start()
@@ -211,9 +211,9 @@ public class UIManager : MonoBehaviour
                     break;
             }
             movementTypeText.text = movementTypeStringBegining + movementTypeValueString;
-            wireframeModeText.text = wireframeModeStringBegining + wireframeModeValueString;
-            rotationText.text = rotationStringBegining+ rotationValueString;
-            positionText.text = positionStringBegining + positionValueString;
+            //wireframeModeText.text = wireframeModeStringBegining + wireframeModeValueString;
+            //rotationText.text = rotationStringBegining+ rotationValueString;
+            //positionText.text = positionStringBegining + positionValueString;
             
         }
     }

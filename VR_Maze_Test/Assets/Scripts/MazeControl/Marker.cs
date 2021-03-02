@@ -5,6 +5,7 @@ using UnityEngine;
 public class Marker : MonoBehaviour
 {
     private bool isTutorial;
+    public StartGoal sg;
     public GridLogger gl;
     public Logger l;
 
@@ -13,6 +14,7 @@ public class Marker : MonoBehaviour
     {
         gl = FindObjectOfType<GridLogger>();
         l = FindObjectOfType<Logger>();
+        sg = FindObjectOfType<StartGoal>();
     }
 
     // Update is called once per frame
@@ -32,6 +34,7 @@ public class Marker : MonoBehaviour
         string val = gl.dataToJson();
         l.LogEvent("MF", val);
         gl.clearLog();
+        sg.enableMarkerMessage();
     }
 
     // When Marker was entered

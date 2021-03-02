@@ -34,10 +34,16 @@ public class StartGoal : MonoBehaviour
     public int spawnLimit;
     public ending end;
     private bool markerSpawned;
+    public GameObject[] markerMessages = new GameObject[4];
+    private int markerId;
+    private bool markerMessageEnabled;
+    private float markerMessageStart;
+    private float markerMessageEnd;
 
     // Start is called before the first frame update
     void Start()
     {
+        markerMessageEnabled = false;
         movementWarning.SetActive(false);
         spawnI = 0;
         im = FindObjectOfType<InputManager>();
@@ -66,10 +72,25 @@ public class StartGoal : MonoBehaviour
 
     public void Spawn(int i)
     {
+        markerId = i;
         spawnedMarker = Instantiate(marker, new Vector3(spawnLocations[i,0] * 2, 1f, spawnLocations[i, 1] * 2), Quaternion.identity);
         spawnedMarker.GetComponent<Marker>().setTutorial(tutorial);
         markerSpawned = true;
         numberOfSpawns++;
+    }
+
+    public void enableMarkerMessage()
+    {
+        markerMessages[markerId].SetActive(true);
+        markerMessageEnabled = true;
+        markerMessageStart = Time.fixedTime;
+        markerMessageEnd = markerMessageStart + 5;
+    }
+
+    public void disableMarkerMessage()
+    {
+        markerMessageEnabled = false;
+        markerMessages[markerId].SetActive(false);
     }
 
     public void Reset(bool e)
@@ -95,7 +116,15 @@ public class StartGoal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (markerMessageEnabled)
+        {
+            if (Time.fixedTime > markerMessageEnd)
+            {
+                disableMarkerMessage();
+            }
+        }
+
         if (!check)
         {
             if (!uim.didSet(Player.transform.position))

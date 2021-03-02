@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
     private InputDeviceCharacteristics leftControllerCharacteristics;
     private InputDeviceCharacteristics rightControllerCharacteristics;
     public GameObject endMessage;
+    public GameObject TutorialMessage;
     public Text endMessageText;
     public Logger l;
 
@@ -82,6 +83,7 @@ public class InputManager : MonoBehaviour
     {
         endMessage.SetActive(true);
         endMessageText.text = notificationText[i];
+        TutorialMessage.SetActive(false);
     }
 
     public void deactivateEndMessage()
@@ -109,7 +111,6 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        l = FindObjectOfType<Logger>();
         endMessage = GameObject.FindGameObjectWithTag("endMessage");
         endMessage.SetActive(false);
         ceilling.SetActive(false);
@@ -268,8 +269,8 @@ public class InputManager : MonoBehaviour
 
             TriggerRightToggle = false;
         }
-
-        /*if (Input.GetKeyDown(KeyCode.A) && r.isPointer())
+        /*
+        if (Input.GetKeyDown(KeyCode.A) && r.isPointer())
         {
             // Send data to Ray and finish the experiment;
             // Get ray value

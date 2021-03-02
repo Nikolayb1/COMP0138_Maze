@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
@@ -18,12 +19,12 @@ public class continuousMovement : LocomotionProvider
     private bool movementBool = false;
 
     private CharacterController characterController = null;
-    public Camera head = null;
+    public GameObject head = null;
 
     protected override void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        
+        head = GetComponent<XRRig>().cameraGameObject;
         ceilling.SetActive(false);
         //head = GetComponent<Camera>();
     }
@@ -31,8 +32,9 @@ public class continuousMovement : LocomotionProvider
     void Start()
     {
         
-        
     }
+
+    
 
     public void FindWalls()
     {

@@ -1,17 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class IdManager : MonoBehaviour
 {
-    public Text idText;
     public Logger l;
     // Start is called before the first frame update
     void Start()
     {
-        idText.text = CrossSceneData.CrossSceneId.ToString();
-        l.LogEvent("ID", CrossSceneData.CrossSceneId.ToString());
+
+
+        CrossSceneData.CrossSceneId = 0;
+        //l.LogEvent("ID", CrossSceneData.CrossSceneId.ToString());
 
     }
 

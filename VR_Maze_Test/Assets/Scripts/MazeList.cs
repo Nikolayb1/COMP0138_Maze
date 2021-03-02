@@ -6,8 +6,10 @@ public class MazeList : MonoBehaviour
 {
 
     public GameObject[] mazes;
+    public GameObject[] messages;
     private int counter;
     private GameObject maze;
+    private GameObject message;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class MazeList : MonoBehaviour
     {
         counter++;
         maze = Instantiate(mazes[counter], new Vector3(-2f, 0.5f, 15f), Quaternion.Euler(-90f, 180f, 0f));
+        message = Instantiate(messages[counter]);
         maze.transform.parent = transform;
     }
 
@@ -33,6 +36,7 @@ public class MazeList : MonoBehaviour
         if (maze != null)
         {
             Destroy(maze);
+            Destroy(message);
         }
         
     }

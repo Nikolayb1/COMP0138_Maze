@@ -22,7 +22,6 @@ public class TutorialInit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        l = FindObjectOfType<Logger>();
         uim = FindObjectOfType<UIManager>();
         im = FindObjectOfType<InputManager>();
         activateTutorialMessage();
@@ -61,16 +60,16 @@ public class TutorialInit : MonoBehaviour
         switch (selectedMovementType)
         {
             case UIManager.MovementType.Teleport:
-                text.text = tutorialText[0];
+                text.text = tutorialText[0] + "\n\n Please move into the cubes to your right" +"\n\n ID: " + CrossSceneData.CrossSceneId.ToString();
                 break;
             case UIManager.MovementType.Dash:
-                text.text = tutorialText[1];
+                text.text = tutorialText[1] + "\n\n Please move into the cubes to your right"+"\n\n ID: " + CrossSceneData.CrossSceneId.ToString();
                 break;
             case UIManager.MovementType.Walk:
-                text.text = tutorialText[2];
+                text.text = tutorialText[2] + "\n\n Please move into the cubes to your right"+"\n\n ID: " + CrossSceneData.CrossSceneId.ToString();
                 break;
             case UIManager.MovementType.Fog:
-                text.text = tutorialText[3];
+                text.text = tutorialText[3] + "\n\n Please move into the cubes to your right"+"\n\n ID: " + CrossSceneData.CrossSceneId.ToString();
                 break;
         }
         

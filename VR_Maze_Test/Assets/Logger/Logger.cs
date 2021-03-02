@@ -315,7 +315,12 @@ public class Logger : MonoBehaviour
         string unixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
         string timeSinceStart = Time.time.ToString();
         string timeStamp = System.DateTime.Now.ToString("hhmmss");
-
+        Debug.Log(unixTime);
+        Debug.Log(timeSinceStart);
+        Debug.Log(timeStamp);
+        Debug.Log(eventIdentifier);
+        Debug.Log(eventDescription);
+        Debug.Log(m_eventLogger);
         m_eventLogger.WriteLine(unixTime + "," + timeSinceStart + "," + timeStamp + "," + eventIdentifier + "," + eventDescription);
         m_eventLogger.Flush();
     }

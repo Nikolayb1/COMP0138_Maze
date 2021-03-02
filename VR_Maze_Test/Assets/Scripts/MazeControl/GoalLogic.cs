@@ -54,6 +54,7 @@ public class GoalLogic : Goal
     {
         if (!end)
         {
+            Player.transform.rotation = Quaternion.Euler(0, -33, 0);
             sg.Reset(end);
             FindObjectOfType<TutorialInit>().nextMovementMethod();
             im.isTutorial = false;
@@ -94,6 +95,7 @@ public class GoalLogic : Goal
     {
         string val = gl.dataToJson();
         l.LogEvent("EM", val);
+        l.LogEvent("ID", CrossSceneData.CrossSceneId.ToString());
         gl.clearLog();
     }
 
