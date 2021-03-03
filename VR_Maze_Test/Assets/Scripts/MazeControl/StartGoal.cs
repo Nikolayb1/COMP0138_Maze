@@ -6,6 +6,7 @@ public class StartGoal : MonoBehaviour
 {
     private int[] locations = { 0,2,4,6,8};
     private int[,] spawnLocations = { { 3,5}, { 1, 4 }, {3 ,4}, { 3,4} };
+    private int[,] tutorialLocations = { { 1, 1 }, { 3, 3 } };
     public enum ending{
         goal,
         goalAtStart,
@@ -74,6 +75,14 @@ public class StartGoal : MonoBehaviour
     {
         markerId = i;
         spawnedMarker = Instantiate(marker, new Vector3(spawnLocations[i,0] * 2, 1f, spawnLocations[i, 1] * 2), Quaternion.identity);
+        spawnedMarker.GetComponent<Marker>().setTutorial(tutorial);
+        markerSpawned = true;
+        numberOfSpawns++;
+    }
+
+    public void SpawnTutorial(int i)
+    {
+        spawnedMarker = Instantiate(marker, new Vector3(tutorialLocations[i, 0] * 2, 1f, tutorialLocations[i, 1] * 2), Quaternion.identity);
         spawnedMarker.GetComponent<Marker>().setTutorial(tutorial);
         markerSpawned = true;
         numberOfSpawns++;
@@ -158,6 +167,10 @@ public class StartGoal : MonoBehaviour
             if (BaF)
             {
                 Spawn(spawnI);
+            }
+            else if (tutorial)
+            {
+                SpawnTutorial(numberOfSpawns);
             }
             else
             {
