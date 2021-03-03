@@ -262,7 +262,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -2437,7 +2437,7 @@ MonoBehaviour:
   mazes:
   - {fileID: 2230934364542493736, guid: 5893d44edbdef324c89151c3f711ac40, type: 3}
   - {fileID: 9020332698104839100, guid: ef705cfdbe431434ebb9a6b676186e55, type: 3}
-  - {fileID: 5646401800348179522, guid: 521dd12cb427e47ec899e479b71065a0, type: 3}
+  - {fileID: 7273043934941906186, guid: 521dd12cb427e47ec899e479b71065a0, type: 3}
   - {fileID: 6047994998044425818, guid: c88cdefd1f9dfc741bd978a1f754ec2f, type: 3}
   messages:
   - {fileID: 2011484117512840782, guid: b4a6fcf1ed9ac41658080a95585f7ad6, type: 3}

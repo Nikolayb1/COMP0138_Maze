@@ -33,76 +33,68 @@ public class MazeSpawner : MonoBehaviour {
 	private BasicMazeGenerator mMazeGenerator = null;
 	private List<string[,]> mazes = new List<string[,]>();
     private string[,] maze1 = new string[,] {
-	{ "lr", "lb", "b", "tb", "tb", "b", "trb" },
-	{ "l", "tr", "lt", "br", "tlb", "r", "lbr" },
-	{ "lt", "tb", "rb", "lt", "br", "ltr", "lr" },
-	{ "lb", "tb", "tr", "lbr", "lt", "tb", "tr" },
-	{ "lt", "br", "lb", "r", "tlb", "tb", "rb" },
-	{ "lbr", "lr", "lr", "lr", "lb", "tb", "r" },
-	{ "lt", "t", "tr", "lt", "tr", "tlb", "r" }};
+	{ "l", "br", "lb", "b", "br", "lbr" },
+	{ "lr", "lt", "tr", "lr", "lt", "tr" },
+	{ "lt", "tb", "br", "lt", "tb", "br" },
+	{ "lb", "tb", "tr", "lb", "br", "lr" },
+	{ "lr", "lbr", "lbr", "lr", "lt", "r" },
+	{ "lt", "tr", "lt", "tr", "tlb", "r" }};
 
 	private string[,] maze2 = new string[,] {
-	{ "l", "tb", "tb", "rb", "lb", "b", "trb" },
-	{ "l", "rb", "ltb", "r", "lr", "lt", "rb" },
-	{ "lr", "lt", "rb", "lr", "ltr", "lb", "r" },
-	{ "lt", "trb", "lr", "lt", "rb", "lr", "lr" },
-	{ "ltb", "rb", "tl", "rb", "lt", "tr", "lr" },
-	{ "lbr", "lr", "lb", "tr", "lb", "br", "lr" },
-	{ "lt", "t", "tr", "tlb", "tr", "lt", "r" }};
+	{ "l", "tb", "br", "lb", "tb", "br" },
+	{ "l", "br", "tl", "tr", "tlb", "tr" },
+	{ "lr", "lt", "tb", "br", "lb", "br" },
+	{ "lt", "tb", "trb", "lt", "tr", "lr" },
+	{ "tlb", "tb", "rb", "lb", "tb", "r" },
+	{ "tlb", "tb", "t", "tr", "tlb", "r" }};
 
 	private string[,] maze3 = new string[,] {
-	{ "l", "rb", "lb", "tb", "tb", "tb", "rb" },
-	{ "lr", "lt", "tr", "lb", "br", "lb", "tr" },
-	{ "lr", "lb", "tb", "tr", "lr", "lt", "trb" },
-	{ "l", "tr", "lb", "br", "lt", "tb", "rb" },
-	{ "lr", "tlb", "tr", "lt", "b", "trb", "lr" },
-	{ "lr", "lb", "tb", "rb", "lr", "lbr", "lr" },
-	{ "lt", "tr", "tlb", "t", "tr", "lt", "r" }};
+	{ "l", "br", "lb", "tb", "br", "lbr" },
+	{ "lr", "lt", "tr", "lb", "tr", "lr" },
+	{ "lr", "tlb", "br", "lr", "lb", "r" },
+	{ "l", "br", "lt", "t", "tr", "lr" },
+	{ "lr", "lt", "tb", "br", "lbr", "lr" },
+	{ "lt", "tb", "trb", "ltr", "lt", "r" }};
 
 	private string[,] maze4 = new string[,] {
-	{ "lr", "lb", "tb", "rb", "lb", "tb", "rb" },
-	{ "lr", "lt", "rb", "lt", "tr", "lb", "tr" },
-	{ "l", "rb", "lt", "rb", "lbr", "lt", "rb" },
-	{ "l", "tb", "tb", "tr", "l", "br", "ltr" },
-	{ "lt", "tb", "rb", "lb", "tr", "lt", "rb" },
-	{ "lb", "trb", "lt", "tr", "lb", "tb", "tr" },
-	{ "lt", "tb", "tb", "tb", "t", "tb", "rb" }};
+	{ "lt", "b", "br", "tlb", "b", "br" },
+	{ "lb", "tr", "lt", "br", "ltr", "lr" },
+	{ "lt", "br", "tlb", "t", "tb", "r" },
+	{ "lb", "tr", "lb", "br", "tlb", "tr" },
+	{ "l", "tb", "tr", "lt", "br", "lbr" },
+	{ "lt", "tb", "tb", "trb", "lt", "r" }};
 
 	private string[,] maze5 = new string[,] {
-	{ "lr", "lb", "br", "lb", "tb", "tb", "rb" },
-	{ "l", "tr", "lt", "tr", "lbr", "lb", "tr" },
-	{ "tl", "br", "ltb", "b", "r", "lt", "rb" },
-	{ "lbr", "lt", "tb", "r", "lt", "trb", "lr" },
-	{ "l", "trb", "lb", "tr", "ltb", "tb", "tr" },
-	{ "lr", "lb", "tr", "tlb", "b", "tb", "rb" },
-	{ "lt", "t", "tb", "tb", "rt", "ltb", "rt" }};
+	{ "l", "tb", "tb", "tb", "tb", "br" },
+	{ "l", "br", "lb", "br", "tlb", "tr" },
+	{ "lr", "lt", "tr", "lr", "lb", "br" },
+	{ "ltr", "lb", "br", "lt", "tr", "lr" },
+	{ "lb", "tr", "lt", "tb", "tb", "r" },
+	{ "lt", "tb", "tb", "trb", "tlb", "rt" }};
 
 	private string[,] maze6 = new string[,] {
-	{ "l", "b", "tb", "rb", "lb", "tb", "rb" },
-	{ "ltr", "lr", "lbr", "lt", "tr", "lb", "tr" },
-	{ "lb", "tr", "lt", "b", "trb", "lt", "rb" },
-	{ "tl", "tb", "rb", "l", "rb", "lb", "tr" },
-	{ "lb", "tb", "tr", "lr", "lt", "t", "rb" },
-	{ "lr", "lb", "br", "ltr", "lb", "trb", "lr" },
-	{ "lt", "tr", "lt", "tbb", "tr", "tlb", "rt" }};
+	{ "l", "tb", "br", "ltb", "b", "trb" },
+	{ "lt", "br", "lt", "br", "lt", "br" },
+	{ "lb", "tr", "lbr", "lt", "br", "lr" },
+	{ "lr", "lb", "", "br", "lt", "r" },
+	{ "lr", "ltr", "lr", "ltr", "lb", "rt" },
+	{ "lt", "trb", "lt", "tb", "t", "brt" }};
 
 	private string[,] maze7 = new string[,] {
-	{ "l", "tb", "tb", "tb", "rb", "lb", "rb" },
-	{ "lt", "rb", "lb", "rb", "lt", "tr", "lr" },
-	{ "ltb", "tr", "lr", "lt", "tb", "rb", "lr" },
-	{ "lb", "tb", "tr", "ltb", "rb", "lr", "lr" },
-	{ "lrt", "lb", "b", "br", "lr", "lt", "r" },
-	{ "lbr", "lr", "lr", "lt", "tr", "lb", "tr" },
-	{ "lt", "tr", "lt", "tb", "tb", "t", "rbt" }};
+	{ "lr", "lbr", "lb", "b", "tb", "br" },
+	{ "l", "tr", "ltr", "lr", "lb", "tr" },
+	{ "lt", "tb", "br", "lr", "lt", "br" },
+	{ "lb", "br", "lt", "tr", "lbr", "lr" },
+	{ "lr", "l", "tb", "trb", "l", "tr" }, 
+	{ "ltr", "lt", "tb", "tb", "t", "brt" }};
 
 	private string[,] maze8 = new string[,] {
-	{ "lr", "lb", "tb", "tb", "tb", "tb", "rb" },
-	{ "l", "tr", "lb", "b", "br", "lb", "tr" },
-	{ "lr", "lbr", "lr", "lr", "ltr", "lt", "br" },
-	{ "lr", "tl", "tr", "lr", "ltb", "br", "lr" },
-	{ "lt", "tb", "rb", "l", "trb", "lt", "tr" },
-	{ "lb", "tbr", "lr", "lt", "b", "tb", "rb" },
-	{ "lt", "tb", "t", "tb", "tr", "ltb", "tr" }};
+	{ "l", "tb", "tb", "tb", "br", "lbr" },
+	{ "l", "tb", "br", "lb", "tr", "lr" },
+	{ "l", "trb", "lr", "lr", "tlb", "r" },
+	{ "ltr", "lb", "tr", "lt", "br", "lr" },
+	{ "tlb", "tr", "lb", "trb", "lt", "r" },
+	{ "ltb", "tb", "t", "tb", "tb", "rt" }};
 	private int curr;
 
 	void Start () {
