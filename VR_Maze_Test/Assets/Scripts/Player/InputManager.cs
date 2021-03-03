@@ -55,7 +55,7 @@ public class InputManager : MonoBehaviour
 
     private string[] notificationText = new string[] { "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done put the VR headset back on and press A.",
                                                     "If you would like to play the tutorial again please press B. To continue press A",
-    "If you would like to play the tutorial again please press B. To continue to the first part of the experiment press A",
+    "If you would like to play the tutorial again please press B. Please make sure that you have completed the online form until the the First Stage Section. To continue to the First Stage of the experiment press A",
     "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done exit the application."};
 
        

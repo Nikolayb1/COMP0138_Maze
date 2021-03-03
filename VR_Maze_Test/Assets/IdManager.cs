@@ -8,7 +8,6 @@ public class IdManager : MonoBehaviour
     {
 
 
-        CrossSceneData.CrossSceneId = 0;
         //l.LogEvent("ID", CrossSceneData.CrossSceneId.ToString());
 
     }

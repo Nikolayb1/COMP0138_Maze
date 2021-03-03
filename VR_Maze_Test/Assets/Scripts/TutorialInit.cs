@@ -15,8 +15,8 @@ public class TutorialInit : MonoBehaviour
 
     private string[] tutorialText = new string[] { "Locomotion Method: Teleport\n\nHow to use: Point with the right controller to where you want to move. If the line glows white, it means that you can move to that point, red, means you cannot. When you are ready to move press the right trigger. You can also use the right joystick to turn in place.",
     "Locomotion Method: Dash\n\nHow to use: Point with the right controller to where you want to move. If the line glows white, it means that you can move to that point, red, means you cannot. When you are ready to move press the right trigger. You can also use the right joystick to turn in place.",
-    "Locomotion Method: Wireframe\n\nHow to use: Use the left joystick to glide in the direction you want. The direction you are looking in is always forwards. When you move the wall texture will turn blurry. You can also use the right joystick to turn in place.",
-    "Locomotion Method: Fog\n\nHow to use: Use the left joystick to glide in the direction you want. The direction you are looking in is always forwards. When you move a cloud of fog will appear around your head. You can also use the right joystick to turn in place."};
+    "Locomotion Method: Blur\n\nHow to use: Use the left joystick to glide in the direction you want. The direction you are looking in is always acts as forward. When you move the wall texture will turn blurry. You can also use the right joystick to turn in place.",
+    "Locomotion Method: Fog\n\nHow to use: Use the left joystick to glide in the direction you want. The direction you are looking in is always acts as forward. You can also use the right joystick to turn in place."};
 
 
     // Start is called before the first frame update
@@ -24,9 +24,10 @@ public class TutorialInit : MonoBehaviour
     {
         uim = FindObjectOfType<UIManager>();
         im = FindObjectOfType<InputManager>();
-        activateTutorialMessage();
-        CrossSceneData.CrossSceneId = Random.Range(0, 999999);
         
+        CrossSceneData.CrossSceneId = Random.Range(0, 999999);
+        activateTutorialMessage();
+
     }
 
     public void nextMovementMethod()

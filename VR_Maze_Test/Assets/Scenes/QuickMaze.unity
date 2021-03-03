@@ -13745,7 +13745,7 @@ PrefabInstance:
     - target: {fileID: 3235626202815966998, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3235626202815967018, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
         type: 3}
@@ -14674,11 +14674,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: In this stage you are asked to navigate the maze from the start to the
-    end. At the end of each maze there is a large purple cube. When you find this,
-    move into it and you will be teleported back to the start and a new maze will
-    be generated. Please wait 3 seconds before moving again when you are teleported
-    back.
+  m_Text: Please navigate to the end of the maze. You will find purple cube at the
+    end of the maze, move into it to progress the experiment.
 --- !u!224 &3235626202847399467
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14696,7 +14693,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.28, y: -0.46}
-  m_SizeDelta: {x: 484.7, y: 296.9}
+  m_SizeDelta: {x: 484.7, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3235626202847399469
 CanvasRenderer:

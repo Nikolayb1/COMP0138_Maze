@@ -184,7 +184,7 @@ public class UIManager : MonoBehaviour
                     break;
 
                 case MovementType.Walk:
-                    movementTypeValueString = "Walk";
+                    movementTypeValueString = "Blur";
 
                     break;
                 case MovementType.Fog:
