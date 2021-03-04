@@ -83,7 +83,11 @@ public class InputManager : MonoBehaviour
     {
         endMessage.SetActive(true);
         endMessageText.text = notificationText[i];
-        TutorialMessage.SetActive(false);
+        if (!isTutorial)
+        {
+            TutorialMessage.SetActive(false);
+        }
+        
     }
 
     public void deactivateEndMessage()
@@ -139,7 +143,11 @@ public class InputManager : MonoBehaviour
         if (stp.getDidRotation())
         {
             stp.setDidRotation(false);
-            l.LogEvent("SR", "Current Rotation: "+stp.getCurrentTurnAmount().ToString());
+            if (isTutorial)
+            {
+                l.LogEvent("SR", "Current Rotation: " + stp.getCurrentTurnAmount().ToString());
+            }
+            
         }
         if (leftController == null || rightController == null)
         {
@@ -197,8 +205,9 @@ public class InputManager : MonoBehaviour
         }
 
         // Press B to replay tutorial
-        if (secondaryButtonRightValue && !PrimaryButtonRightToggle && canChangeTutorial)
+        if (secondaryButtonRightValue && !SecondaryButtonRightToggle && isTutorial && canChangeTutorial)
         {
+            Debug.Log("Reset");
             GL = FindObjectOfType<GoalLogic>();
             GL.ResetTutorial();
             canChangeTutorial = false;

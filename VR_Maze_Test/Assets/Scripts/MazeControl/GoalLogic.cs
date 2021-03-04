@@ -132,6 +132,7 @@ public class GoalLogic : Goal
                 else
                 {
                     im.canChaneScene = true;
+                    im.canChangeTutorial = true;
                     im.activateEndMessage(2);
                 }
                 

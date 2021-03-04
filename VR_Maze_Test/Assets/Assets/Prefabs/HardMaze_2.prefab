@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7362915607845444201}
   - component: {fileID: 1430280712600929485}
   - component: {fileID: 4885175326621799761}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HardMaze_2
   m_TagString: wall
   m_Icon: {fileID: 0}

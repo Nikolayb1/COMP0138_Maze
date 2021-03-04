@@ -118,7 +118,11 @@ public class StartGoal : MonoBehaviour
             numberOfSpawns = 0;
             Destroy(spawnedGoal);
             im.canChaneScene = true;
-            l.UploadLogs();
+            if (!tutorial)
+            {
+                l.UploadLogs();
+            }
+            
         }
         
     }

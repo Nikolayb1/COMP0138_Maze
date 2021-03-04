@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5255198391463927695}
   - component: {fileID: 6739688296781868352}
   - component: {fileID: -2878522085845762031}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HardMaze_4
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

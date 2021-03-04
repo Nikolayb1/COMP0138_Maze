@@ -7730,10 +7730,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 25863884}
-  firstCube: {fileID: 0}
-  secondCube: {fileID: 0}
   teleportLine: {fileID: 142644528}
   pointerLine: {fileID: 1655270203}
+  raticle: {fileID: 0}
+  ta: {fileID: 0}
 --- !u!1001 &1262175996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8349,6 +8349,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridCell: {fileID: 7106909676678211155, guid: 30d8552b153b149318ea3b3d9f662cfa,
     type: 3}
+  myCollection:
+    gridLogData: []
 --- !u!1001 &1564813546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9522,6 +9524,7 @@ MonoBehaviour:
   AddGaps: 0
   GoalPrefab: {fileID: 0}
   wo: {fileID: 1960024988}
+  quick: 0
 --- !u!4 &2077242711
 Transform:
   m_ObjectHideFlags: 0
@@ -9554,12 +9557,22 @@ MonoBehaviour:
   spawnedMarker: {fileID: 0}
   spawnedGoal: {fileID: 0}
   tutorial: 0
+  BaF: 0
   GL: {fileID: 0}
   uim: {fileID: 0}
+  im: {fileID: 0}
   Player: {fileID: 25863884}
   check: 0
+  l: {fileID: 0}
+  movementWarning: {fileID: 0}
+  endMassage: {fileID: 0}
   spawnLimit: 1
   end: 2
+  markerMessages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &2080583898
 PrefabInstance:
   m_ObjectHideFlags: 0

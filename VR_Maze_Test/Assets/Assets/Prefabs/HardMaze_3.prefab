@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 8044794803486318512}
   - component: {fileID: 6344166516278874133}
   - component: {fileID: 9218858114351768799}
-  m_Layer: 0
+  - component: {fileID: -1618397961958473795}
+  - component: {fileID: -7166915355869848369}
+  m_Layer: 8
   m_Name: HardMaze_3
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,8 +50,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7273043934941906186}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -79,3 +81,32 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-1618397961958473795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7273043934941906186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d443e979a5d94554fb086949c8de6aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireframe: {fileID: 2100000, guid: f95ad4ebe400b4a139f902f8e7addb35, type: 2}
+  rocks: {fileID: 2100000, guid: b1072768e84a54d8291b888f30f431cb, type: 2}
+  isMaterial1: 0
+--- !u!64 &-7166915355869848369
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7273043934941906186}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -462981019419857548, guid: aaf89ebe2abb94006af3a229940cdf34, type: 3}
