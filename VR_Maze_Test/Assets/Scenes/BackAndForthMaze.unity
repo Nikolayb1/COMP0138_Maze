@@ -2517,7 +2517,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Please find the white cube hidden in the maze. Move into it to activate
-    the next part of the experiment. Find your way back to the starting point which
+    the next part of the experiment. Find your way back to the maze entrance which
     is marked by purple cube to progress the experiment.
 --- !u!222 &497578550
 CanvasRenderer:
