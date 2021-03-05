@@ -44,7 +44,7 @@ public class GoalLogic : Goal
         {
             msc.DestroyMaze();
             ResetUser();
-            im.activateEndMessage(0);
+            im.activateEndMessage(3);
         }
         
         

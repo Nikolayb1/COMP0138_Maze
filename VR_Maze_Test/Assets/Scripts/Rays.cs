@@ -19,6 +19,7 @@ public class Rays : MonoBehaviour
     public GameObject teleportLine;
     public GameObject pointerLine;
     public GameObject raticle;
+    public GameObject fog;
 
     public UnityEngine.XR.Interaction.Toolkit.TeleportationArea ta;
 
@@ -40,6 +41,7 @@ public class Rays : MonoBehaviour
 
     public void InitRays()
     {
+        fog.SetActive(false);
         playerPos = player.transform.position;
         originPos = new Vector3(0,0,0);
         Ray r = new Ray(playerPos, originPos);

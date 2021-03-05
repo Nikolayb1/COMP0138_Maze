@@ -1151,7 +1151,7 @@ PrefabInstance:
     - target: {fileID: 3899416531084972515, guid: c80c7e811ba180f4cbf0a47704bd62fe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3899416531084972515, guid: c80c7e811ba180f4cbf0a47704bd62fe,
         type: 3}
@@ -1609,8 +1609,8 @@ Camera:
   m_GameObject: {fileID: 341741805}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.5448113, g: 0.615435, b: 0.7264151, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1795,7 +1795,7 @@ PrefabInstance:
     - target: {fileID: 3502624822770920032, guid: 8c705f992cee09f4da3ca465a4ae918e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3502624822770920032, guid: 8c705f992cee09f4da3ca465a4ae918e,
         type: 3}
@@ -1900,7 +1900,7 @@ PrefabInstance:
     - target: {fileID: 7550470266485272006, guid: 95e06822bd9b94a7b9c866613cbecec3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7550470266485272006, guid: 95e06822bd9b94a7b9c866613cbecec3,
         type: 3}
@@ -7005,7 +7005,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: -180, y: 90, z: -90}
 --- !u!1 &705507993
 GameObject:
@@ -7226,7 +7226,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &770356603
 MonoBehaviour:
@@ -7255,6 +7255,7 @@ MonoBehaviour:
   l: {fileID: 419027133}
   movementWarning: {fileID: 1273672412}
   endMassage: {fileID: 1054940104}
+  pointer: {fileID: 1655270203}
   spawnLimit: 0
   end: 2
   markerMessages:
@@ -7858,7 +7859,7 @@ PrefabInstance:
     - target: {fileID: 3235626202815967018, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3235626202815967018, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
         type: 3}
@@ -8207,6 +8208,7 @@ MonoBehaviour:
   teleportLine: {fileID: 142644528}
   pointerLine: {fileID: 1655270203}
   raticle: {fileID: 1024864439901104952, guid: df498136a5ffbfa46a1a472a84d07a09, type: 3}
+  fog: {fileID: 583703436}
   ta: {fileID: 1312420728}
 --- !u!114 &1255182798
 MonoBehaviour:
@@ -8356,7 +8358,7 @@ PrefabInstance:
     - target: {fileID: 1312186334922752229, guid: 77441d719b63f4372887291409f4a952,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1312186334922752229, guid: 77441d719b63f4372887291409f4a952,
         type: 3}
@@ -8591,7 +8593,7 @@ Transform:
   m_Children:
   - {fileID: 1170311288}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1312420728 stripped
 MonoBehaviour:
@@ -8988,7 +8990,7 @@ PrefabInstance:
     - target: {fileID: 6271164712357023600, guid: 31e3186480baeb446871a0ec59052e40,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6271164712357023600, guid: 31e3186480baeb446871a0ec59052e40,
         type: 3}
@@ -10123,110 +10125,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1942109222}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1960024988 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6271164712357023602, guid: 31e3186480baeb446871a0ec59052e40,
-    type: 3}
-  m_PrefabInstance: {fileID: 1479906245}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1255182796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12841c0b369426242bccbc00b86bbdb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &2077242709
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2077242711}
-  - component: {fileID: 2077242710}
-  - component: {fileID: 2077242712}
-  m_Layer: 0
-  m_Name: MazeSpawner
-  m_TagString: Maze
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2077242710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2077242709}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dbd480039f60a344bdc0ff90b9d70b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Algorithm: 1
-  FullRandom: 1
-  RandomSeed: 12345
-  Floor: {fileID: 0}
-  Wall: {fileID: 4376430054385900800, guid: d3b976bc9d26cb64c8240d9da26087f0, type: 3}
-  Pillar: {fileID: 0}
-  Rows: 5
-  Columns: 5
-  CellWidth: 2
-  CellHeight: 2
-  AddGaps: 0
-  GoalPrefab: {fileID: 0}
-  wo: {fileID: 1960024988}
-  quick: 0
---- !u!4 &2077242711
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2077242709}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2077242712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2077242709}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bed5d02f48ac6540a004d2fffe98ac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EndObject: {fileID: 7489562928776570204, guid: 25dabb2e23e184c11a830dc4507453a6,
-    type: 3}
-  marker: {fileID: 6581795526422539748, guid: bc0290cf3bb9d5f44a65aa4d4872f1be, type: 3}
-  spawnedMarker: {fileID: 0}
-  spawnedGoal: {fileID: 0}
-  tutorial: 0
-  BaF: 0
-  GL: {fileID: 0}
-  uim: {fileID: 1566840702}
-  im: {fileID: 1479906246}
-  Player: {fileID: 25863884}
-  check: 0
-  l: {fileID: 419027133}
-  movementWarning: {fileID: 1273672412}
-  endMassage: {fileID: 1054940104}
-  spawnLimit: 0
-  end: 2
-  markerMessages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &2080583898
 PrefabInstance:
   m_ObjectHideFlags: 0

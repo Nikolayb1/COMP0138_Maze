@@ -32,9 +32,10 @@ public class Goal : MonoBehaviour
         uim = FindObjectOfType<UIManager>();
         msgo = GameObject.FindGameObjectWithTag("Maze");
         sg = FindObjectOfType<StartGoal>();
-        
-              
-        if(uim.GetMovementMode() == UIManager.MovementType.Fog)
+        transform.GetComponent<Renderer>().enabled = true;
+
+
+        if (uim.GetMovementMode() == UIManager.MovementType.Fog)
         {
             end = true;
         }

@@ -57,7 +57,7 @@ public class InputManager : MonoBehaviour
                                                     "If you would like to play the tutorial again please press B. To continue press A",
     "If you would like to play the tutorial again please press B. Please make sure that you have completed the online form until the the First Stage Section. To continue to the First Stage of the experiment press A",
     "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done exit the application."};
-
+    
        
 
     private void FindInputDevices()
@@ -259,7 +259,7 @@ public class InputManager : MonoBehaviour
 
         // Press Right Trigger to select point
         // This should only trigger when pointer is enabled and teleporter is disabled
-        if (triggerRightValue > 0 && !TriggerRightToggle && r.isPointer())
+        /*if (triggerRightValue > 0 && !TriggerRightToggle && r.isPointer())
         {
             // Send data to Ray and finish the experiment;
             // Get ray value
@@ -277,8 +277,8 @@ public class InputManager : MonoBehaviour
         {
 
             TriggerRightToggle = false;
-        }
-        /*
+        }*/
+        
         if (Input.GetKeyDown(KeyCode.A) && r.isPointer())
         {
             // Send data to Ray and finish the experiment;
@@ -291,7 +291,7 @@ public class InputManager : MonoBehaviour
             r.ResetRays();
             GL = FindObjectOfType<GoalLogic>();
             GL.RotationReset();
-        }*/
+        }
 
 
         // Press X to Change Fog

@@ -1609,8 +1609,8 @@ Camera:
   m_GameObject: {fileID: 341741805}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.54509807, g: 0.6156863, b: 0.7254902, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2926,6 +2926,7 @@ MonoBehaviour:
   teleportLine: {fileID: 142644528}
   pointerLine: {fileID: 1067742665}
   raticle: {fileID: 0}
+  fog: {fileID: 0}
   ta: {fileID: 0}
 --- !u!1 &1054408296
 GameObject:
@@ -9526,6 +9527,7 @@ MonoBehaviour:
   l: {fileID: 7550470266727064381}
   movementWarning: {fileID: 483762879}
   endMassage: {fileID: 1678242378}
+  pointer: {fileID: 0}
   spawnLimit: 0
   end: 0
   markerMessages:

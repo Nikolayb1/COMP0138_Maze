@@ -30,6 +30,7 @@ public class StartGoal : MonoBehaviour
     public Logger l;
     public GameObject movementWarning;
     public GameObject endMassage;
+    public GameObject pointer;
 
     private int numberOfSpawns;
     public int spawnLimit;
@@ -199,6 +200,7 @@ public class StartGoal : MonoBehaviour
                 case ending.orientationCheck:
                     // Send a message to a funciton which deletes the maze and activates the ray
                     spawnedGoal = Instantiate(EndObject, new Vector3(-2f, 1f, 15f), Quaternion.identity);
+                    pointer.SetActive(false);
                     goalCreated = true;
                     GL = spawnedGoal.GetComponent<GoalLogic>();
                     //spawnedGoal.SetActive(false);
