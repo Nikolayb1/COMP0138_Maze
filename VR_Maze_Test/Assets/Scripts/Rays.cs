@@ -55,8 +55,8 @@ public class Rays : MonoBehaviour
 
     public void ResetRays()
     {
-        teleportLine.SetActive(true);
         pointerLine.SetActive(false);
+        teleportLine.SetActive(true);
         ta.customReticle = raticle;
         pointerEnabled = false;
     }

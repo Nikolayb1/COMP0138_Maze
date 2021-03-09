@@ -40,7 +40,7 @@ public class InputManager : MonoBehaviour
     private float[] position;
 
     private GoalLogic GL;
-    private GameObject fog;
+    public GameObject fog;
     public UIManager uiManager;
 
     private bool PrimaryButtonRightToggle;
@@ -54,8 +54,8 @@ public class InputManager : MonoBehaviour
     public GameObject teleportLine;
 
     private string[] notificationText = new string[] { "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done put the VR headset back on and press A.",
-                                                    "If you would like to play the tutorial again please press B. To continue press A",
-    "If you would like to play the tutorial again please press B. Please make sure that you have completed the online form until the the First Stage Section. To continue to the First Stage of the experiment press A",
+                                                    "If you would like to play the tutorial again please press B. To continue press A \n\n ID: ",
+    "If you would like to play the tutorial again please press B. Please make sure that you have completed the online form until the the First Stage Section. To continue to the First Stage of the experiment press A\n\n ID: ",
     "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done exit the application."};
     
        
@@ -86,6 +86,10 @@ public class InputManager : MonoBehaviour
         if (!isTutorial)
         {
             TutorialMessage.SetActive(false);
+        }
+        else
+        {
+            endMessageText.text += CrossSceneData.CrossSceneId.ToString();
         }
         
     }
@@ -132,7 +136,6 @@ public class InputManager : MonoBehaviour
         isTutorial = false;
 
         walls = GameObject.FindObjectsOfType<ShaderChanger>();
-
         fog = GameObject.FindGameObjectWithTag("Fog");
         fog.SetActive(false);
     }
@@ -175,6 +178,7 @@ public class InputManager : MonoBehaviour
         {
             // Next Scene
             int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+            SetFog(false);
             Debug.Log(nextSceneIndex);
             Debug.Log(SceneManager.sceneCount);
             if (4 > nextSceneIndex)
@@ -259,7 +263,7 @@ public class InputManager : MonoBehaviour
 
         // Press Right Trigger to select point
         // This should only trigger when pointer is enabled and teleporter is disabled
-        /*if (triggerRightValue > 0 && !TriggerRightToggle && r.isPointer())
+        if (triggerRightValue > 0 && !TriggerRightToggle && r.isPointer())
         {
             // Send data to Ray and finish the experiment;
             // Get ray value
@@ -273,12 +277,12 @@ public class InputManager : MonoBehaviour
             GL.RotationReset();
             TriggerRightToggle = true;
         }
-        if (triggerRightValue == 0)
+        if (triggerRightValue == 0 && TriggerRightToggle)
         {
 
             TriggerRightToggle = false;
-        }*/
-        
+        }
+        /*
         if (Input.GetKeyDown(KeyCode.A) && r.isPointer())
         {
             // Send data to Ray and finish the experiment;
@@ -292,7 +296,7 @@ public class InputManager : MonoBehaviour
             GL = FindObjectOfType<GoalLogic>();
             GL.RotationReset();
         }
-
+        */
 
         // Press X to Change Fog
         if (primaryButtonLeftValue && !PrimaryButtonLeftToggle && isUIToggle)

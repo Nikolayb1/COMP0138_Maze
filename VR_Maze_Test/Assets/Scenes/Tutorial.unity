@@ -1705,7 +1705,7 @@ PrefabInstance:
     - target: {fileID: 3235626201898786336, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 205
+      value: 265.3
       objectReference: {fileID: 0}
     - target: {fileID: 3235626201898786336, guid: 27fd119fdb0f34ba5a1ce07c9789f4e3,
         type: 3}
@@ -12537,6 +12537,7 @@ MonoBehaviour:
   teleportLine: {fileID: 142644528}
   pointerLine: {fileID: 1067742665}
   raticle: {fileID: 0}
+  fog: {fileID: 0}
   ta: {fileID: 0}
 --- !u!1 &1034134275 stripped
 GameObject:
@@ -13475,6 +13476,11 @@ PrefabInstance:
       propertyPath: teleportLine
       value: 
       objectReference: {fileID: 142644528}
+    - target: {fileID: 6271164712357023598, guid: 31e3186480baeb446871a0ec59052e40,
+        type: 3}
+      propertyPath: fog
+      value: 
+      objectReference: {fileID: 973790642}
     - target: {fileID: 6271164712357023599, guid: 31e3186480baeb446871a0ec59052e40,
         type: 3}
       propertyPath: m_Name
@@ -14319,6 +14325,7 @@ MonoBehaviour:
   l: {fileID: 0}
   movementWarning: {fileID: 1034134275}
   endMassage: {fileID: 361550797}
+  pointer: {fileID: 0}
   spawnLimit: 2
   end: 0
   markerMessages:

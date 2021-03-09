@@ -171,8 +171,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You have found the center, now point to the beggining of the maze with
-    your right controller.
+  m_Text: You have found the center, now point to the maze entrance with your right
+    controller.
 --- !u!1 &5439135046893655341
 GameObject:
   m_ObjectHideFlags: 0

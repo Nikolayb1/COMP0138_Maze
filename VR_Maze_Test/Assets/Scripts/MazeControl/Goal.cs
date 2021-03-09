@@ -14,6 +14,7 @@ public class Goal : MonoBehaviour
     public GameObject msgo;
     public StartGoal sg;
     public MazeList msc;
+    public GameObject HMD;
     public bool end;
     public bool isRotation;
     
@@ -24,9 +25,9 @@ public class Goal : MonoBehaviour
         gl = FindObjectOfType<GridLogger>();
         l = FindObjectOfType<Logger>();
         end = false;
-        //isRotation = false;
         msc = FindObjectOfType<MazeList>();
         Player = GameObject.FindGameObjectWithTag("XRRig");
+        HMD = Player.GetComponent<XRRig>().cameraGameObject;
         ms = FindObjectOfType<MazeSpawner>();
         im = FindObjectOfType<InputManager>();
         uim = FindObjectOfType<UIManager>();
@@ -106,11 +107,12 @@ public class Goal : MonoBehaviour
         Player.transform.position = new Vector3(0f, 0.55f, -2.5f);
         if (sg.tutorial)
         {
-            Player.transform.rotation = Quaternion.Euler(0, 0, 0);
+            Player.transform.rotation = Quaternion.Euler(0, 0 - HMD.transform.localRotation.eulerAngles.y, 0);
+            
         }
         else
         {
-            Player.transform.rotation = Quaternion.Euler(0, 90, 0);
+            Player.transform.rotation = Quaternion.Euler(0, 90 - HMD.transform.localRotation.eulerAngles.y, 0);
         }
         
 

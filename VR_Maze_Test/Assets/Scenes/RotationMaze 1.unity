@@ -1850,7 +1850,18 @@ PrefabInstance:
     - target: {fileID: 7550470266485272000, guid: 95e06822bd9b94a7b9c866613cbecec3,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550470266485272000, guid: 95e06822bd9b94a7b9c866613cbecec3,
+        type: 3}
+      propertyPath: gridCellSmall
+      value: 
+      objectReference: {fileID: 7106909676678211155, guid: 8f7ecf44156834aefbd3d4fb9f5a91f0,
+        type: 3}
+    - target: {fileID: 7550470266485272000, guid: 95e06822bd9b94a7b9c866613cbecec3,
+        type: 3}
+      propertyPath: isRotation
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7550470266485272001, guid: 95e06822bd9b94a7b9c866613cbecec3,
         type: 3}
@@ -1916,6 +1927,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550470266485272007, guid: 95e06822bd9b94a7b9c866613cbecec3,
+        type: 3}
+      propertyPath: host
+      value: vrgroupdatacollection.cs.ucl.ac.uk
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95e06822bd9b94a7b9c866613cbecec3, type: 3}
@@ -7917,6 +7933,7 @@ MonoBehaviour:
   msgo: {fileID: 0}
   sg: {fileID: 0}
   msc: {fileID: 0}
+  HMD: {fileID: 0}
   end: 0
   isRotation: 0
   rays: {fileID: 0}
@@ -8947,6 +8964,11 @@ PrefabInstance:
       propertyPath: l
       value: 
       objectReference: {fileID: 419027133}
+    - target: {fileID: 6271164712357023598, guid: 31e3186480baeb446871a0ec59052e40,
+        type: 3}
+      propertyPath: fog
+      value: 
+      objectReference: {fileID: 583703436}
     - target: {fileID: 6271164712357023599, guid: 31e3186480baeb446871a0ec59052e40,
         type: 3}
       propertyPath: m_Name
@@ -9565,11 +9587,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.9
-  m_Text: 'In this stage at the centre of the maze there is a purple cylinder, which
-    you should navigate into. Once you reach the purple cylinder move into it to
-    activate the second part of this stage. At his point you should point in the
-    direction where you think the start of the maze is.  Do this with your right
-    controller and pull the trigger to confirm the direction.  '
+  m_Text: 'Please find the centre of maze marked by purple cylinder. Move into it
+    to activate the next part of the experiment. Point in the direction where you
+    think the maze entrance is. Do this with your right controller and pull the trigger
+    to confirm the direction. '
 --- !u!222 &1662410237
 CanvasRenderer:
   m_ObjectHideFlags: 0

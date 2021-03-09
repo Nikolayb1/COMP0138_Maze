@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     private string positionValueString;
 
     private static string movementTypeStringBegining = "Movement Type: ";
-    private static string wireframeModeStringBegining = "Wireframe Mode: ";
+    private static string wireframeModeStringBegining = "ID: ";
     private static string rotationStringBegining = "Rotaion: ";
     private static string positionStringBegining = "Position: ";
 
@@ -148,7 +148,7 @@ public class UIManager : MonoBehaviour
         newText = menu.GetComponentsInChildren<Text>();
 
         movementTypeText = newText[0];
-        //wireframeModeText = newText[1];
+        wireframeModeText = newText[1];
         //rotationText = newText[2];
         //positionText = newText[3];
     }
@@ -211,7 +211,7 @@ public class UIManager : MonoBehaviour
                     break;
             }
             movementTypeText.text = movementTypeStringBegining + movementTypeValueString;
-            //wireframeModeText.text = wireframeModeStringBegining + wireframeModeValueString;
+            wireframeModeText.text = wireframeModeStringBegining + CrossSceneData.CrossSceneId.ToString();
             //rotationText.text = rotationStringBegining+ rotationValueString;
             //positionText.text = positionStringBegining + positionValueString;
             

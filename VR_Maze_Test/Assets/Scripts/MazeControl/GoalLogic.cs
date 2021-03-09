@@ -31,19 +31,20 @@ public class GoalLogic : Goal
     {
         if (!end)
         {
+            ResetUser();
             msc.DestroyMaze();
             msc.InitNextMaze();
             ChangeMovementWireframe();
             // move the player
-            ResetUser();
+            
             // change the Locomotion method
 
             sg.Reset(end);
         }
         else
         {
-            msc.DestroyMaze();
             ResetUser();
+            msc.DestroyMaze();
             im.activateEndMessage(3);
         }
         
@@ -88,6 +89,7 @@ public class GoalLogic : Goal
     public void enableRotation()
     {
         isRotation = true ;
+        gameObject.SetActive(true);
         Debug.Log(isRotation);
     }
 

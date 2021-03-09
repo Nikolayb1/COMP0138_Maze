@@ -183,7 +183,7 @@ public class StartGoal : MonoBehaviour
             }
             
         }
-        if(numberOfSpawns >= spawnLimit && !goalCreated && markerSpawned == false)
+        if(numberOfSpawns >= spawnLimit && !goalCreated && check && markerSpawned == false)
         {
             Debug.Log("this is the end");
             switch (end)

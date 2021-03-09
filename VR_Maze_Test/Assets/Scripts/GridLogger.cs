@@ -11,20 +11,36 @@ public class GridLogger : MonoBehaviour
      */
 
     public GameObject gridCell;
+    public bool isRotation;
     private List<LogCell> gridCells = new List<LogCell>();
     Dictionary<int, float> enteredCells = new Dictionary<int, float>();
     public MyCollection myCollection = new MyCollection();
     // Start is called before the first frame update
     void Start()
     {
-        for(float i = 0; i < 12; i += 2)
+        if (!isRotation)
         {
-            for (float j = 0; j < 12; j += 2)
+            for (float i = 0; i < 12; i += 2)
             {
-                GameObject cell = Instantiate(gridCell, new Vector3(i, 1.5f, j), Quaternion.Euler(0, 0, 0));
-                gridCells.Add(cell.GetComponent<LogCell>());
+                for (float j = 0; j < 12; j += 2)
+                {
+                    GameObject cell = Instantiate(gridCell, new Vector3(i, 1.5f, j), Quaternion.Euler(0, 0, 0));
+                    gridCells.Add(cell.GetComponent<LogCell>());
+                }
             }
         }
+        else
+        {
+            for (float i = 0; i < 30; i += 2)
+            {
+                for (float j = 0; j < 34; j += 2)
+                {
+                    GameObject cell = Instantiate(gridCell, new Vector3(i-16, 1.5f, j), Quaternion.Euler(0, 0, 0));
+                    gridCells.Add(cell.GetComponent<LogCell>());
+                }
+            }
+        }
+        
     }
 
     // Update is called once per frame

@@ -3790,6 +3790,11 @@ PrefabInstance:
       propertyPath: TutorialMessage
       value: 
       objectReference: {fileID: 3235626201871515421}
+    - target: {fileID: 6271164712357023598, guid: 31e3186480baeb446871a0ec59052e40,
+        type: 3}
+      propertyPath: fog
+      value: 
+      objectReference: {fileID: 1565374007}
     - target: {fileID: 6271164712357023599, guid: 31e3186480baeb446871a0ec59052e40,
         type: 3}
       propertyPath: m_Name

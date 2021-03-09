@@ -1121,7 +1121,7 @@ ScriptsOnlyBuild:
     className: UIFoldout
   - hash:
       serializedVersion: 2
-      Hash: 8cc32853ce46793a27e6dcfd739b2698
+      Hash: a32d3e0a0b70d432e9fbafe82680dbb9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GoalLogic
@@ -1565,7 +1565,7 @@ ScriptsOnlyBuild:
     className: UniversalRenderPipelineEditorResources
   - hash:
       serializedVersion: 2
-      Hash: c81bbb0982cb67f5edce091aee4e1391
+      Hash: 8c27bdbfb89c8321202ab6b8f1b0b916
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GridLogger
@@ -1583,7 +1583,7 @@ ScriptsOnlyBuild:
     className: CameraOffset
   - hash:
       serializedVersion: 2
-      Hash: 447d39c54c14d1b086c949aa8816e264
+      Hash: d3cfc86fb4ceea883bb308f7b8407400
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Goal
@@ -1685,7 +1685,7 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerUIntField
   - hash:
       serializedVersion: 2
-      Hash: 931d5d660fa9070dd3dfdd92408cd98c
+      Hash: 0cd8f7355187232f8bd6efeda7d96643
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: InputManager
