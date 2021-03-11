@@ -134,12 +134,11 @@ GameObject:
   - component: {fileID: 25863885}
   - component: {fileID: 25863889}
   - component: {fileID: 25863887}
-  - component: {fileID: 25863890}
   - component: {fileID: 25863891}
   - component: {fileID: 25863892}
   - component: {fileID: 25863893}
-  - component: {fileID: 25863894}
   - component: {fileID: 25863895}
+  - component: {fileID: 25863890}
   m_Layer: 0
   m_Name: XRRig
   m_TagString: XRRig
@@ -249,7 +248,7 @@ MonoBehaviour:
   walls: []
   floor: {fileID: 0}
   ceilling: {fileID: 1897752883}
-  head: {fileID: 341741809}
+  head: {fileID: 341741805}
 --- !u!143 &25863891
 CharacterController:
   m_ObjectHideFlags: 0
@@ -297,19 +296,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &25863894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25863884}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05fbec841d74c4d1ebde8fd2e3e8f9a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
 --- !u!114 &25863895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9491,6 +9477,18 @@ MonoBehaviour:
   GoalPrefab: {fileID: 0}
   wo: {fileID: 1960024988}
   quick: 1
+  im: {fileID: 0}
+  uim: {fileID: 0}
+  sg: {fileID: 0}
+  l: {fileID: 0}
+  isCircle: 0
+  firstMazeCreated: 0
+  mazePicks: 
+  mazeId: 0
+  cirlceMazes: []
+  circleMaze: {fileID: 0}
+  cirlceMessages: []
+  circleMessage: {fileID: 0}
 --- !u!4 &2077242711
 Transform:
   m_ObjectHideFlags: 0
@@ -9519,6 +9517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EndObject: {fileID: 7136318586544564524, guid: 49ce41ef51b0b0047bc58b21b39880b1,
     type: 3}
+  CircleEndObject: {fileID: 0}
   marker: {fileID: 6581795526422539748, guid: bc0290cf3bb9d5f44a65aa4d4872f1be, type: 3}
   spawnedMarker: {fileID: 0}
   spawnedGoal: {fileID: 0}
@@ -9534,7 +9533,6 @@ MonoBehaviour:
   endMassage: {fileID: 1678242378}
   pointer: {fileID: 0}
   spawnLimit: 0
-  end: 0
   markerMessages:
   - {fileID: 0}
   - {fileID: 0}

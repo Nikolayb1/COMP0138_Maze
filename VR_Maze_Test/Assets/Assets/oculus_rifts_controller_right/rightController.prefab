@@ -54,8 +54,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817404569818543752}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -611,6 +611,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: oculus_rifts_controller_right
+      objectReference: {fileID: 0}
+    - target: {fileID: 4898410565034248308, guid: e71d6be16a0e23744b9f668d2033a1e7,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4898410565034248308, guid: e71d6be16a0e23744b9f668d2033a1e7,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e71d6be16a0e23744b9f668d2033a1e7, type: 3}

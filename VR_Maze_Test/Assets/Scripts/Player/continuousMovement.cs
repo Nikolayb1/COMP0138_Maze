@@ -8,7 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class continuousMovement : LocomotionProvider
 {
     public float speed = 1.0f;
-    public List<XRController> controllers = null;
+    public List<XRController> controllers;
 
     public UIManager uIManager;
     public InputManager im;
@@ -26,12 +26,16 @@ public class continuousMovement : LocomotionProvider
         characterController = GetComponent<CharacterController>();
         head = GetComponent<XRRig>().cameraGameObject;
         ceilling.SetActive(false);
+
         //head = GetComponent<Camera>();
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        characterController = GetComponent<CharacterController>();
+        head = GetComponent<XRRig>().cameraGameObject;
+        ceilling.SetActive(false);
+
     }
 
     
@@ -50,19 +54,33 @@ public class continuousMovement : LocomotionProvider
     {
         CheckForInput();
         //Debug.Log(walls.Length);
+        
         if (walls == null || walls.Length == 0)
         {
             FindWalls();
             
         }
 
+        foreach (ShaderChanger wall in walls)
+        {
+
+            if (wall == null)
+            {
+                FindWalls();
+            }
+            break;
+
+        }
+
     }
 
     private void CheckForInput()
     {
-        foreach(XRController controller in controllers)
+        
+        foreach (XRController controller in controllers)
         {
             if (controller.enableInputActions)
+                //Debug.Log("Test3");
                 CheckForMovement(controller.inputDevice);
         }
     }
@@ -71,10 +89,11 @@ public class continuousMovement : LocomotionProvider
     {
         
         if (device.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 position))
-        { 
+        {
+            //Debug.Log("Test");
             if (uIManager.GetWireframeMode() == UIManager.WireframeMode.Auto)
             {
-  
+                //Debug.Log("Test2");
                 if (position.magnitude < 0.0001f && movementBool)
                 {
                     Debug.Log("Standing");
@@ -96,6 +115,7 @@ public class continuousMovement : LocomotionProvider
                 {
                     Debug.Log("Moving");
                     movementBool = true;
+                    Debug.Log(walls[0]);
                     foreach (ShaderChanger wall in walls)
                     {
                         

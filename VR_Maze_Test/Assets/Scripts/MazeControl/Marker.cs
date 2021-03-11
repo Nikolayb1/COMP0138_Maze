@@ -8,6 +8,7 @@ public class Marker : MonoBehaviour
     public StartGoal sg;
     public GridLogger gl;
     public Logger l;
+    public bool shouldRequestEnd;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,12 @@ public class Marker : MonoBehaviour
         l.LogEvent("MF", val);
         gl.clearLog();
         sg.enableMarkerMessage();
+        sg.RequestEnding(StartGoal.ending.goalAtStart);
+    }
+
+    private void markerFoundTutorial()
+    {
+        sg.RequestEnding(StartGoal.ending.goal);
     }
 
     // When Marker was entered
@@ -46,6 +53,13 @@ public class Marker : MonoBehaviour
             if (!isTutorial)
             {
                 markerFoundEvent();
+            }else if (isTutorial)
+            {
+                if (shouldRequestEnd)
+                {
+                    markerFoundTutorial();
+                }
+                
             }
         }
     }

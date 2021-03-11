@@ -22,14 +22,15 @@ public class InputManager : MonoBehaviour
     private InputDeviceCharacteristics rightControllerCharacteristics;
     public GameObject endMessage;
     public GameObject TutorialMessage;
+    public Text tutorialText;
     public Text endMessageText;
     public Logger l;
 
     public GameObject XRRig;
     public GameObject mainCamera;
     public GameObject rightControllerObject;
-    private TeleportationProvider tp;
-    private continuousMovement cm;
+    public TeleportationProvider tp;
+    public continuousMovement cm;
     
     public Rays r;
 
@@ -40,8 +41,11 @@ public class InputManager : MonoBehaviour
     private float[] position;
 
     private GoalLogic GL;
+    public GameObject fogSmall;
+    public GameObject fogBig;
     public GameObject fog;
     public UIManager uiManager;
+    public MazeSpawner ms;
 
     private bool PrimaryButtonRightToggle;
     private bool SecondaryButtonRightToggle;
@@ -57,8 +61,22 @@ public class InputManager : MonoBehaviour
                                                     "If you would like to play the tutorial again please press B. To continue press A \n\n ID: ",
     "If you would like to play the tutorial again please press B. Please make sure that you have completed the online form until the the First Stage Section. To continue to the First Stage of the experiment press A\n\n ID: ",
     "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done exit the application."};
-    
-       
+
+
+    private string[] tutorialMessageText = new string[] {"Please find the white cube hidden in the maze. Move into it to activate the next part of the experiment. Find your way back to the maze entrance which is now marked by purple cube to progress the experiment.",
+    "Please find the centre of maze marked by purple cylinder. Move into it to activate the next part of the experiment. Point in the direction where you think the maze entrance is. Do this with your right controller and pull the trigger to confirm the direction. "};
+
+    public void ChangeFogType(bool t)
+    {
+        if (!t)
+        {
+            fog = fogSmall;
+        }
+        else
+        {
+            fog = fogBig;
+        }
+    }
 
     private void FindInputDevices()
     {
@@ -92,6 +110,11 @@ public class InputManager : MonoBehaviour
             endMessageText.text += CrossSceneData.CrossSceneId.ToString();
         }
         
+    }
+
+    public void ChangeTutorialText(int i)
+    {
+        tutorialText.text = tutorialMessageText[i];
     }
 
     public void deactivateEndMessage()
@@ -129,20 +152,17 @@ public class InputManager : MonoBehaviour
         rotation = new float[3];
         position = new float[3];
 
-        tp = XRRig.GetComponent<TeleportationProvider>();
-        cm = XRRig.GetComponent<continuousMovement>();
 
-        cm.enabled = false;
         isTutorial = false;
 
         walls = GameObject.FindObjectsOfType<ShaderChanger>();
-        fog = GameObject.FindGameObjectWithTag("Fog");
-        fog.SetActive(false);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(cm.enabled);
         if (stp.getDidRotation())
         {
             stp.setDidRotation(false);
@@ -222,7 +242,7 @@ public class InputManager : MonoBehaviour
         {
             SecondaryButtonRightToggle = false;
         }
-        /*if (Input.GetKeyDown(KeyCode.A) && !isTutorial && canChaneScene)
+        if (Input.GetKeyDown(KeyCode.A) && !isTutorial && canChaneScene)
         {
             // Next Scene
             int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
@@ -234,7 +254,7 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.A) && isTutorial && canChaneScene)
+        if (Input.GetKeyDown(KeyCode.A) && isTutorial && canChangeTutorial)
         {
             GL = FindObjectOfType<GoalLogic>();
             GL.progressTutorial();
@@ -244,7 +264,7 @@ public class InputManager : MonoBehaviour
         {
             GL = FindObjectOfType<GoalLogic>();
             GL.ResetTutorial();
-        }*/
+        }
 
         // Press B to change Wireframe Mode
         if (secondaryButtonRightValue && !SecondaryButtonRightToggle && isUIToggle)
@@ -263,7 +283,7 @@ public class InputManager : MonoBehaviour
 
         // Press Right Trigger to select point
         // This should only trigger when pointer is enabled and teleporter is disabled
-        if (triggerRightValue > 0 && !TriggerRightToggle && r.isPointer())
+        /*if (triggerRightValue > 0 && !TriggerRightToggle && r.isPointer())
         {
             // Send data to Ray and finish the experiment;
             // Get ray value
@@ -281,9 +301,9 @@ public class InputManager : MonoBehaviour
         {
 
             TriggerRightToggle = false;
-        }
-        /*
-        if (Input.GetKeyDown(KeyCode.A) && r.isPointer())
+        }*/
+
+        /*if (primaryButtonRightValue && !PrimaryButtonRightToggle && r.isPointer())
         {
             // Send data to Ray and finish the experiment;
             // Get ray value
@@ -295,8 +315,46 @@ public class InputManager : MonoBehaviour
             r.ResetRays();
             GL = FindObjectOfType<GoalLogic>();
             GL.RotationReset();
+            PrimaryButtonRightToggle = true;
         }
-        */
+        if (!primaryButtonRightValue)
+        {
+            PrimaryButtonRightToggle = false;
+        }*/
+        if (primaryButtonRightValue && !PrimaryButtonRightToggle && r.isPointer())
+        {
+            Ray ray = new Ray(rightControllerObject.transform.position, rightControllerObject.transform.forward);
+            // Send it to ray.
+            r.SetPointValue(ray.direction);
+            l.LogEvent("PS", r.CalculateAngle().ToString());
+            Debug.Log(r.CalculateAngle());
+            r.ResetRays();
+            GL = FindObjectOfType<GoalLogic>();
+            GL.RotationReset();
+            PrimaryButtonRightToggle = true;
+        }
+
+        if (!primaryButtonRightValue)
+        {
+            PrimaryButtonRightToggle = false;
+        }
+
+        /*if (Input.GetKeyDown(KeyCode.A) && r.isPointer())
+        {
+            // Send data to Ray and finish the experiment;
+            // Get ray value
+            Ray ray = new Ray(rightControllerObject.transform.position, rightControllerObject.transform.forward);
+            // Send it to ray.
+            r.SetPointValue(ray.direction);
+            l.LogEvent("PD", r.CalculateAngle().ToString());
+            Debug.Log(r.CalculateAngle());
+            r.ResetRays();
+            GL = FindObjectOfType<GoalLogic>();
+            GL.RotationReset();
+        }*/
+
+
+        
 
         // Press X to Change Fog
         if (primaryButtonLeftValue && !PrimaryButtonLeftToggle && isUIToggle)
@@ -318,7 +376,22 @@ public class InputManager : MonoBehaviour
 
     public void SetFog(bool b)
     {
-        fog.SetActive(b);
+        Debug.Log(ms.isCircle);
+        if (ms.isCircle && b)
+        {
+            fogSmall.SetActive(false);
+            fogBig.SetActive(true);
+        }else if(!ms.isCircle && b)
+        {
+            fogSmall.SetActive(true);
+            fogBig.SetActive(false);
+        }
+
+        if (!b)
+        {
+            fogSmall.SetActive(false);
+            fogBig.SetActive(false);
+        }
     }
 
     public void ChangeWireframe()
@@ -390,6 +463,9 @@ public class InputManager : MonoBehaviour
 
             case UIManager.MovementType.Dash:
                 teleportLine.SetActive(true);
+                cm.enabled = false;
+                cm.ForgetWalls();
+                tp.enabled = true;
                 tp.setDash();
                 SetFog(false);
                 break;
@@ -397,15 +473,18 @@ public class InputManager : MonoBehaviour
             case UIManager.MovementType.Walk:
                 teleportLine.SetActive(false);
                 cm.enabled = true;
+                cm.FindWalls();
                 tp.enabled = false;
                 SetFog(false);
+                
                 break;
 
             case UIManager.MovementType.Fog:
                 teleportLine.SetActive(false);
-                cm.enabled = true;
+                XRRig.GetComponent<continuousMovement>().enabled = true;
                 tp.enabled = false;
                 SetFog(true);
+
                 break;
 
         }

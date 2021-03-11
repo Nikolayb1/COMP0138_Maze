@@ -27,6 +27,7 @@ public class TutorialInit : MonoBehaviour
         
         CrossSceneData.CrossSceneId = Random.Range(0, 999999);
         activateTutorialMessage();
+        im.SetFog(false);
 
     }
 

@@ -35,11 +35,6 @@ public class Goal : MonoBehaviour
         sg = FindObjectOfType<StartGoal>();
         transform.GetComponent<Renderer>().enabled = true;
 
-
-        if (uim.GetMovementMode() == UIManager.MovementType.Fog)
-        {
-            end = true;
-        }
     }
 
     // Update is called once per frame
@@ -53,50 +48,14 @@ public class Goal : MonoBehaviour
         //ChangeMovementWireframe();
     }
 
-    public void ChangeMovementWireframe()
-    {
-        if (end)
-        {
-            if (isRotation)
-            {
-                im.activateEndMessage(3);
-            }
-            else
-            {
-                im.activateEndMessage(0);
-            }
-            
-            im.SetFog(false);
-        }
-        else
-        {
-            
-            uim.ChangeMovementType();
-            im.ChangeMovement();
 
-            if (uim.GetMovementMode() == UIManager.MovementType.Walk)
-            {
-                uim.SetWireframeMode(UIManager.WireframeMode.Auto);
-                im.ChangeWireframe();
-            }
-            else
-            {
-                uim.SetWireframeMode(UIManager.WireframeMode.Off);
-                im.ChangeWireframe();
-            }
-
-            
-        }
-        
-    }
-
-    public void ResetMaze(bool newMaze)
+    public void ResetMaze()
     {
         if (ms == null)
         {
             ms = FindObjectOfType<MazeSpawner>();
         }
-        ms.GenerateMaze(newMaze);
+        ms.PickRandomMaze();
     }
 
     public void ResetUser()

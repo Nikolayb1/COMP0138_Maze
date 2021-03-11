@@ -11,66 +11,95 @@ public class GridLogger : MonoBehaviour
      */
 
     public GameObject gridCell;
-    public bool isRotation;
+    public MazeSpawner ms;
     private List<LogCell> gridCells = new List<LogCell>();
+    public List<LogCell> gridCellsSmall = new List<LogCell>();
     Dictionary<int, float> enteredCells = new Dictionary<int, float>();
     public MyCollection myCollection = new MyCollection();
     // Start is called before the first frame update
     void Start()
     {
-        if (!isRotation)
+        for (float i = 0; i < 30; i += 2)
         {
-            for (float i = 0; i < 12; i += 2)
+            for (float j = 0; j < 34; j += 2)
             {
-                for (float j = 0; j < 12; j += 2)
+                GameObject cell = Instantiate(gridCell, new Vector3(i-16, 1.5f, j), Quaternion.Euler(0, 0, 0));
+                gridCells.Add(cell.GetComponent<LogCell>());
+                if (i < 28 && i > 14)
                 {
-                    GameObject cell = Instantiate(gridCell, new Vector3(i, 1.5f, j), Quaternion.Euler(0, 0, 0));
-                    gridCells.Add(cell.GetComponent<LogCell>());
+                    if (j < 12)
+                    {
+                        // add to another list;
+                        gridCellsSmall.Add(cell.GetComponent<LogCell>());
+                    }
                 }
             }
         }
-        else
-        {
-            for (float i = 0; i < 30; i += 2)
-            {
-                for (float j = 0; j < 34; j += 2)
-                {
-                    GameObject cell = Instantiate(gridCell, new Vector3(i-16, 1.5f, j), Quaternion.Euler(0, 0, 0));
-                    gridCells.Add(cell.GetComponent<LogCell>());
-                }
-            }
-        }
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < gridCells.Count; i++)
+        // If circle use the other big one if small use the other one.
+        if (ms.isCircle)
         {
-            if (gridCells[i].entered)
+            for (int i = 0; i < gridCells.Count; i++)
             {
-                if (!enteredCells.ContainsKey(i))
+                if (gridCells[i].entered)
                 {
-                    enteredCells.Add(i, Time.fixedTime);
+                    if (!enteredCells.ContainsKey(i))
+                    {
+                        enteredCells.Add(i, Time.fixedTime);
+                    }
                 }
             }
-        }
-        List<int> temp = new List<int>();
-        foreach (KeyValuePair<int, float> e in enteredCells)
-        {
-            if (!gridCells[e.Key].entered)
+            List<int> temp = new List<int>();
+            foreach (KeyValuePair<int, float> e in enteredCells)
             {
-                Debug.Log(e.Key + " : " + (Time.fixedTime - e.Value));
-                myCollection.gridLogData.Add(new GridLogData(e.Key, Time.fixedTime, Time.fixedTime - e.Value));
-                temp.Add(e.Key);
+                if (!gridCells[e.Key].entered)
+                {
+                    //Debug.Log(e.Key + " : " + (Time.fixedTime - e.Value));
+                    myCollection.gridLogData.Add(new GridLogData(e.Key, Time.fixedTime, Time.fixedTime - e.Value));
+                    temp.Add(e.Key);
+                }
+            }
+
+            foreach (int k in temp)
+            {
+                enteredCells.Remove(k);
             }
         }
-
-        foreach(int k in temp)
+        else
         {
-            enteredCells.Remove(k);
+            for (int i = 0; i < gridCellsSmall.Count; i++)
+            {
+                if (gridCellsSmall[i].entered)
+                {
+                    if (!enteredCells.ContainsKey(i))
+                    {
+                        enteredCells.Add(i, Time.fixedTime);
+                    }
+                }
+            }
+            List<int> temp = new List<int>();
+            foreach (KeyValuePair<int, float> e in enteredCells)
+            {
+                if (!gridCellsSmall[e.Key].entered)
+                {
+                    //Debug.Log(e.Key + " : " + (Time.fixedTime - e.Value));
+                    myCollection.gridLogData.Add(new GridLogData(e.Key, Time.fixedTime, Time.fixedTime - e.Value));
+                    temp.Add(e.Key);
+                }
+            }
+
+            foreach (int k in temp)
+            {
+                enteredCells.Remove(k);
+            }
         }
+        
     }
 
     public string dataToJson()
@@ -83,6 +112,7 @@ public class GridLogger : MonoBehaviour
     public void clearLog()
     {
         myCollection.gridLogData.Clear();
+        enteredCells.Clear();
     }
 }
 

@@ -13,6 +13,7 @@ public class StartGoal : MonoBehaviour
         orientationCheck
     }
     public GameObject EndObject;
+    public GameObject CircleEndObject;
     public GameObject marker;
     public GameObject spawnedMarker;
     public GameObject spawnedGoal;
@@ -31,10 +32,11 @@ public class StartGoal : MonoBehaviour
     public GameObject movementWarning;
     public GameObject endMassage;
     public GameObject pointer;
+    private bool rEnding;
+    private ending rMovementType;
 
     private int numberOfSpawns;
     public int spawnLimit;
-    public ending end;
     private bool markerSpawned;
     public GameObject[] markerMessages = new GameObject[4];
     private int markerId;
@@ -85,6 +87,10 @@ public class StartGoal : MonoBehaviour
     {
         spawnedMarker = Instantiate(marker, new Vector3(tutorialLocations[i, 0] * 2, 1f, tutorialLocations[i, 1] * 2), Quaternion.identity);
         spawnedMarker.GetComponent<Marker>().setTutorial(tutorial);
+        if (numberOfSpawns == 1)
+        {
+            spawnedMarker.GetComponent<Marker>().shouldRequestEnd = true;
+        }
         markerSpawned = true;
         numberOfSpawns++;
     }
@@ -105,28 +111,64 @@ public class StartGoal : MonoBehaviour
 
     public void Reset(bool e)
     {
+        Debug.Log("Goal should be destroyed");
         if (!e)
         {
             goalCreated = false;
             markerSpawned = false;
             numberOfSpawns = 0;
-            Destroy(spawnedGoal);
+            //Destroy(spawnedGoal);
         }
         else
         {
             goalCreated = false;
             markerSpawned = false;
             numberOfSpawns = 0;
-            Destroy(spawnedGoal);
-            im.canChaneScene = true;
-            if (!tutorial)
+            //Destroy(spawnedGoal);
+            if (tutorial)
             {
-                l.UploadLogs();
+                im.canChaneScene = true;
             }
             
         }
         
     }
+
+    public void RequestEnding(ending end)
+    {
+        rEnding = true;
+        rMovementType = end;
+    }
+
+    public void spawnEnding(ending end)
+    {
+        Debug.Log("The end spawned");
+        switch (end)
+        {
+            case ending.goal:
+                spawnedGoal = Instantiate(EndObject, new Vector3(10f, 1f, 12f), Quaternion.identity);
+                goalCreated = true;
+                break;
+            case ending.goalAtStart:
+                spawnedGoal = Instantiate(EndObject, new Vector3(0f, 1f, 0f), Quaternion.identity);
+                goalCreated = true;
+                spawnI += 1;
+                break;
+            case ending.orientationCheck:
+                // Send a message to a funciton which deletes the maze and activates the ray
+                spawnedGoal = Instantiate(CircleEndObject, new Vector3(-2f, 1f, 15f), Quaternion.identity);
+                pointer.SetActive(false);
+                goalCreated = true;
+                GL = spawnedGoal.GetComponent<GoalLogic>();
+                //spawnedGoal.SetActive(false);
+
+                GL.enableRotation();
+
+                break;
+        }
+
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -168,48 +210,21 @@ public class StartGoal : MonoBehaviour
         {
             markerSpawned = false;
         }
-        if (!markerSpawned && numberOfSpawns < spawnLimit){
-            if (BaF)
-            {
-                Spawn(spawnI);
-            }
-            else if (tutorial)
+        if (tutorial)
+        {
+            if (!markerSpawned && numberOfSpawns < spawnLimit)
             {
                 SpawnTutorial(numberOfSpawns);
-            }
-            else
-            {
-                Spawn();
-            }
-            
-        }
-        if(numberOfSpawns >= spawnLimit && !goalCreated && check && markerSpawned == false)
-        {
-            Debug.Log("this is the end");
-            switch (end)
-            {
-                case ending.goal:
-                    spawnedGoal = Instantiate(EndObject, new Vector3(10f, 1f, 12f), Quaternion.identity);
-                    goalCreated = true;
-                    break;
-                case ending.goalAtStart:
-                    spawnedGoal = Instantiate(EndObject, new Vector3(0f, 1f, 0f), Quaternion.identity);
-                    goalCreated = true;
-                    spawnI += 1;
-                    break;
-                case ending.orientationCheck:
-                    // Send a message to a funciton which deletes the maze and activates the ray
-                    spawnedGoal = Instantiate(EndObject, new Vector3(-2f, 1f, 15f), Quaternion.identity);
-                    pointer.SetActive(false);
-                    goalCreated = true;
-                    GL = spawnedGoal.GetComponent<GoalLogic>();
-                    //spawnedGoal.SetActive(false);
 
-                    GL.enableRotation();
-                    
-                    break;
             }
         }
+
+        if(check && rEnding)
+        {
+            rEnding = false;
+            spawnEnding(rMovementType);
+        }
+        
     }
 
 }

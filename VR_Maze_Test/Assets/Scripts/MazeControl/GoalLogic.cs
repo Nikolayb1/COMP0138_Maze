@@ -29,26 +29,35 @@ public class GoalLogic : Goal
 
     public void RotationReset()
     {
-        if (!end)
+        endMazeEvent();
+        ResetUser();
+        ResetMaze();
+        
+        // move the player
+
+        // change the Locomotion method
+
+        sg.Reset(end);
+        Destroy(gameObject);
+        /*if (!end)
         {
             ResetUser();
-            msc.DestroyMaze();
-            msc.InitNextMaze();
-            ChangeMovementWireframe();
+            ResetMaze();
             // move the player
-            
+
             // change the Locomotion method
 
             sg.Reset(end);
+            Destroy(transform);
         }
         else
         {
             ResetUser();
-            msc.DestroyMaze();
+            ResetMaze();
             im.activateEndMessage(3);
-        }
-        
-        
+        }*/
+
+
     }
 
     public void progressTutorial()
@@ -64,10 +73,12 @@ public class GoalLogic : Goal
         }
         else
         {
-            SceneManager.LoadScene("QuickMaze", LoadSceneMode.Single);
+            progressExperiment();
         }
-        
-        
+
+        Destroy(gameObject);
+
+
     }
 
     public void progressExperiment()
@@ -84,13 +95,14 @@ public class GoalLogic : Goal
         sg.Reset(end);
         im.isTutorial = false;
         im.deactivateEndMessage();
+        im.ChangeMovement();
         FindObjectOfType<TutorialInit>().activateTutorialMessage();
+        Destroy(gameObject);
     }
     public void enableRotation()
     {
         isRotation = true ;
         gameObject.SetActive(true);
-        Debug.Log(isRotation);
     }
 
     public void endMazeEvent()
@@ -98,6 +110,33 @@ public class GoalLogic : Goal
         string val = gl.dataToJson();
         l.LogEvent("EM", val);
         l.LogEvent("ID", CrossSceneData.CrossSceneId.ToString());
+        if (isRotation)
+        {
+            l.LogEvent("MA", "Rotation Maze");
+        }
+        else
+        {
+            l.LogEvent("MA", "Back and Forth Maze");
+
+        }
+        
+        switch (uim.GetMovementMode())
+        {
+            case UIManager.MovementType.Teleport:
+                l.LogEvent("MT", "Teleport");
+                break;
+            case UIManager.MovementType.Dash:
+                l.LogEvent("MT", "Dash");
+                break;
+            case UIManager.MovementType.Walk:
+                l.LogEvent("MT", "Blur");
+                break;
+
+            case UIManager.MovementType.Fog:
+                l.LogEvent("MT", "Fog");
+                break;
+        }
+        
         gl.clearLog();
     }
 
@@ -114,28 +153,29 @@ public class GoalLogic : Goal
             {
                 // Generate new maze
                 endMazeEvent();
-                ResetMaze(!end);
+                ResetMaze();
                 // move the player
                 
                 // change the Locomotion method
-                ChangeMovementWireframe();
                 sg.Reset(end);
+                Destroy(gameObject);
 
             }
             else
             {
                 im.isTutorial = true;
                 
-                if (!end)
+                if (uim.GetMovementMode() != UIManager.MovementType.Fog)
                 {
                     im.canChangeTutorial = true;
                     im.activateEndMessage(1);
                 }
-                else
+                else if(uim.GetMovementMode() == UIManager.MovementType.Fog)
                 {
                     im.canChaneScene = true;
                     im.canChangeTutorial = true;
                     im.activateEndMessage(2);
+                    im.SetFog(false);
                 }
                 
                 FindObjectOfType<TutorialInit>().deactivateTutorialMessage();
