@@ -35,6 +35,8 @@ public class StartGoal : MonoBehaviour
     private bool rEnding;
     private ending rMovementType;
 
+    public bool init;
+
     private int numberOfSpawns;
     public int spawnLimit;
     private bool markerSpawned;
@@ -56,6 +58,7 @@ public class StartGoal : MonoBehaviour
         markerSpawned = false;
         numberOfSpawns = 0;
         im.canChaneScene = false;
+        init = true;
     }
     //spawn a marker at a random point
     public void Spawn()
@@ -210,7 +213,7 @@ public class StartGoal : MonoBehaviour
         {
             markerSpawned = false;
         }
-        if (tutorial)
+        if (tutorial && !init)
         {
             if (!markerSpawned && numberOfSpawns < spawnLimit)
             {

@@ -13,36 +13,67 @@ public class TutorialInit : MonoBehaviour
     public GameObject tutorialMessage;
     public Text text;
 
+    public bool init;
+
+    public GameObject introMessage;
+    public Text introTextMessage;
+
     private string[] tutorialText = new string[] { "Locomotion Method: Teleport\n\nHow to use: Point with the right controller to where you want to move. If the line glows white, it means that you can move to that point, red, means you cannot. When you are ready to move press the right trigger. You can also use the right joystick to turn in place.",
     "Locomotion Method: Dash\n\nHow to use: Point with the right controller to where you want to move. If the line glows white, it means that you can move to that point, red, means you cannot. When you are ready to move press the right trigger. You can also use the right joystick to turn in place.",
     "Locomotion Method: Blur\n\nHow to use: Use the left joystick to glide in the direction you want. The direction you are looking in is always acts as forward. When you move the wall texture will turn blurry. You can also use the right joystick to turn in place.",
     "Locomotion Method: Fog\n\nHow to use: Use the left joystick to glide in the direction you want. The direction you are looking in is always acts as forward. You can also use the right joystick to turn in place."};
 
+    private string introText = "\tMake a note of your ID and take off your VR headset to complete the “Consent” and “Basic Information” sections of the form.When you are done put the VR headset back on to complete the tutorial.To continue press ‘A’.";
 
     // Start is called before the first frame update
     void Start()
     {
+        
         uim = FindObjectOfType<UIManager>();
         im = FindObjectOfType<InputManager>();
         
         CrossSceneData.CrossSceneId = Random.Range(0, 999999);
-        activateTutorialMessage();
+        tutorialMessage.SetActive(false);
+        activateIntroMessage();
         im.SetFog(false);
 
     }
 
+    public void activateIntroMessage()
+    {
+        init = true;
+        introTextMessage.text = "Your ID: " + CrossSceneData.CrossSceneId.ToString() + "\n\n" + introText;
+    }
+
+    public void deactivateIntroMessage()
+    {
+        init = false;
+        introMessage.SetActive(false);
+    }
+
+
     public void nextMovementMethod()
     {
-        if (selectedMovementType == UIManager.MovementType.Teleport)
+        if (init)
         {
-            selectedMovementType = UIManager.MovementType.Dash;
-        }else if (selectedMovementType == UIManager.MovementType.Dash)
-        {
-            selectedMovementType = UIManager.MovementType.Walk;
-        }else if (selectedMovementType == UIManager.MovementType.Walk)
-        {
-            selectedMovementType = UIManager.MovementType.Fog;
+            init = false;
         }
+        else
+        {
+            if (selectedMovementType == UIManager.MovementType.Teleport)
+            {
+                selectedMovementType = UIManager.MovementType.Dash;
+            }
+            else if (selectedMovementType == UIManager.MovementType.Dash)
+            {
+                selectedMovementType = UIManager.MovementType.Walk;
+            }
+            else if (selectedMovementType == UIManager.MovementType.Walk)
+            {
+                selectedMovementType = UIManager.MovementType.Fog;
+            }
+        }
+        
     }
 
     // Update is called once per frame

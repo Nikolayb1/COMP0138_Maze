@@ -120,20 +120,13 @@ public class MazeSpawner : MonoBehaviour {
 		}
 	}
 
-	public void PickRandomMaze()
+	public void ShowIntermission()
     {
-
-		bool newMaze = true;
-		if (mazePicks.Count == 0)
+		if (firstMazeCreated)
 		{
 
-			newMaze = false;
-		}
-		if (firstMazeCreated)
-        {
-			
 			if (!isCircle)
-            {
+			{
 				oldWalls = new List<GameObject>();
 				foreach (Transform child in this.transform)
 				{
@@ -145,15 +138,37 @@ public class MazeSpawner : MonoBehaviour {
 
 				}
 			}
-            else
-            {
+			else
+			{
 				if (circleMaze != null)
 				{
 					Destroy(circleMaze);
 					Destroy(circleMessage);
 				}
 			}
+		}
+		if (mazePicks.Count == 0)
+        {
+			PickRandomMaze();
         }
+        else
+        {
+			im.canChangeMaze = true;
+			im.ShowIntermissionMessage();
+		}
+		
+    }
+
+	public void PickRandomMaze()
+    {
+
+		bool newMaze = true;
+		if (mazePicks.Count == 0)
+		{
+
+			newMaze = false;
+		}
+		
         if (newMaze)
         {
 			mazeId = mazePicks[UnityEngine.Random.Range(0, mazePicks.Count)];

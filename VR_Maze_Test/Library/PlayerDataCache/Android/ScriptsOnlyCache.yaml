@@ -545,7 +545,7 @@ ScriptsOnlyBuild:
     className: SnapTurnProvider
   - hash:
       serializedVersion: 2
-      Hash: 32f182f3966b38071710f30ad9e47131
+      Hash: 3b18e835646ef4773c6cba496e96146e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StartGoal
@@ -899,7 +899,7 @@ ScriptsOnlyBuild:
     className: MazeSpawnerCircle
   - hash:
       serializedVersion: 2
-      Hash: f4624051601ecf2613ce456ad559175f
+      Hash: d0959a97c1dd932fba82163a863aa3e5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Rays
@@ -1109,7 +1109,7 @@ ScriptsOnlyBuild:
     className: CameraMovement
   - hash:
       serializedVersion: 2
-      Hash: c00baf16bb5b64a1372209cb002b50f1
+      Hash: 02e490b18f60a564ee404a991b94fd00
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TutorialInit
@@ -1307,7 +1307,7 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerUIntField
   - hash:
       serializedVersion: 2
-      Hash: 7b9f81e0f0cf2e9d6702aba784fbd0ad
+      Hash: 76871cfc6fd6f649f6aa1a205d94fe11
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: InputManager
@@ -1554,4 +1554,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/RandomMaze.unity
-  playerPath: /Users/nikolaymac/Documents/GitHub/COMP0138_Maze/Builds/RandomMaze.apk
+  playerPath: /Users/nikolaymac/Documents/GitHub/COMP0138_Maze/Builds/RandomMazeBuild.apk

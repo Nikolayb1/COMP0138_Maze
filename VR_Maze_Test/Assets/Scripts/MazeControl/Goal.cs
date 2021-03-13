@@ -55,7 +55,8 @@ public class Goal : MonoBehaviour
         {
             ms = FindObjectOfType<MazeSpawner>();
         }
-        ms.PickRandomMaze();
+        // change to showing a message;
+        ms.ShowIntermission();
     }
 
     public void ResetUser()

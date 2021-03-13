@@ -23,6 +23,7 @@ public class GoalLogic : Goal
     {
         //msc.DestroyMaze();
         rays = FindObjectOfType<Rays>();
+        im.SetFog(false);
         //Activate a function from rays
         rays.InitRays();
     }

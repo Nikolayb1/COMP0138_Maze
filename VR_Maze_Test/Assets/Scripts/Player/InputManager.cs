@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
     public bool isTutorial;
     public bool canChaneScene;
     public bool canChangeTutorial;
+    public bool canChangeMaze;
 
     public SnapTurnProvider stp;
 
@@ -22,9 +23,12 @@ public class InputManager : MonoBehaviour
     private InputDeviceCharacteristics rightControllerCharacteristics;
     public GameObject endMessage;
     public GameObject TutorialMessage;
+    public GameObject InterMessage;
     public Text tutorialText;
     public Text endMessageText;
     public Logger l;
+
+    public TutorialInit ti;
 
     public GameObject XRRig;
     public GameObject mainCamera;
@@ -57,14 +61,14 @@ public class InputManager : MonoBehaviour
     public GameObject ceilling;
     public GameObject teleportLine;
 
-    private string[] notificationText = new string[] { "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done put the VR headset back on and press A.",
+    private string[] notificationText = new string[] { "\tPlease take off your VR headset and complete the next page of the form.\n\n\tWhen you are done put the VR headset back on and press ‘A’.",
                                                     "If you would like to play the tutorial again please press B. To continue press A \n\n ID: ",
-    "If you would like to play the tutorial again please press B. Please make sure that you have completed the online form until the the First Stage Section. To continue to the First Stage of the experiment press A\n\n ID: ",
+    "\tIf you would like to play the tutorial again please press ‘B’. Please make sure that you have completed the online form up to the “Maze 1” section. To continue to the First Maze of the experiment press ‘A’\n\n ID: ",
     "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done exit the application."};
 
 
-    private string[] tutorialMessageText = new string[] {"Please find the white cube hidden in the maze. Move into it to activate the next part of the experiment. Find your way back to the maze entrance which is now marked by purple cube to progress the experiment.",
-    "Please find the centre of maze marked by purple cylinder. Move into it to activate the next part of the experiment. Point in the direction where you think the maze entrance is. Do this with your right controller and pull the trigger to confirm the direction. "};
+    private string[] tutorialMessageText = new string[] {"The is a white cube hidden in the maze. Navigate the maze and find it. When you locate it move into it to activate the next part of the stage. Then return to the maze entrance which will now be marked by a purple cube. Move into it to finish the maze.",
+    "Navigate to the centre of the maze which is marked by a purple cylinder. Move into it to activate the next part of the stage. Then point with your right controller to where you think the maze entrance is. To confirm the direction, press ‘A’."};
 
     public void ChangeFogType(bool t)
     {
@@ -153,7 +157,7 @@ public class InputManager : MonoBehaviour
         position = new float[3];
 
 
-        isTutorial = false;
+
 
         walls = GameObject.FindObjectsOfType<ShaderChanger>();
 
@@ -216,7 +220,6 @@ public class InputManager : MonoBehaviour
         // Press A to progress tutorial
         if (primaryButtonRightValue && !PrimaryButtonRightToggle && isTutorial && canChangeTutorial)
         {
-            Debug.Log("Hello");
             GL = FindObjectOfType<GoalLogic>();
             GL.progressTutorial();
             canChangeTutorial = false;
@@ -227,6 +230,61 @@ public class InputManager : MonoBehaviour
         {
             PrimaryButtonRightToggle = false;
         }
+
+        if (primaryButtonRightValue && !PrimaryButtonRightToggle && isTutorial && ti.init)
+        {
+            Debug.Log("should start tutorial");
+            FindObjectOfType<StartGoal>().init = false;
+            ti.activateTutorialMessage();
+            ti.deactivateIntroMessage();
+            canChangeTutorial = false;
+            PrimaryButtonRightToggle = true;
+        }
+
+        if (!primaryButtonRightValue)
+        {
+            PrimaryButtonRightToggle = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.A) && isTutorial && ti.init)
+        {
+            //GL = FindObjectOfType<GoalLogic>();
+            //GL.progressTutorial();
+            Debug.Log("should start tutorial");
+            FindObjectOfType<StartGoal>().init = false;
+            ti.activateTutorialMessage();
+            ti.deactivateIntroMessage();
+            canChangeTutorial = false;
+        }
+
+            /*// Press A to progress tutorial
+            if (primaryButtonRightValue && !PrimaryButtonRightToggle && isTutorial && canChangeTutorial)
+            {
+                Debug.Log("Hello");
+                GL = FindObjectOfType<GoalLogic>();
+                GL.progressTutorial();
+                canChangeTutorial = false;
+                PrimaryButtonRightToggle = true;
+            }
+
+            if (!primaryButtonRightValue)
+            {
+                PrimaryButtonRightToggle = false;
+            }*/
+
+        if (primaryButtonRightValue && !PrimaryButtonRightToggle && canChangeMaze)
+        {
+            canChangeMaze = false;
+            TutorialMessage.SetActive(true);
+            InterMessage.SetActive(false);
+            ms.PickRandomMaze();
+            
+        }
+        if (!primaryButtonRightValue)
+        {
+            PrimaryButtonRightToggle = false;
+        }
+       
 
         // Press B to replay tutorial
         if (secondaryButtonRightValue && !SecondaryButtonRightToggle && isTutorial && canChangeTutorial)
@@ -256,6 +314,7 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A) && isTutorial && canChangeTutorial)
         {
+            Debug.Log("should change tutorial");
             GL = FindObjectOfType<GoalLogic>();
             GL.progressTutorial();
         }
@@ -392,6 +451,12 @@ public class InputManager : MonoBehaviour
             fogSmall.SetActive(false);
             fogBig.SetActive(false);
         }
+    }
+
+    public void ShowIntermissionMessage()
+    {
+        TutorialMessage.SetActive(false);
+        InterMessage.SetActive(true);
     }
 
     public void ChangeWireframe()
