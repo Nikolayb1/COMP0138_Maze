@@ -113,6 +113,20 @@ public class GridLogger : MonoBehaviour
     {
         myCollection.gridLogData.Clear();
         enteredCells.Clear();
+        for (int i = 0; i < gridCells.Count; i++)
+        {
+            if (gridCells[i].entered)
+            {
+                gridCells[i].entered = false;
+            }
+        }
+        for (int i = 0; i < gridCellsSmall.Count; i++)
+        {
+            if (gridCellsSmall[i].entered)
+            {
+                gridCellsSmall[i].entered = false;
+            }
+        }
     }
 }
 

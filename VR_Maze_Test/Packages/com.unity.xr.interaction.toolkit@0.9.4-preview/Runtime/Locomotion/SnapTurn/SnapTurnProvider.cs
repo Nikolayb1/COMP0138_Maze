@@ -174,7 +174,7 @@ namespace UnityEngine.XR.Interaction.Toolkit
                 return;
             didRotation = true;
             m_TimeStarted = Time.time;
-            m_CurrentTurnAmount = amount;            
+            m_CurrentTurnAmount = amount;       
         }
     }
 }

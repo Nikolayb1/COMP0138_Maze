@@ -5,7 +5,7 @@ using UnityEngine;
 public class StartGoal : MonoBehaviour
 {
     private int[] locations = { 0,2,4,6,8};
-    private int[,] spawnLocations = { { 3,5}, { 1, 4 }, {3 ,4}, { 3,4} };
+    private int[,] spawnLocations = { { 3,5}, { 1, 4 }, {3 ,5}, { 3,4} };
     private int[,] tutorialLocations = { { 1, 1 }, { 3, 3 } };
     public enum ending{
         goal,

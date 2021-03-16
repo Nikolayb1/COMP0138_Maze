@@ -67,10 +67,23 @@ public class continuousMovement : LocomotionProvider
             if (wall == null)
             {
                 FindWalls();
+                break;
             }
-            break;
+            
 
         }
+        foreach (ShaderChanger wall in walls)
+        {
+
+            if (object.Equals(wall, null))
+            {
+                FindWalls();
+                break;
+            }
+            
+
+        }
+        
 
     }
 

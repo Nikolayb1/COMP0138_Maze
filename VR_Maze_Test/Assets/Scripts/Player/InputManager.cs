@@ -67,8 +67,8 @@ public class InputManager : MonoBehaviour
     "\tPlease take off your VR headset and complete the next page of the online form.\n\n\tWhen you are done exit the application."};
 
 
-    private string[] tutorialMessageText = new string[] {"The is a white cube hidden in the maze. Navigate the maze and find it. When you locate it move into it to activate the next part of the stage. Then return to the maze entrance which will now be marked by a purple cube. Move into it to finish the maze.",
-    "Navigate to the centre of the maze which is marked by a purple cylinder. Move into it to activate the next part of the stage. Then point with your right controller to where you think the maze entrance is. To confirm the direction, press ‘A’."};
+    private string[] tutorialMessageText = new string[] {"The is a white cube hidden in the maze. Navigate the maze and find it. When you locate it move into it and you will be prompted to return to the maze entrance, which will now be marked by a purple cube. Move into the purple cube to finish the maze.",
+    "Navigate to the centre of the maze which is marked by a purple cylinder. Move into the purple cylinder to activate the orientation task. You will be prompted to point with your right controller to where you think the maze entrance is located. To confirm the direction, press ‘A’."};
 
     public void ChangeFogType(bool t)
     {
@@ -170,9 +170,9 @@ public class InputManager : MonoBehaviour
         if (stp.getDidRotation())
         {
             stp.setDidRotation(false);
-            if (isTutorial)
+            if (!isTutorial)
             {
-                l.LogEvent("SR", "Current Rotation: " + stp.getCurrentTurnAmount().ToString());
+                l.LogEvent("SR", "Did rotation");
             }
             
         }
@@ -278,13 +278,22 @@ public class InputManager : MonoBehaviour
             TutorialMessage.SetActive(true);
             InterMessage.SetActive(false);
             ms.PickRandomMaze();
-            
+            PrimaryButtonRightToggle = true;
         }
         if (!primaryButtonRightValue)
         {
             PrimaryButtonRightToggle = false;
         }
-       
+
+        if (Input.GetKeyDown(KeyCode.A) && canChangeMaze)
+        {
+            canChangeMaze = false;
+            TutorialMessage.SetActive(true);
+            InterMessage.SetActive(false);
+            ms.PickRandomMaze();
+
+        }
+
 
         // Press B to replay tutorial
         if (secondaryButtonRightValue && !SecondaryButtonRightToggle && isTutorial && canChangeTutorial)
@@ -398,7 +407,7 @@ public class InputManager : MonoBehaviour
             PrimaryButtonRightToggle = false;
         }
 
-        /*if (Input.GetKeyDown(KeyCode.A) && r.isPointer())
+        if (Input.GetKeyDown(KeyCode.A) && r.isPointer())
         {
             // Send data to Ray and finish the experiment;
             // Get ray value
@@ -410,7 +419,7 @@ public class InputManager : MonoBehaviour
             r.ResetRays();
             GL = FindObjectOfType<GoalLogic>();
             GL.RotationReset();
-        }*/
+        }
 
 
         

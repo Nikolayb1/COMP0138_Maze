@@ -65,12 +65,12 @@ public class MazeSpawner : MonoBehaviour {
 	{ "lt", "trb", "lt", "tb", "t", "brt" }};
 
 	private string[,] maze7 = new string[,] {
-	{ "lr", "lbr", "lb", "b", "tb", "br" },
-	{ "l", "tr", "ltr", "lr", "lb", "tr" },
-	{ "lt", "tb", "br", "lr", "lt", "br" },
-	{ "lb", "br", "lt", "tr", "lbr", "lr" },
-	{ "lr", "l", "tb", "trb", "l", "tr" }, 
-	{ "ltr", "lt", "tb", "tb", "t", "brt" }};
+	{ "l", "b", "br", "ltb", "b", "brt" },
+	{ "ltr", "lr", "lt", "br", "l", "br" },
+	{ "lb", "tr", "lbr", "lr", "ltr", "lr" },
+	{ "lr", "lbr", "l", "tr", "lb", "r" },
+	{ "lr", "lt", "t", "t", "tr", "lr" }, 
+	{ "lt", "tb", "trb", "ltb", "tb", "rt" }};
 
 	private string[,] maze8 = new string[,] {
 	{ "l", "tb", "tb", "tb", "br", "lbr" },
@@ -173,7 +173,6 @@ public class MazeSpawner : MonoBehaviour {
         {
 			mazeId = mazePicks[UnityEngine.Random.Range(0, mazePicks.Count)];
 			mazePicks.Remove(mazeId);
-
 
 
 			firstMazeCreated = true;
