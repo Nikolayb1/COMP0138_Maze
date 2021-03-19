@@ -34,6 +34,7 @@ public class MazeSpawner : MonoBehaviour {
 	public UIManager uim;
 	public StartGoal sg;
 	public Logger l;
+	public int mazeCount;
 
 	private List<GameObject> oldWalls = new List<GameObject>();
 	public bool isCircle;
@@ -99,7 +100,7 @@ public class MazeSpawner : MonoBehaviour {
 		movementList.Add(UIManager.MovementType.Walk);
 		movementList.Add(UIManager.MovementType.Fog);
 
-
+		mazeCount = 0;
 		PickRandomMaze();
 	}
 
@@ -159,10 +160,16 @@ public class MazeSpawner : MonoBehaviour {
 		
     }
 
+	public int GetMazeCount()
+    {
+		return mazeCount;
+    }
+
 	public void PickRandomMaze()
     {
 
 		bool newMaze = true;
+		mazeCount += 1;
 		if (mazePicks.Count == 0)
 		{
 

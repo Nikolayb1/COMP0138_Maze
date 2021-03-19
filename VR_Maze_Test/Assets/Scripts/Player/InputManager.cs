@@ -24,9 +24,13 @@ public class InputManager : MonoBehaviour
     public GameObject endMessage;
     public GameObject TutorialMessage;
     public GameObject InterMessage;
+    public Text interText;
     public Text tutorialText;
     public Text endMessageText;
     public Logger l;
+
+    private UIManager.MovementType currMoveType;
+    private int currTutorial;
 
     public TutorialInit ti;
 
@@ -118,7 +122,9 @@ public class InputManager : MonoBehaviour
 
     public void ChangeTutorialText(int i)
     {
-        tutorialText.text = tutorialMessageText[i];
+        currMoveType = uiManager.GetMovementMode();
+        currTutorial = i;
+        tutorialText.text = ms.GetMazeCount().ToString() + "/8 Maze\n\nMovement Type: "+ currMoveType.ToString()+"\n\n" +tutorialMessageText[i];
     }
 
     public void deactivateEndMessage()
@@ -166,6 +172,10 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currMoveType != uiManager.GetMovementMode())
+        {
+            ChangeTutorialText(currTutorial);
+        }
         //Debug.Log(cm.enabled);
         if (stp.getDidRotation())
         {
@@ -466,6 +476,7 @@ public class InputManager : MonoBehaviour
     {
         TutorialMessage.SetActive(false);
         InterMessage.SetActive(true);
+        interText.text = "Please take off your VR headset and complete the 'Maze "+ms.GetMazeCount().ToString()+"' section of the form. When you are done put the VR headset back on and press ‘A’.";
     }
 
     public void ChangeWireframe()
